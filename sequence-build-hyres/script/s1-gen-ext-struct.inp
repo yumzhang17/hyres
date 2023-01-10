@@ -1,0 +1,71 @@
+* generate an extended structure
+*
+
+if @?segid eq 0 set segid = test
+if @?pdbid eq 0 set pdbid = test
+
+set toppar = required
+
+!HyRes2
+read  rtf card name @toppar/top-idpcg-sasa.inp
+read para card name @toppar/param-idpcg-sasa.inp
+
+! AMN and CBX are capping groups
+!!You can read in any sequence as you like! generate IDP with their sequence.
+read sequ card
+* test
+*
+8 
+AMN SER MET ALA GLU ASN GLN CBX 
+
+bomlev -1
+gene @segid setup warn
+
+ic param
+ic seed 2 N 2 CA 2 C
+ic build
+hbuild
+bomlev 0
+
+! ionc 0.15: for DH screening
+NBOND atom switch cdie vdw vswitch -
+      cutnb 20.0 ctofnb 18.0 ctonnb 16.0 -
+      eps 20 ionc 0.15
+nbond inbfrq -1
+hbond ihbfrq -1
+energy
+
+shake tolerance 1.0e-06 bonh param
+
+cons harm force 2.0 select .not. hydrogen end
+mini   sd  nstep 100 nprint 20 step 0.005
+mini abnr  nstep 100 nprint 20 step 0.005
+cons harm clear
+
+coor stat mass sele all end
+set xcm = ?XAVE
+set ycm = ?YAVE
+set zcm = ?ZAVE
+
+coor trans xdir -1.0 ydir 0.0 zdir 0.0 dist @xcm select all end
+coor trans xdir 0.0 ydir -1.0 zdir 0.0 dist @ycm select all end
+coor trans xdir 0.0 ydir 0.0 zdir -1.0 dist @zcm select all end
+
+open writ card unit 10 name ../s1-gen-ext-struct/@pdbid_ext.pdb
+coor writ pdb  unit 10
+* an extended structure of @pdbid 
+*
+clos unit 10
+
+open writ card unit 10 name ../s1-gen-ext-struct/@pdbid_ext.psf
+writ psf  card unit 10 
+* psf of @pdbid cg system
+*
+clos unit 10
+
+open writ card unit 10 name ../s1-gen-ext-struct/@pdbid_ext.crd
+coor writ card unit 10 
+* an extended structure of @pdbid
+*
+clos unit 10 
+stop

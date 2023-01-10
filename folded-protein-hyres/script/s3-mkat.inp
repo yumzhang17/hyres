@@ -1,0 +1,83 @@
+* generate a AT p53 using gbsw model
+* after energy minimization
+*
+
+if @?pdbid eq 0 stop
+if @?inpdir eq 0 stop
+set toppar = required
+
+!READ in topology and parameter files
+read  rtf card name @toppar/top_all22_prot_cmap.inp  !for all-atom
+read para card name @toppar/par_all22_prot_gbsw.inp  !for all-atom
+
+
+open read card unit 15 name @inpdir/@pdbid-clean.pdb
+read sequ pdb  unit 15
+
+gene @pdbid first none last none setup
+
+open read card unit 15 name @inpdir/@pdbid-clean.pdb
+read coor pdb  unit 15
+
+
+bomlev -1
+dele atom sele hydrogen end
+bomlev 0
+
+rename resn HIS sele resn HSD .or. resn HSE .or. resn HSP end
+
+open writ card unit 15 name tmp.pdb
+writ coor pdb  unit 15
+clos unit 15
+
+dele atom sele all end
+
+open read card unit 15 name tmp.pdb
+read sequ pdb  unit 15
+
+!cap with Ace and CT3
+gene @pdbid first ACE last CT3 setup
+
+open read card unit 15 name tmp.pdb
+read coor pdb  unit 15
+
+ic fill
+ic param
+ic build
+hbuild
+
+
+open writ card unit 10 name ../s3-mkat/@pdbid.0.pdb
+coor writ pdb  unit 10
+* a folded structure for all-atom system
+*
+
+open writ card unit 10 name ../s3-mkat/@pdbid.psf
+writ psf  card unit 10
+* psf of @pdbid for all-atom system
+*
+
+system "rm -f tmp.pdb"
+
+! energy minimization
+NBOND atom switch cdie vdw vswitch -
+      cutnb 20.0 ctofnb 18.0 ctonnb 16.0
+nbond inbfrq -1
+
+stream @toppar/radius_gbsw.str
+gbsw sgamma 0.005 nang 50
+
+shake tolerance 1.0e-06 bonh param
+
+! energy minimization
+cons harm force 1 select .not. hydrogen end
+mini   sd nstep  1000 nprint 100 step 0.005
+mini abnr nstep  1000 nprint 100 step 0.005
+cons harm clear
+
+open writ card unit 10 name ../s3-mkat/@pdbid.pdb
+coor writ pdb  unit 10
+* a folded structure for all-atom system after energy minimization
+*
+
+stop

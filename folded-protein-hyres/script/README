@@ -1,0 +1,24 @@
+The way to transfer a protein with PDB file to HyRes form is very easy to follow :3
+
+1. Have your PDB in s1 folder. You can download them from website.
+
+2. clean the PDB to forms that CHARMM prefer to read! especially for some residues that have strange residue names.
+
+3. make a united AT PDB.
+
+4. Transfer AT to CG (HyRes) form. You can carry it directly by changing the command:
+   /home/xrliu/local/bin/at2cg.py $inp $out
+   To:
+   at2cg.py $inp $out
+   at2cg.py script is here.
+
+5. A quick minimization before final equilibration. Can check Rg and RMSD to see if large deviation shoing up.
+
+6. Run the annealing simulation. You can change the time to any longer as you wanted to have the simulation. 
+   You can also change the annealing temperature as you like! 
+   Here I used: 
+   nstep=100000 (100 ps), 
+   First_temp as 500k, 
+   Final_temp @300 K, as an example :3
+
+7. Run the real prod simulation! (call on SASA here!)

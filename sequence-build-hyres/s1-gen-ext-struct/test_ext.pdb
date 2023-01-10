@@ -1,0 +1,46 @@
+REMARK  AN EXTENDED STRUCTURE OF TEST                                                 
+REMARK   DATE:     1/10/23     12:16:35      CREATED BY USER: yumzhang                
+ATOM      1  CL  AMN     1     -11.015  -7.011  -0.342  1.00  0.00      TEST
+ATOM      2  C   AMN     1      -9.504  -7.155  -0.434  1.00  0.00      TEST
+ATOM      3  O   AMN     1      -8.963  -8.245  -0.245  1.00  0.00      TEST
+ATOM      4  N   SER     2      -8.807  -6.052  -0.749  1.00  0.00      TEST
+ATOM      5  H   SER     2      -9.293  -5.215  -0.902  1.00  0.00      TEST
+ATOM      6  CA  SER     2      -7.350  -6.027  -0.881  1.00  0.00      TEST
+ATOM      7  CB  SER     2      -6.616  -6.924  -2.558  1.00  0.00      TEST
+ATOM      8  C   SER     2      -6.822  -4.594  -0.771  1.00  0.00      TEST
+ATOM      9  O   SER     2      -7.537  -3.631  -1.062  1.00  0.00      TEST
+ATOM     10  N   MET     3      -5.575  -4.417  -0.304  1.00  0.00      TEST
+ATOM     11  H   MET     3      -5.069  -5.205  -0.017  1.00  0.00      TEST
+ATOM     12  CA  MET     3      -4.940  -3.105  -0.202  1.00  0.00      TEST
+ATOM     13  CB  MET     3      -6.162  -1.344   2.276  1.00  0.00      TEST
+ATOM     14  C   MET     3      -3.419  -3.214  -0.314  1.00  0.00      TEST
+ATOM     15  O   MET     3      -2.835  -4.271  -0.064  1.00  0.00      TEST
+ATOM     16  N   ALA     4      -2.755  -2.121  -0.724  1.00  0.00      TEST
+ATOM     17  H   ALA     4      -3.275  -1.329  -0.974  1.00  0.00      TEST
+ATOM     18  CA  ALA     4      -1.296  -2.053  -0.818  1.00  0.00      TEST
+ATOM     19  CB  ALA     4      -0.788  -2.755  -2.203  1.00  0.00      TEST
+ATOM     20  C   ALA     4      -0.778  -0.620  -0.711  1.00  0.00      TEST
+ATOM     21  O   ALA     4      -1.511   0.342  -0.955  1.00  0.00      TEST
+ATOM     22  N   GLU     5       0.492  -0.451  -0.312  1.00  0.00      TEST
+ATOM     23  H   GLU     5       1.021  -1.247  -0.098  1.00  0.00      TEST
+ATOM     24  CA  GLU     5       1.125   0.862  -0.181  1.00  0.00      TEST
+ATOM     25  CB  GLU     5       0.051   2.601   2.233  1.00  0.00      TEST
+ATOM     26  C   GLU     5       2.648   0.747  -0.262  1.00  0.00      TEST
+ATOM     27  O   GLU     5       3.229  -0.265   0.136  1.00  0.00      TEST
+ATOM     28  N   ASN     6       3.325   1.759  -0.832  1.00  0.00      TEST
+ATOM     29  H   ASN     6       2.812   2.498  -1.219  1.00  0.00      TEST
+ATOM     30  CA  ASN     6       4.787   1.815  -0.901  1.00  0.00      TEST
+ATOM     31  CB  ASN     6       5.548   0.319  -2.854  1.00  0.00      TEST
+ATOM     32  C   ASN     6       5.294   3.253  -0.779  1.00  0.00      TEST
+ATOM     33  O   ASN     6       4.562   4.213  -1.035  1.00  0.00      TEST
+ATOM     34  N   GLN     7       6.555   3.428  -0.355  1.00  0.00      TEST
+ATOM     35  H   GLN     7       7.077   2.635  -0.112  1.00  0.00      TEST
+ATOM     36  CA  GLN     7       7.189   4.741  -0.238  1.00  0.00      TEST
+ATOM     37  CB  GLN     7       5.996   6.419   2.280  1.00  0.00      TEST
+ATOM     38  C   GLN     7       8.710   4.641  -0.382  1.00  0.00      TEST
+ATOM     39  O   GLN     7       9.283   3.551  -0.260  1.00  0.00      TEST
+ATOM     40  N   CBX     8       9.341   5.796  -0.667  1.00  0.00      TEST
+ATOM     41  H   CBX     8       8.789   6.595  -0.796  1.00  0.00      TEST
+ATOM     42  CA  CBX     8      10.829   5.947  -0.798  1.00  0.00      TEST
+TER      43      CBX      8
+END

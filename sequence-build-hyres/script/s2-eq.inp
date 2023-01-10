@@ -1,0 +1,71 @@
+* short equilibrium simulation of the cg structure on GPU 
+*
+
+if @?openmm eq 0    set openmm = 1
+if @?precision eq 0 set precision = mixed
+if @?deviceid  eq 0 set deviceid = 1
+if @?pdbid eq 0     set pdbid = test
+
+!!! for HyRes_GPU
+read  rtf card name required/top-idpcg-sasa.inp
+read para card name required/param-idpcg-sasa.inp
+
+open read card unit 10 name ../s1-gen-ext-struct/@pdbid_ext.psf
+read psf  card unit 10
+clos unit 10
+
+open read card unit 15 name ../s1-gen-ext-struct/@pdbid_ext.pdb
+read coor pdb  unit 15 resi
+clos unit 15
+
+coor copy comp
+
+! ionc 0.15: for DH screening
+NBOND atom switch cdie vdw vswitch -
+      cutnb 20.0 ctofnb 18.0 ctonnb 16.0 -
+      eps 20 ionc 0.15
+
+nbond inbfrq -1
+hbond ihbfrq -1
+energy
+
+shake tolerance 1.0e-06 bonh param
+
+!HB
+HBOND NOACCEPTORS  HBNOEXCLUSIONS  ALL  -
+   CUTHB 6.0 CTOFHB 5.0 CTONHB 4.0  CUTHA 100.0  CTOFHA 90.1  CTONHA 90.05
+
+! minimization
+mini   sd  nstep 1000 nprint 20 step 0.005
+mini abnr  nstep 1000 nprint 20 step 0.005
+
+
+! OpenMM set up
+!--------------
+omm platform CUDA precision @precision deviceid @deviceid
+omm on
+
+! dynamics
+scalar FBETA set 0.2 select .not. hydrogen end
+
+open writ card unit 9  name ../s2-eq/@pdbid.rest
+open writ file unit 10 name ../s2-eq/@pdbid.dcd
+
+set nstep = 10000 ! 20 ps
+
+! 400 ns sim
+DYNAMICS LEAP LANGEVIN start timestep 0.002 nstep @nstep -
+     iunread -11 iunwri 9 iuncrd 10 kunit -1 iunvel -1 -
+     nprint 5000 iprfrq 5000 nsavc 5000 nsavv 0 isvfrq @nstep -
+     ILBFRQ 5000 -
+     firstt 300.0 finalt 300.0 tbath 300.0 rbuf 0.0
+
+open writ card unit 11 name ../s2-eq/@pdbid.pdb
+coor writ pdb  unit 11
+clos unit 11
+
+open writ card unit 10 name ../s2-eq/@pdbid.psf
+writ psf  card unit 10
+clos unit 10
+
+stop

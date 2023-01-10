@@ -1,0 +1,12 @@
+Tutorial to run HyRes on pikes using CHARMM 
+2023/01/10
+
+**Notes:**
+1. The production used GPU version, which can only be used on fast node currently.
+2. The users are assumed to be familiar with CHARMM.
+
+Case 1. Build in from sequence. (Simple, and more suitable for IDPs)
+---> folder: /sequence-build-hyres 
+
+Case 2. Mapping from folded proteins. (i.e., PDB)
+---> folder: /folded-protein-hyres

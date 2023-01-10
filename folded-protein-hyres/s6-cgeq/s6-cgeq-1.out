@@ -1,0 +1,2807 @@
+ Parameter: RUN <- "1"
+ Parameter: PDBID <- "P53"
+ Parameter: NEWDIR <- "../S6-CGEQ"
+ Parameter: NSTEP <- "10000"
+ Parameter: FIRSTT <- "100"
+ Parameter: FINALT <- "300"
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+           (CHARMM) - Developmental Version 47a1     August 15, 2021            
+                             Git commit ID 7bdc827                              
+       Copyright(c) 1984-2020  President and Fellows of Harvard College
+                              All Rights Reserved
+  Current operating system: Linux-3.10.0-327.3.1.el7.x86_64(x86_64)@node045.c   
+                 Created on  1/10/23 at 13:42:46 by user: yumzhang    
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+ RDTITL> * SHORT EQUILIBRIUM SIMULATION OF THE CG STRUCTURE
+ RDTITL> *
+  
+ CHARMM>     
+  
+ CHARMM>    if @?openmm eq 0    set openmm = 1
+ Comparing "0" and "0".
+ IF test evaluated as true.  Performing command
+ Parameter: OPENMM <- "1"
+  
+ CHARMM>    if @?deviceid eq 0  set deviceid = 1
+ Comparing "0" and "0".
+ IF test evaluated as true.  Performing command
+ Parameter: DEVICEID <- "1"
+  
+ CHARMM>    if @?precision eq 0 set precision = mixed
+ Comparing "0" and "0".
+ IF test evaluated as true.  Performing command
+ Parameter: PRECISION <- "MIXED"
+  
+ CHARMM>    if @?pdbid eq 0  stop
+ Comparing "1" and "0".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    if @?run eq 0    stop
+ Comparing "1" and "0".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    if nstep eq 0    stop
+ Comparing "10000" and "0".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    if firstt eq 0   stop
+ Comparing "100" and "0".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    if finalt eq 0   stop
+ Comparing "300" and "0".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    set toppar = required
+ Parameter: TOPPAR <- "REQUIRED"
+  
+ CHARMM>     
+  
+ CHARMM>    ! HyRes2 ff
+ CHARMM>    read  rtf card name @toppar/top-idpcg-sasa.inp
+ Parameter: TOPPAR -> "REQUIRED"
+ VOPEN> Attempting to open::required/top-idpcg-sasa.inp::
+ MAINIO> Residue topology file being read from unit  90.
+ TITLE> * TOPOLOGY FILE FOR COARSE GRAINED PROTEINS
+ TITLE> * ARG, LYS, ASP, GLU ARE CHARGED
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read para card name @toppar/param-idpcg-sasa.inp
+ Parameter: TOPPAR -> "REQUIRED"
+ VOPEN> Attempting to open::required/param-idpcg-sasa.inp::
+
+          PARAMETER FILE BEING READ FROM UNIT 90
+ TITLE> * PARAMETER FILE FOR COARSE GRAINED PROTEINS
+ TITLE> * ARG, LYS, ASP, GLU IS NEUTRAL
+ TITLE> *
+ PARRDR> ERROR: Repeated torsion periodicity: INDEX   50 CODE 763212371 PERIODICITY  1     NH1 -C1E -A1Y -A2Y 
+ PARRDR> ERROR: Repeated torsion periodicity: INDEX   42 CODE 743587394 PERIODICITY  1     NH1 -C1E -A1F -A2F 
+ PARRDR> ERROR: Repeated torsion periodicity: INDEX   34 CODE 724218395 PERIODICITY  1     NH1 -C1E -A4H -P1H 
+*****  WARNING  ***** PARRDR no nonbond parameters for atom type:  10  CT  
+ NO nonbond interactions will be computed for this atom type.
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    open read card unit 10 name ../s5-cgem/@pdbid.psf
+ Parameter: PDBID -> "P53"
+ VOPEN> Attempting to open::../s5-cgem/p53.psf::
+ OPNLGU> Unit 10 opened for READONLY access to ../s5-cgem/p53.psf
+  
+ CHARMM>    read psf  card unit 10
+ MAINIO> Protein structure file being read from unit  10.
+ TITLE>  * PSF OF P53 FOR CG SYSTEM
+ TITLE>  *  DATE:     1/10/23     13:39:44      CREATED BY USER: yumzhang
+ TITLE>  *
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =       61
+         Number of atoms         =      368   Number of groups     =      182
+         Number of bonds         =      383   Number of angles     =      588
+         Number of dihedrals     =      776   Number of impropers  =      174
+         Number of cross-terms   =       48
+         Number of HB acceptors  =       61   Number of HB donors  =       51
+         Number of NB exclusions =        0   Total charge =  -14.00000
+  
+ CHARMM>    clos unit 10
+ VCLOSE: Closing unit   10 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    open read card unit 15 name ../s5-cgem/@pdbid.mini2.pdb
+ Parameter: PDBID -> "P53"
+ VOPEN> Attempting to open::../s5-cgem/p53.mini2.pdb::
+ OPNLGU> Unit 15 opened for READONLY access to ../s5-cgem/p53.mini2.pdb
+  
+ CHARMM>    read coor pdb  unit 15 resi
+  read CHARMM-pdb format
+          SPATIAL COORDINATES BEING READ FROM UNIT 15
+ TITLE>   P53 AFTER ENERGY MINIMIZATION2
+ TITLE>    DATE:     1/10/23     13:39:51      CREATED BY USER: YUMZHANG
+ TITLE>  *
+  
+ CHARMM>    clos unit 15
+ VCLOSE: Closing unit   15 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    coor copy comp
+ SELECTED COORDINATES COPIED TO THE COMPARISON SET.
+
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    faster on
+ MISCOM> FAST option: EXPANDED (limited fast routines)
+  
+ CHARMM>    cons harm 1 sele all end
+ SELRPN>    368 atoms have been selected out of    368
+
+      ***** LEVEL  2 WARNING FROM <CSTRN2> *****
+      ***** No force constant specified. Set to zero
+      ******************************************
+      BOMLEV (  0) IS NOT REACHED. WRNLEV IS  5
+
+ CSTRAN: Harmonic Restraints
+          ABSOlute type as set number  1.  Number of selected atoms:    368
+          Reference coordinates set to main coordinates.
+          Mass weighting will NOT be used for new restraints.
+          The force constant of       0.00000 will be used.
+          An exponent of  2 will be used.
+          The XYZ scale factors are:       1.00000       1.00000       1.00000
+          A total of      0 atoms are restrained.
+ **** Warning ****  The following extraneous characters
+ were found while command processing in CHARMM
+ 1
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    ! ionc 0.15: for DH screening
+ CHARMM>    NBOND atom switch cdie vdw vswitch -
+ CHARMM>          cutnb 20.0 ctofnb 18.0 ctonnb 16.0 -
+ CHARMM>          eps 20 ionc 0.15
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found    923 exclusions and    712 interactions(1-4)
+ <MAKGRP> found    489 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR    67345 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    25780 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      659 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+  
+ CHARMM>     
+  
+ CHARMM>    nbond inbfrq -1
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are    25780 atom  pairs and     1635 atom  exclusions.
+ There are        0 group pairs and      489 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR    67345 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    25780 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      659 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+  
+ CHARMM>    hbond ihbfrq -1
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0000  OFf Hb Angle =   90.0000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:   2811 due to distance cutoff,     182 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently   118 hydrogen bonds present
+  
+ CHARMM>    energy
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are    25780 atom  pairs and     1635 atom  exclusions.
+ There are        0 group pairs and      489 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR    67345 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    25780 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      659 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0000  OFf Hb Angle =   90.0000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:   2811 due to distance cutoff,     182 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently   118 hydrogen bonds present
+ENER ENR:  Eval#     ENERgy      Delta-E         GRMS
+ENER INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+ENER CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+ENER EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+ENER>        0    117.05161      0.00000      0.40402
+ENER INTERN>       11.93653     97.03159      0.00000     28.20278     35.93084
+ENER CROSS>       -16.09559      0.00000      0.00000      0.00000
+ENER EXTERN>       -7.53224     11.23231    -43.65461      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>     
+  
+ CHARMM>    shake tolerance 1.0e-06 bonh param
+ SHKCOM> SHAKE parameters: TOL =   0.1000D-05 MXITer =    500
+
+              51 constraints will held by SHAKE.
+  
+ CHARMM>     
+  
+ CHARMM>    !HB
+ CHARMM>    HBOND NOACCEPTORS  HBNOEXCLUSIONS  ALL  -
+ CHARMM>       CUTHB 6.0 CTOFHB 5.0 CTONHB 4.0  CUTHA 100.0  CTOFHA 90.1  CTONHA 90.05
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0500  OFf Hb Angle =   90.1000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:   2811 due to distance cutoff,     182 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently   118 hydrogen bonds present
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    mini   sd  nstep 1000 nprint 20 step 0.005
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are    25780 atom  pairs and     1635 atom  exclusions.
+ There are        0 group pairs and      489 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR    67345 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    25780 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      659 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0500  OFf Hb Angle =   90.1000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:   2811 due to distance cutoff,     182 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently   118 hydrogen bonds present
+
+
+ STEEPD> An energy minimization has been requested.
+
+ NSTEP  =         1000   NPRINT =           20
+ STEP   =    0.0050000   TOLFUN =    0.0000000
+ TOLGRD =    0.0000000   TOLSTP =    0.0000000
+
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0    117.04789      0.00372      0.37419      0.00500
+MINI INTERN>       11.91240     97.05606      0.00000     28.20322     35.92753
+MINI CROSS>       -16.09440      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.53488     11.23231    -43.65435      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       20    116.99986      0.04803      0.10975      0.00007
+MINI INTERN>       11.90106     97.20170      0.00000     28.21470     35.84074
+MINI CROSS>       -16.08662      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.66303     11.23180    -43.64048      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       40    116.99587      0.00400      0.01121      0.00001
+MINI INTERN>       11.89928     97.21354      0.00000     28.21323     35.83160
+MINI CROSS>       -16.08636      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.66901     11.23153    -43.63795      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       60    116.99502      0.00084      0.01915      0.00001
+MINI INTERN>       11.90016     97.21531      0.00000     28.21316     35.82870
+MINI CROSS>       -16.08631      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67093     11.23135    -43.63642      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       80    116.99443      0.00059      0.02169      0.00001
+MINI INTERN>       11.90050     97.21568      0.00000     28.21311     35.82720
+MINI CROSS>       -16.08626      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67181     11.23119    -43.63517      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      100    116.99398      0.00045      0.02577      0.00001
+MINI INTERN>       11.90075     97.21561      0.00000     28.21305     35.82624
+MINI CROSS>       -16.08624      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67241     11.23106    -43.63408      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      120    116.99354      0.00045      0.01146      0.00000
+MINI INTERN>       11.89977     97.21550      0.00000     28.21310     35.82589
+MINI CROSS>       -16.08615      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67242     11.23094    -43.63311      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      140    116.99322      0.00032      0.01407      0.00001
+MINI INTERN>       11.89972     97.21531      0.00000     28.21305     35.82545
+MINI CROSS>       -16.08613      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67276     11.23084    -43.63226      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      160    116.99294      0.00028      0.01631      0.00001
+MINI INTERN>       11.89968     97.21514      0.00000     28.21298     35.82510
+MINI CROSS>       -16.08611      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67310     11.23075    -43.63149      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      180    116.99269      0.00025      0.01897      0.00001
+MINI INTERN>       11.89962     97.21502      0.00000     28.21291     35.82481
+MINI CROSS>       -16.08611      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67343     11.23066    -43.63080      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      200    116.99242      0.00027      0.00473      0.00000
+MINI INTERN>       11.90015     97.21489      0.00000     28.21276     35.82438
+MINI CROSS>       -16.08615      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67404     11.23059    -43.63016      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      220    116.99219      0.00023      0.00602      0.00000
+MINI INTERN>       11.90023     97.21483      0.00000     28.21266     35.82411
+MINI CROSS>       -16.08617      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67446     11.23052    -43.62954      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      240    116.99198      0.00021      0.01217      0.00000
+MINI INTERN>       11.90046     97.21479      0.00000     28.21253     35.82383
+MINI CROSS>       -16.08620      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67494     11.23046    -43.62895      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      260    116.99179      0.00019      0.01416      0.00001
+MINI INTERN>       11.90053     97.21479      0.00000     28.21242     35.82363
+MINI CROSS>       -16.08623      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67534     11.23040    -43.62842      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      280    116.99160      0.00019      0.01626      0.00001
+MINI INTERN>       11.90061     97.21482      0.00000     28.21231     35.82343
+MINI CROSS>       -16.08626      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67575     11.23035    -43.62791      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      300    116.99139      0.00021      0.00421      0.00000
+MINI INTERN>       11.90009     97.21491      0.00000     28.21225     35.82342
+MINI CROSS>       -16.08626      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67590     11.23031    -43.62744      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      320    116.99120      0.00019      0.00540      0.00000
+MINI INTERN>       11.90002     97.21498      0.00000     28.21214     35.82329
+MINI CROSS>       -16.08629      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67626     11.23027    -43.62694      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      340    116.99103      0.00017      0.01042      0.00000
+MINI INTERN>       11.89984     97.21507      0.00000     28.21204     35.82320
+MINI CROSS>       -16.08632      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67656     11.23023    -43.62647      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      360    116.99086      0.00017      0.01182      0.00000
+MINI INTERN>       11.89980     97.21515      0.00000     28.21193     35.82308
+MINI CROSS>       -16.08636      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67692     11.23019    -43.62602      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      380    116.99067      0.00018      0.00419      0.00000
+MINI INTERN>       11.90018     97.21516      0.00000     28.21179     35.82285
+MINI CROSS>       -16.08642      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67747     11.23016    -43.62558      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      400    116.99053      0.00014      0.01622      0.00001
+MINI INTERN>       11.89966     97.21532      0.00000     28.21171     35.82289
+MINI CROSS>       -16.08643      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67760     11.23012    -43.62515      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      420    116.99035      0.00019      0.00395      0.00000
+MINI INTERN>       11.90017     97.21531      0.00000     28.21157     35.82263
+MINI CROSS>       -16.08650      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67820     11.23010    -43.62474      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      440    116.99019      0.00016      0.00909      0.00000
+MINI INTERN>       11.90041     97.21534      0.00000     28.21145     35.82247
+MINI CROSS>       -16.08656      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67867     11.23007    -43.62432      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      460    116.99004      0.00015      0.01019      0.00000
+MINI INTERN>       11.90045     97.21540      0.00000     28.21134     35.82237
+MINI CROSS>       -16.08660      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67904     11.23004    -43.62393      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      480    116.98989      0.00015      0.01203      0.00000
+MINI INTERN>       11.90052     97.21545      0.00000     28.21124     35.82227
+MINI CROSS>       -16.08664      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67942     11.23002    -43.62354      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      500    116.98974      0.00015      0.01394      0.00001
+MINI INTERN>       11.90058     97.21550      0.00000     28.21113     35.82217
+MINI CROSS>       -16.08669      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67980     11.23000    -43.62316      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      520    116.98957      0.00017      0.00516      0.00000
+MINI INTERN>       11.90004     97.21566      0.00000     28.21104     35.82223
+MINI CROSS>       -16.08671      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.67988     11.22998    -43.62279      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      540    116.98943      0.00014      0.00375      0.00000
+MINI INTERN>       11.90012     97.21569      0.00000     28.21094     35.82214
+MINI CROSS>       -16.08675      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68022     11.22996    -43.62245      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      560    116.98928      0.00015      0.00565      0.00000
+MINI INTERN>       11.90003     97.21576      0.00000     28.21083     35.82209
+MINI CROSS>       -16.08679      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68051     11.22994    -43.62209      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      580    116.98914      0.00013      0.01004      0.00000
+MINI INTERN>       11.89990     97.21584      0.00000     28.21073     35.82207
+MINI CROSS>       -16.08682      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68075     11.22992    -43.62175      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      600    116.98901      0.00014      0.01189      0.00000
+MINI INTERN>       11.89986     97.21589      0.00000     28.21063     35.82202
+MINI CROSS>       -16.08686      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68103     11.22991    -43.62142      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      620    116.98887      0.00014      0.01364      0.00001
+MINI INTERN>       11.89983     97.21594      0.00000     28.21053     35.82197
+MINI CROSS>       -16.08689      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68131     11.22989    -43.62110      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      640    116.98871      0.00016      0.00524      0.00000
+MINI INTERN>       11.90026     97.21586      0.00000     28.21044     35.82182
+MINI CROSS>       -16.08694      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68184     11.22988    -43.62077      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      660    116.98857      0.00014      0.00714      0.00000
+MINI INTERN>       11.90032     97.21587      0.00000     28.21034     35.82176
+MINI CROSS>       -16.08698      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68215     11.22987    -43.62046      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      680    116.98843      0.00014      0.00496      0.00000
+MINI INTERN>       11.90025     97.21591      0.00000     28.21025     35.82173
+MINI CROSS>       -16.08701      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68239     11.22986    -43.62017      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      700    116.98830      0.00013      0.01066      0.00000
+MINI INTERN>       11.90041     97.21589      0.00000     28.21016     35.82166
+MINI CROSS>       -16.08705      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68274     11.22985    -43.61987      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      720    116.98817      0.00013      0.01179      0.00000
+MINI INTERN>       11.90044     97.21590      0.00000     28.21008     35.82162
+MINI CROSS>       -16.08708      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68301     11.22984    -43.61961      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      740    116.98804      0.00013      0.01348      0.00000
+MINI INTERN>       11.90048     97.21590      0.00000     28.20999     35.82158
+MINI CROSS>       -16.08711      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68328     11.22983    -43.61933      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      760    116.98789      0.00015      0.00358      0.00000
+MINI INTERN>       11.90016     97.21600      0.00000     28.20988     35.82161
+MINI CROSS>       -16.08713      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68337     11.22982    -43.61907      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      780    116.98775      0.00014      0.00728      0.00000
+MINI INTERN>       11.90006     97.21604      0.00000     28.20978     35.82160
+MINI CROSS>       -16.08716      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68358     11.22981    -43.61880      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      800    116.98762      0.00014      0.00526      0.00000
+MINI INTERN>       11.90011     97.21603      0.00000     28.20969     35.82157
+MINI CROSS>       -16.08719      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68385     11.22980    -43.61855      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      820    116.98749      0.00013      0.01040      0.00000
+MINI INTERN>       11.90001     97.21606      0.00000     28.20959     35.82156
+MINI CROSS>       -16.08721      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68403     11.22980    -43.61830      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      840    116.98736      0.00013      0.01175      0.00000
+MINI INTERN>       11.89999     97.21607      0.00000     28.20950     35.82155
+MINI CROSS>       -16.08724      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68424     11.22979    -43.61807      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      860    116.98724      0.00013      0.01339      0.00000
+MINI INTERN>       11.89997     97.21607      0.00000     28.20941     35.82154
+MINI CROSS>       -16.08726      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68444     11.22979    -43.61784      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      880    116.98709      0.00014      0.00351      0.00000
+MINI INTERN>       11.90021     97.21598      0.00000     28.20935     35.82147
+MINI CROSS>       -16.08728      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68479     11.22978    -43.61763      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      900    116.98696      0.00013      0.00724      0.00000
+MINI INTERN>       11.90032     97.21593      0.00000     28.20927     35.82144
+MINI CROSS>       -16.08731      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68507     11.22978    -43.61740      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      920    116.98682      0.00013      0.00561      0.00000
+MINI INTERN>       11.90029     97.21593      0.00000     28.20919     35.82144
+MINI CROSS>       -16.08733      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68526     11.22977    -43.61720      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      940    116.98670      0.00012      0.01021      0.00000
+MINI INTERN>       11.90039     97.21588      0.00000     28.20911     35.82141
+MINI CROSS>       -16.08735      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68551     11.22977    -43.61699      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      960    116.98658      0.00012      0.01158      0.00000
+MINI INTERN>       11.90042     97.21585      0.00000     28.20903     35.82140
+MINI CROSS>       -16.08737      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68572     11.22977    -43.61680      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      980    116.98645      0.00012      0.01326      0.00000
+MINI INTERN>       11.90046     97.21582      0.00000     28.20895     35.82139
+MINI CROSS>       -16.08738      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68592     11.22977    -43.61662      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>     1000    116.98631      0.00014      0.00347      0.00000
+MINI INTERN>       11.90020     97.21588      0.00000     28.20885     35.82143
+MINI CROSS>       -16.08740      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68597     11.22977    -43.61645      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ STEEPD> Minimization exiting with number of steps limit (      1000) exceeded.
+
+STPD MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+STPD INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+STPD CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+STPD EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+STPD>     1000    116.98631      0.00014      0.00347      0.00000
+STPD INTERN>       11.90020     97.21588      0.00000     28.20885     35.82143
+STPD CROSS>       -16.08740      0.00000      0.00000      0.00000
+STPD EXTERN>       -7.68597     11.22977    -43.61645      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>    mini abnr  nstep 1000 nprint 20 step 0.005
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are    25780 atom  pairs and     1635 atom  exclusions.
+ There are        0 group pairs and      489 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR    67345 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    25782 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      658 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0500  OFf Hb Angle =   90.1000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:   2811 due to distance cutoff,     182 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently   118 hydrogen bonds present
+
+
+ ABNER> An energy minimization has been requested.
+
+ EIGRNG =    0.0005000   MINDIM =            5
+ NPRINT =           20   NSTEP  =         1000
+ PSTRCT =    0.0000000   SDSTP  =    0.0050000
+ STPLIM =    1.0000000   STRICT =    0.1000000
+ TOLFUN =    0.0000000   TOLGRD =    0.0000000
+ TOLITR =          100   TOLSTP =    0.0000000
+ FMEM   =    0.0000000
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0    116.98631      0.00014      0.00347      0.00000
+MINI INTERN>       11.90020     97.21588      0.00000     28.20885     35.82143
+MINI CROSS>       -16.08740      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68597     11.22977    -43.61645      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       20    116.98591      0.00040      0.09374      0.00090
+MINI INTERN>       11.90042     97.21327      0.00000     28.20862     35.82245
+MINI CROSS>       -16.08739      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.68663     11.22977    -43.61461      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       40    116.92009      0.06582      0.14417      0.00235
+MINI INTERN>       11.96343     97.21993      0.00000     28.14968     35.84775
+MINI CROSS>       -16.08995      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89020     11.23270    -43.51324      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       60    116.85367      0.06642      0.07562      0.00132
+MINI INTERN>       11.91273     97.00279      0.00000     28.08103     35.93531
+MINI CROSS>       -16.08232      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.79962     11.24786    -43.44411      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ HBFIND-exclusions:   2812 due to distance cutoff,     182 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently   117 hydrogen bonds present
+ UPDECI: Nonbond update at step        63
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR    67345 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    25846 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      660 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>       80    116.80635      0.04732      0.04228      0.00074
+MINI INTERN>       11.90905     96.98227      0.00000     28.06185     35.95550
+MINI CROSS>       -16.07031      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.83286     11.26136    -43.46051      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      100    116.75808      0.04827      0.05013      0.00070
+MINI INTERN>       11.92954     97.01256      0.00000     28.04410     36.01020
+MINI CROSS>       -16.04176      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.90137     11.28085    -43.57604      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      120    116.74425      0.01383      0.06890      0.00109
+MINI INTERN>       11.96386     97.03495      0.00000     28.03982     36.02120
+MINI CROSS>       -16.04798      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.98395     11.28049    -43.56414      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      140    116.71711      0.02714      0.03579      0.00061
+MINI INTERN>       11.92719     96.95290      0.00000     28.03320     36.03530
+MINI CROSS>       -16.05676      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.92050     11.28186    -43.53609      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      160    116.70821      0.00891      0.01003      0.00021
+MINI INTERN>       11.92671     96.96089      0.00000     28.04024     36.02843
+MINI CROSS>       -16.05426      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.94607     11.28189    -43.52963      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      180    116.69692      0.01129      0.03028      0.00054
+MINI INTERN>       11.92204     96.96770      0.00000     28.03517     36.03564
+MINI CROSS>       -16.04199      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.99284     11.27894    -43.50774      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      200    116.67919      0.01772      0.02479      0.00030
+MINI INTERN>       11.92424     96.89821      0.00000     28.03686     36.02135
+MINI CROSS>       -16.02577      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.96599     11.27577    -43.48548      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      220    116.66981      0.00938      0.06493      0.00079
+MINI INTERN>       11.92728     96.84001      0.00000     28.03586     36.03149
+MINI CROSS>       -16.01770      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.96646     11.27153    -43.45220      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      240    116.65949      0.01033      0.05020      0.00074
+MINI INTERN>       11.93423     96.83647      0.00000     28.01731     36.02255
+MINI CROSS>       -16.03110      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.95700     11.26918    -43.43215      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      260    116.65498      0.00451      0.01472      0.00025
+MINI INTERN>       11.92428     96.80619      0.00000     28.01855     36.02380
+MINI CROSS>       -16.03565      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.91701     11.26805    -43.43324      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      280    116.64683      0.00815      0.02230      0.00039
+MINI INTERN>       11.92907     96.78147      0.00000     28.03802     36.03000
+MINI CROSS>       -16.03149      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.91042     11.26678    -43.45659      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      300    116.64437      0.00246      0.01583      0.00022
+MINI INTERN>       11.92843     96.79731      0.00000     28.02742     36.02859
+MINI CROSS>       -16.02989      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.92739     11.26767    -43.44777      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      320    116.64168      0.00269      0.01361      0.00021
+MINI INTERN>       11.92788     96.78677      0.00000     28.02354     36.03299
+MINI CROSS>       -16.02039      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.92845     11.27032    -43.45099      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      340    116.63894      0.00274      0.03627      0.00054
+MINI INTERN>       11.91870     96.76821      0.00000     28.01991     36.03966
+MINI CROSS>       -16.01818      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89269     11.27196    -43.46863      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      360    116.63355      0.00539      0.03544      0.00051
+MINI INTERN>       11.92727     96.79981      0.00000     27.99558     36.03297
+MINI CROSS>       -16.01408      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88900     11.27665    -43.49565      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      380    116.63113      0.00242      0.01824      0.00029
+MINI INTERN>       11.92057     96.80700      0.00000     27.99757     36.03548
+MINI CROSS>       -16.01929      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89515     11.27629    -43.49134      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      400    116.62811      0.00302      0.02017      0.00027
+MINI INTERN>       11.92602     96.81006      0.00000     27.99813     36.03487
+MINI CROSS>       -16.02898      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89542     11.27522    -43.49179      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      420    116.62609      0.00202      0.02338      0.00042
+MINI INTERN>       11.92179     96.79371      0.00000     28.00392     36.03129
+MINI CROSS>       -16.02318      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.87252     11.27424    -43.50315      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      440    116.62095      0.00514      0.02575      0.00039
+MINI INTERN>       11.92746     96.80488      0.00000     28.01151     36.02705
+MINI CROSS>       -16.01471      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88950     11.27157    -43.51731      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      460    116.61870      0.00225      0.01479      0.00022
+MINI INTERN>       11.92425     96.80377      0.00000     28.00910     36.03072
+MINI CROSS>       -16.01847      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.90399     11.27212    -43.49881      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      480    116.61786      0.00084      0.02452      0.00035
+MINI INTERN>       11.92064     96.79167      0.00000     28.00743     36.02951
+MINI CROSS>       -16.01497      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88132     11.27234    -43.50744      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      500    116.61437      0.00349      0.01372      0.00019
+MINI INTERN>       11.91707     96.78709      0.00000     27.99138     36.01887
+MINI CROSS>       -16.00875      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.86077     11.27301    -43.50353      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      520    116.61269      0.00168      0.01402      0.00018
+MINI INTERN>       11.92146     96.79057      0.00000     27.99108     36.01957
+MINI CROSS>       -16.00746      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.87275     11.27258    -43.50236      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      540    116.60985      0.00284      0.01569      0.00028
+MINI INTERN>       11.92185     96.77358      0.00000     28.00357     36.03398
+MINI CROSS>       -16.01414      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89580     11.27123    -43.48443      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      560    116.60421      0.00563      0.01306      0.00027
+MINI INTERN>       11.92975     96.76716      0.00000     28.01040     36.03829
+MINI CROSS>       -16.01416      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.90636     11.27046    -43.49133      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      580    116.60104      0.00317      0.01730      0.00025
+MINI INTERN>       11.91648     96.78337      0.00000     27.99951     36.02853
+MINI CROSS>       -16.00390      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.87394     11.27105    -43.52005      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      600    116.59583      0.00521      0.04112      0.00065
+MINI INTERN>       11.92137     96.80449      0.00000     28.00867     35.98716
+MINI CROSS>       -15.99370      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89428     11.27146    -43.50934      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      620    116.59010      0.00573      0.01225      0.00022
+MINI INTERN>       11.92034     96.76322      0.00000     27.99629     36.03248
+MINI CROSS>       -15.98943      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89073     11.27189    -43.51396      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      640    116.58872      0.00138      0.00812      0.00021
+MINI INTERN>       11.92330     96.76410      0.00000     27.99560     36.01908
+MINI CROSS>       -15.99262      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88424     11.27167    -43.50815      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      660    116.58769      0.00104      0.00610      0.00012
+MINI INTERN>       11.92219     96.75697      0.00000     27.99466     36.03184
+MINI CROSS>       -15.99590      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88484     11.27097    -43.50819      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      680    116.58707      0.00062      0.00782      0.00011
+MINI INTERN>       11.92611     96.76544      0.00000     27.99887     36.01400
+MINI CROSS>       -15.99506      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88095     11.27098    -43.51231      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      700    116.58189      0.00518      0.02620      0.00047
+MINI INTERN>       11.91395     96.75373      0.00000     27.99953     36.03529
+MINI CROSS>       -15.99101      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.86593     11.26954    -43.53319      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      720    116.57308      0.00881      0.05077      0.00074
+MINI INTERN>       11.93431     96.77625      0.00000     27.96116     36.03356
+MINI CROSS>       -15.98874      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89664     11.26903    -43.51584      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      740    116.56181      0.01128      0.10619      0.00116
+MINI INTERN>       11.92507     96.77518      0.00000     27.97898     36.00182
+MINI CROSS>       -15.98065      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88825     11.26998    -43.52032      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      760    116.53344      0.02836      0.08309      0.00109
+MINI INTERN>       11.93938     96.69093      0.00000     27.99894     36.02339
+MINI CROSS>       -15.91827      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88659     11.27175    -43.58609      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      780    116.49455      0.03890      0.08440      0.00102
+MINI INTERN>       11.90667     96.67235      0.00000     27.96123     36.02060
+MINI CROSS>       -15.89701      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.88473     11.27489    -43.55945      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      800    116.47250      0.02205      0.04130      0.00057
+MINI INTERN>       11.90516     96.62150      0.00000     27.92337     36.00216
+MINI CROSS>       -15.90339      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.84915     11.27591    -43.50305      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      820    116.45899      0.01350      0.03161      0.00054
+MINI INTERN>       11.93492     96.65038      0.00000     27.94323     36.01876
+MINI CROSS>       -15.89659      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.90113     11.27254    -43.56310      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      840    116.45550      0.00349      0.02109      0.00030
+MINI INTERN>       11.92932     96.62936      0.00000     27.94823     36.02045
+MINI CROSS>       -15.89438      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.87883     11.27179    -43.57043      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      860    116.45200      0.00350      0.03662      0.00047
+MINI INTERN>       11.92658     96.59832      0.00000     27.94140     35.99976
+MINI CROSS>       -15.88883      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.83744     11.27198    -43.55978      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ HBFIND-exclusions:   2811 due to distance cutoff,     181 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently   119 hydrogen bonds present
+ UPDECI: Nonbond update at step       876
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR    67345 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    25961 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      658 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      880    116.43591      0.01609      0.05262      0.00074
+MINI INTERN>       11.93018     96.60234      0.00000     27.92787     36.06110
+MINI CROSS>       -15.85824      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.94943     11.27030    -43.54822      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      900    116.42224      0.01367      0.02512      0.00070
+MINI INTERN>       11.91110     96.56371      0.00000     27.94439     36.02603
+MINI CROSS>       -15.87016      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.89170     11.26950    -43.53064      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      920    116.40508      0.01716      0.04480      0.00065
+MINI INTERN>       11.90462     96.48282      0.00000     27.94373     36.07595
+MINI CROSS>       -15.87829      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.86106     11.27267    -43.53537      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      940    116.39010      0.01498      0.01928      0.00037
+MINI INTERN>       11.92573     96.49483      0.00000     27.93521     36.05965
+MINI CROSS>       -15.86535      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.90285     11.27484    -43.53195      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      960    116.38700      0.00310      0.02450      0.00034
+MINI INTERN>       11.92994     96.51869      0.00000     27.93422     36.03445
+MINI CROSS>       -15.85151      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.91714     11.27376    -43.53542      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      980    116.38585      0.00115      0.01161      0.00019
+MINI INTERN>       11.93135     96.51838      0.00000     27.93565     36.04296
+MINI CROSS>       -15.84645      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.92829     11.27265    -43.54039      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>     1000    116.38315      0.00270      0.01753      0.00030
+MINI INTERN>       11.92241     96.52780      0.00000     27.92848     36.03457
+MINI CROSS>       -15.83655      0.00000      0.00000      0.00000
+MINI EXTERN>       -7.92092     11.26884    -43.54147      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ ABNER> Minimization exiting with number of steps limit ( 1000) exceeded.
+
+ABNR MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+ABNR INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+ABNR CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+ABNR EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+ABNR>     1000    116.38315      0.00270      0.01753      0.00045
+ABNR INTERN>       11.92241     96.52780      0.00000     27.92848     36.03457
+ABNR CROSS>       -15.83655      0.00000      0.00000      0.00000
+ABNR EXTERN>       -7.92092     11.26884    -43.54147      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>     
+  
+ CHARMM>    ! OpenMM set up
+ CHARMM>    !--------------
+ CHARMM>    omm platform CUDA precision @precision deviceid @deviceid
+ Parameter: PRECISION -> "MIXED"
+ Parameter: DEVICEID -> "1"
+  
+ CHARMM>    omm on
+Energy and dynamics calculations will use OpenMM.
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    ! dynamics
+ CHARMM>    scalar FBETA set 0.2 select .not. hydrogen end
+ SELRPN>    317 atoms have been selected out of    368
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 9  name @newdir/@pdbid.@run.rest
+ Parameter: NEWDIR -> "../S6-CGEQ"
+ Parameter: PDBID -> "P53"
+ Parameter: RUN -> "1"
+ VOPEN> Attempting to open::../s6-cgeq/p53.1.rest::
+ OPNLGU> Unit  9 opened for WRITE access to ../s6-cgeq/p53.1.rest
+  
+ CHARMM>    open writ file unit 10 name @newdir/@pdbid.@run.dcd
+ Parameter: NEWDIR -> "../S6-CGEQ"
+ Parameter: PDBID -> "P53"
+ Parameter: RUN -> "1"
+ VOPEN> Attempting to open::../s6-cgeq/p53.1.dcd::
+ OPNLGU> Unit 10 opened for WRITE access to ../s6-cgeq/p53.1.dcd
+  
+ CHARMM>     
+  
+ CHARMM>    !100 ps eq
+ CHARMM>    !set nstep @nstep
+ CHARMM>     
+  
+ CHARMM>    DYNAMICS LEAP LANGEVIN start timestep 0.002 nstep @nstep -
+ CHARMM>         iunread -11 iunwri 9 iuncrd 10 kunit -1 iunvel -1 -
+ CHARMM>         nprint @nstep iprfrq @nstep nsavc 10 nsavv 0 isvfrq @nstep -
+ CHARMM>         firstt @firstt finalt @finalt tbath 300.0 rbuf 0.0
+ Parameter: NSTEP -> "10000"
+ Parameter: NSTEP -> "10000"
+ Parameter: NSTEP -> "10000"
+ Parameter: NSTEP -> "10000"
+ Parameter: FIRSTT -> "100"
+ Parameter: FINALT -> "300"
+  IUNREA =-11         IUNWRI =  9          IUNOS = -1
+  IUNCRD = 10         IUNVEL = -1          KUNIT = -1
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are    25961 atom  pairs and     1635 atom  exclusions.
+ There are        0 group pairs and      489 group exclusions.
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0500  OFf Hb Angle =   90.1000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ DCNTRL> Langevin integration requested.
+ DCNTRL>  OpenMM interface requested for energy and dynamics calculations.
+ DCNTRL>  Constant temperature w/ OpenMM using Langevin heatbath requested.
+ DCNTRL>  Reference heatbath temperature is   300.000K
+ DCNTRL>  Friction coefficient not specified, using max(FBETA) value     0.200  ps^-1
+   NSTEP =    10000    NSAVC =       10    NSAVV =        0
+  ISCALE =        0   ISCVEL =        0   IASORS =        0
+  IASVEL =        1   ICHECW =        1   NTRFRQ =        0
+  IHTFRQ =        0   IEQFRQ =        0   NPRINT =    10000
+  INBFRQ =       -1   IHBFRQ =       -1   IPRFRQ =    10000
+  ILBFRQ =       50   IMGFRQ =        0
+  ISVFRQ =    10000   NCYCLE =       50    NSNOS =       10
+  FIRSTT =   100.000  TEMINC =     5.000  TSTRUC =  -999.000
+  FINALT =   300.000  TWINDH =    10.000  TWINDL =   -10.000
+
+  TIME STEP =  4.09097E-02 AKMA       2.00000E-03 PS
+
+  RANDOM NUM. GEN. SEED(S) = 2117532463 2117532463 2117532463 2117532463
+
+           SHAKE TOLERANCE =     0.10000E-05
+ NUMBER OF DEGREES OF FREEDOM =   1053
+
+          GAUSSIAN OPTION                  IS            1
+          VELOCITIES ASSIGNED AT TEMPERATURE =    125.0000
+          SEED FOR RANDOM NUMBER GENERATOR IS:
+          SEEDS> 2117532463 2117532463 2117532463 2117532463
+
+     DETAILS ABOUT CENTRE OF MASS
+     POSITION          :    50.870893        67.038565        39.275497    
+     VELOCITY          :  -1.14764685E-03  -7.22113280E-03   1.42119005E-02
+     ANGULAR MOMENTUM  :   -313.29004        235.55015       -1314.7232    
+     KINETIC ENERGY    :   0.87710780    
+get_PlatformDefaults> Finding default platform values
+get_PlatformDefaults> Default values found: platform=CUDA precision=mixed deviceid=1
+Setup_OpenMM: Initializing OpenMM context
+CHARMM> Using switching functions for electrostatic and vdW interactions
+CHARMM> OpenMM switching function selection.
+CHARMM> Electrostatic options: switch=T fswitch=F fshift=F PME/Ewald=F RxnFld=F
+CHARMM> van der Waals options: vswitch=T vfswitch=F OpenMM vdW switch=F BLOCK vdW softcore:F
+CHARMM> OpenMM Reference, CPU and CUDA platform available for H-B interactions
+ Available OpenMM platform 0: Reference 
+ Available OpenMM platform 1: CPU       
+ Available OpenMM platform 2: CUDA      
+ Available OpenMM platform 3: OpenCL    
+Init_context: Using OpenMM platform CUDA      
+       CudaDeviceIndex = 1
+       CudaCompiler = /cm/shared/apps/cuda/10.1.243/bin/nvcc
+       CudaPrecision = mixed
+OpenMM: Velocities scaled or randomized
+DYNA DYN: Step         Time      TOTEner        TOTKe       ENERgy  TEMPerature
+DYNA PROP:             GRMS      HFCTote        HFCKe       EHFCor        VIRKe
+DYNA INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+DYNA CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+DYNA EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+DYNA PRESS:            VIRE         VIRI       PRESSE       PRESSI       VOLUme
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        0      0.00000    253.85737    137.47420    116.38317    131.39632
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       11.92254     96.52760      0.00000     27.92850     36.03454
+DYNA CROSS>       -15.83656      0.00000      0.00000      0.00000
+DYNA EXTERN>        3.34803      0.00000    -43.54148      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>       50      0.10000    259.76957     72.98338    186.78619     69.75671
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       35.39663    120.35472      0.00000     30.61513     49.08626
+DYNA CROSS>       -14.02777      0.00000      0.00000      0.00000
+DYNA EXTERN>        3.82101      0.00000    -38.45979      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      100      0.20000    268.63783     75.41380    193.22403     72.07968
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       39.99123    115.90389      0.00000     30.30810     47.16180
+DYNA CROSS>       -14.27202      0.00000      0.00000      0.00000
+DYNA EXTERN>       11.58442      0.00000    -37.45339      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      150      0.30000    276.12355     81.56078    194.56277     77.95489
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       33.82638    121.19511      0.00000     33.61503     46.04588
+DYNA CROSS>       -13.69721      0.00000      0.00000      0.00000
+DYNA EXTERN>       12.21723      0.00000    -38.63965      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      200      0.40000    283.72198     82.83311    200.88887     79.17097
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       35.12146    120.49519      0.00000     31.57423     49.04764
+DYNA CROSS>       -13.87396      0.00000      0.00000      0.00000
+DYNA EXTERN>       14.38680      0.00000    -35.86248      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      250      0.50000    294.57666     85.48683    209.08983     81.70737
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       40.88912    123.80933      0.00000     32.50051     48.49478
+DYNA CROSS>       -13.37963      0.00000      0.00000      0.00000
+DYNA EXTERN>       12.27865      0.00000    -35.50292      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      300      0.60000    301.40913     90.76894    210.64019     86.75595
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       38.20559    127.41109      0.00000     30.40787     51.65987
+DYNA CROSS>       -13.18941      0.00000      0.00000      0.00000
+DYNA EXTERN>       11.59461      0.00000    -35.44944      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      350      0.70000    307.78672     95.19174    212.59497     90.98322
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       43.59425    120.74747      0.00000     29.89474     45.37139
+DYNA CROSS>       -13.63761      0.00000      0.00000      0.00000
+DYNA EXTERN>       20.25292      0.00000    -33.62820      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      400      0.80000    317.86670     97.40824    220.45846     93.10172
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       48.15645    119.54132      0.00000     32.99610     54.66300
+DYNA CROSS>       -12.85883      0.00000      0.00000      0.00000
+DYNA EXTERN>       13.81460      0.00000    -35.85418      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      450      0.90000    329.50910    108.42706    221.08204    103.63339
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       45.61783    128.66676      0.00000     35.58234     49.55430
+DYNA CROSS>       -14.29983      0.00000      0.00000      0.00000
+DYNA EXTERN>       13.94675      0.00000    -37.98611      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      500      1.00000    336.08131    111.35294    224.72836    106.42991
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       44.13794    124.30823      0.00000     33.39024     52.65427
+DYNA CROSS>       -10.85421      0.00000      0.00000      0.00000
+DYNA EXTERN>       16.00830      0.00000    -34.91641      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      550      1.10000    344.21527    118.21788    225.99739    112.99134
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       45.85208    131.27378      0.00000     28.32540     51.50108
+DYNA CROSS>       -12.39952      0.00000      0.00000      0.00000
+DYNA EXTERN>       14.93240      0.00000    -33.48782      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      600      1.20000    353.17414    121.93788    231.23626    116.54688
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       53.76802    129.60971      0.00000     35.16704     52.54089
+DYNA CROSS>       -14.86372      0.00000      0.00000      0.00000
+DYNA EXTERN>        3.70859      0.00000    -28.69428      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      650      1.30000    359.95477    128.32891    231.62586    122.65536
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       46.81623    127.79870      0.00000     38.29708     51.06983
+DYNA CROSS>       -12.88251      0.00000      0.00000      0.00000
+DYNA EXTERN>       10.40117      0.00000    -29.87465      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      700      1.40000    365.05141    120.25747    244.79394    114.94076
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       53.67329    131.81429      0.00000     37.41257     49.14014
+DYNA CROSS>        -9.69779      0.00000      0.00000      0.00000
+DYNA EXTERN>       14.29927      0.00000    -31.84782      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      750      1.50000    374.61371    124.06880    250.54491    118.58359
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       61.53271    126.31817      0.00000     36.06033     59.95604
+DYNA CROSS>        -8.90070      0.00000      0.00000      0.00000
+DYNA EXTERN>        3.29561      0.00000    -27.71724      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      800      1.60000    381.12057    131.75013    249.37043    125.92533
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       55.81978    134.73524      0.00000     36.71477     54.68706
+DYNA CROSS>        -9.23731      0.00000      0.00000      0.00000
+DYNA EXTERN>        4.75504      0.00000    -28.10414      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      850      1.70000    388.50592    127.29516    261.21076    121.66731
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       55.45310    132.02726      0.00000     36.91486     57.09432
+DYNA CROSS>       -11.30235      0.00000      0.00000      0.00000
+DYNA EXTERN>       18.73261      0.00000    -27.70904      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      900      1.80000    400.08356    142.65784    257.42572    136.35079
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       51.93271    143.94775      0.00000     40.34837     48.16238
+DYNA CROSS>       -10.01303      0.00000      0.00000      0.00000
+DYNA EXTERN>       15.56815      0.00000    -32.52061      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>      950      1.90000    408.70135    144.84850    263.85285    138.44460
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       62.05015    138.96690      0.00000     37.83880     56.50510
+DYNA CROSS>       -10.38805      0.00000      0.00000      0.00000
+DYNA EXTERN>       10.18637      0.00000    -31.30642      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1000      2.00000    412.92165    139.81937    273.10228    133.63781
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       59.04166    141.93747      0.00000     39.20033     52.48649
+DYNA CROSS>        -8.16194      0.00000      0.00000      0.00000
+DYNA EXTERN>       16.05663      0.00000    -27.45836      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1050      2.10000    423.26043    151.90420    271.35623    145.18836
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       56.95350    132.88512      0.00000     40.74944     58.67703
+DYNA CROSS>        -8.59320      0.00000      0.00000      0.00000
+DYNA EXTERN>       16.37361      0.00000    -25.68928      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1100      2.20000    426.67858    147.83521    278.84337    141.29926
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       61.96876    138.53804      0.00000     36.42863     60.97327
+DYNA CROSS>       -10.23544      0.00000      0.00000      0.00000
+DYNA EXTERN>       15.38246      0.00000    -24.21235      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1150      2.30000    431.12930    143.00379    288.12551    136.68145
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       68.68086    140.25761      0.00000     42.91297     50.85760
+DYNA CROSS>       -11.09427      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.31065      0.00000    -27.79991      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1200      2.40000    437.32639    153.40428    283.92211    146.62212
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       64.99693    137.00170      0.00000     40.07788     55.44717
+DYNA CROSS>       -10.32768      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.83020      0.00000    -27.10408      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1250      2.50000    446.72293    159.33791    287.38502    152.29341
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       69.14472    142.45776      0.00000     38.62972     61.84337
+DYNA CROSS>       -10.14461      0.00000      0.00000      0.00000
+DYNA EXTERN>       12.34551      0.00000    -26.89145      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1300      2.60000    449.40835    161.53369    287.87466    154.39212
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       64.93680    139.24054      0.00000     37.64239     57.62459
+DYNA CROSS>        -9.93422      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.04174      0.00000    -24.67718      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1350      2.70000    452.55785    160.16353    292.39432    153.08253
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       82.51851    136.73443      0.00000     37.34858     49.67866
+DYNA CROSS>        -8.46314      0.00000      0.00000      0.00000
+DYNA EXTERN>       17.89843      0.00000    -23.32116      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1400      2.80000    459.19554    168.68793    290.50761    161.23006
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       63.32850    137.41009      0.00000     35.06979     60.73319
+DYNA CROSS>       -12.90446      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.97210      0.00000    -24.10161      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1450      2.90000    461.34669    186.09998    275.24671    177.87231
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       62.10932    130.16355      0.00000     39.71300     54.21161
+DYNA CROSS>       -10.21241      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.33509      0.00000    -26.07344      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1500      3.00000    471.08803    168.18181    302.90622    160.74632
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       73.13046    157.97577      0.00000     39.49616     57.50760
+DYNA CROSS>        -9.57296      0.00000      0.00000      0.00000
+DYNA EXTERN>       12.48668      0.00000    -28.11749      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1550      3.10000    474.82523    177.11025    297.71498    169.28003
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       70.18250    141.28295      0.00000     39.53122     58.40720
+DYNA CROSS>        -9.15613      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.09012      0.00000    -27.62287      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1600      3.20000    478.60328    179.64073    298.96255    171.69863
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       72.39518    142.30752      0.00000     39.33074     58.38687
+DYNA CROSS>        -7.92745      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.31182      0.00000    -28.84212      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1650      3.30000    486.91190    181.22412    305.68778    173.21202
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       75.67049    141.93830      0.00000     33.38909     66.58225
+DYNA CROSS>       -11.21091      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.72958      0.00000    -26.41100      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1700      3.40000    490.59964    175.20149    315.39814    167.45566
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       74.76285    153.60598      0.00000     35.89730     58.86175
+DYNA CROSS>        -9.26394      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.31838      0.00000    -27.78417      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1750      3.50000    495.40931    185.63589    309.77342    177.42874
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       71.89686    137.40433      0.00000     42.72147     61.67704
+DYNA CROSS>        -8.67111      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.99222      0.00000    -24.24739      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1800      3.60000    501.10391    182.14387    318.96005    174.09110
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       70.56557    144.71625      0.00000     41.59525     66.25117
+DYNA CROSS>       -10.55906      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.84940      0.00000    -24.45854      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1850      3.70000    510.08724    186.31715    323.77009    178.07988
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       82.04863    150.73574      0.00000     43.16746     53.46490
+DYNA CROSS>        -9.93428      0.00000      0.00000      0.00000
+DYNA EXTERN>       27.19286      0.00000    -22.90522      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1900      3.80000    515.43001    194.59317    320.83685    185.99000
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       83.47669    140.62495      0.00000     41.27723     65.40392
+DYNA CROSS>        -6.90898      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.82588      0.00000    -26.86285      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     1950      3.90000    524.10653    198.32972    325.77681    189.56135
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       66.21295    152.64412      0.00000     46.10897     71.28491
+DYNA CROSS>        -6.87935      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.81221      0.00000    -27.40700      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2000      4.00000    533.90143    211.88833    322.01310    202.52053
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       83.78382    158.53458      0.00000     39.19231     55.80266
+DYNA CROSS>        -7.15440      0.00000      0.00000      0.00000
+DYNA EXTERN>       17.66791      0.00000    -25.81377      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2050      4.10000    534.23833    203.22110    331.01724    194.23648
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       90.80634    139.70418      0.00000     43.08609     57.46239
+DYNA CROSS>        -7.56139      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.97964      0.00000    -22.46002      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2100      4.20000    533.66989    211.07773    322.59216    201.74577
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       81.87035    143.72825      0.00000     39.68503     65.41595
+DYNA CROSS>        -9.39408      0.00000      0.00000      0.00000
+DYNA EXTERN>       27.64942      0.00000    -26.36275      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2150      4.30000    535.81521    209.46797    326.34725    200.20717
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       75.24340    151.02984      0.00000     46.32219     62.27185
+DYNA CROSS>        -8.60226      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.13460      0.00000    -24.05237      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2200      4.40000    541.83380    198.62088    343.21292    189.83965
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       85.51625    153.91313      0.00000     41.09724     64.71434
+DYNA CROSS>        -3.26773      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.04252      0.00000    -22.80284      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2250      4.50000    547.87807    210.98772    336.89034    201.65974
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       79.23006    153.13790      0.00000     38.52043     66.81119
+DYNA CROSS>        -8.86175      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.28214      0.00000    -21.22963      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2300      4.60000    552.15403    211.21602    340.93801    201.87794
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       86.81173    155.22929      0.00000     39.98644     63.79756
+DYNA CROSS>        -6.96257      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.08503      0.00000    -23.00946      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2350      4.70000    557.35215    212.35163    345.00052    202.96335
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       79.05587    155.11016      0.00000     37.33060     70.06101
+DYNA CROSS>       -10.08608      0.00000      0.00000      0.00000
+DYNA EXTERN>       36.91211      0.00000    -23.38315      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2400      4.80000    557.02974    222.30911    334.72063    212.48060
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       89.83354    154.55805      0.00000     39.59772     57.88536
+DYNA CROSS>        -9.12598      0.00000      0.00000      0.00000
+DYNA EXTERN>       26.64043      0.00000    -24.66849      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2450      4.90000    565.66841    230.11226    335.55615    219.93876
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       76.55784    150.41861      0.00000     39.72203     65.81104
+DYNA CROSS>        -7.26129      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.48233      0.00000    -18.17440      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2500      5.00000    567.87376    215.61068    352.26308    206.07831
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       83.51402    150.10577      0.00000     34.90643     77.15350
+DYNA CROSS>        -1.76753      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.74427      0.00000    -20.39340      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2550      5.10000    570.74000    209.64688    361.09312    200.37817
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       91.88060    164.57813      0.00000     44.89614     63.98178
+DYNA CROSS>        -6.53867      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.41548      0.00000    -23.12034      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2600      5.20000    579.72634    226.17085    353.55549    216.17161
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       86.29097    163.47019      0.00000     41.98659     70.08224
+DYNA CROSS>        -4.02835      0.00000      0.00000      0.00000
+DYNA EXTERN>       18.54863      0.00000    -22.79478      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2650      5.30000    585.07770    219.20928    365.86842    209.51781
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       91.49038    152.50193      0.00000     38.69077     71.23213
+DYNA CROSS>        -5.03225      0.00000      0.00000      0.00000
+DYNA EXTERN>       36.42342      0.00000    -19.43796      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2700      5.40000    585.63138    229.75494    355.87644    219.59723
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       92.62428    164.56745      0.00000     39.51861     58.68909
+DYNA CROSS>       -10.88612      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.54711      0.00000    -19.18397      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2750      5.50000    586.37584    238.08431    348.29153    227.55836
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       84.51233    159.86629      0.00000     39.30439     65.68745
+DYNA CROSS>       -11.54347      0.00000      0.00000      0.00000
+DYNA EXTERN>       27.29835      0.00000    -16.83382      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2800      5.60000    585.82444    235.75518    350.06926    225.33220
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       80.49101    165.44874      0.00000     41.17497     68.19338
+DYNA CROSS>        -8.01546      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.72014      0.00000    -20.94352      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2850      5.70000    584.26057    234.31359    349.94698    223.95434
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       93.83447    145.92079      0.00000     44.38483     63.87703
+DYNA CROSS>       -10.89159      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.39334      0.00000    -18.57189      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2900      5.80000    586.06212    237.65425    348.40787    227.14731
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       89.58461    161.50978      0.00000     40.47868     64.57699
+DYNA CROSS>       -11.62052      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.11488      0.00000    -19.23655      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     2950      5.90000    585.47991    229.94542    355.53449    219.77930
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       97.47791    159.92774      0.00000     40.22126     70.03638
+DYNA CROSS>       -14.57920      0.00000      0.00000      0.00000
+DYNA EXTERN>       20.63721      0.00000    -18.18681      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3000      6.00000    583.73264    237.53505    346.19759    227.03338
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       80.76252    159.56123      0.00000     40.58095     68.31088
+DYNA CROSS>        -8.74636      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.68663      0.00000    -19.95825      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3050      6.10000    587.81804    234.23043    353.58761    223.87486
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       88.70622    156.78552      0.00000     45.39933     71.56514
+DYNA CROSS>        -8.86307      0.00000      0.00000      0.00000
+DYNA EXTERN>       22.08531      0.00000    -22.09084      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3100      6.20000    587.13053    236.59628    350.53425    226.13611
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       89.35249    165.05603      0.00000     44.83293     64.90663
+DYNA CROSS>        -7.06122      0.00000      0.00000      0.00000
+DYNA EXTERN>       15.73432      0.00000    -22.28693      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3150      6.30000    587.31898    238.87563    348.44335    228.31469
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       87.37066    151.88864      0.00000     46.69447     62.42620
+DYNA CROSS>        -8.46341      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.82584      0.00000    -22.29904      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3200      6.40000    587.60863    228.50122    359.10741    218.39895
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       95.61660    156.27856      0.00000     44.89559     66.86909
+DYNA CROSS>       -10.91395      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.06946      0.00000    -23.70795      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3250      6.50000    598.58606    235.07188    363.51417    224.67911
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       95.88256    174.43207      0.00000     44.67852     62.92125
+DYNA CROSS>       -10.02543      0.00000      0.00000      0.00000
+DYNA EXTERN>       16.86313      0.00000    -21.23792      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3300      6.60000    601.76183    228.39670    373.36514    218.29904
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       91.56834    165.10944      0.00000     42.55198     72.04786
+DYNA CROSS>        -8.82426      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.44670      0.00000    -20.53493      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3350      6.70000    609.56189    236.50362    373.05828    226.04755
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       95.00808    169.33758      0.00000     48.55940     65.29503
+DYNA CROSS>        -7.61970      0.00000      0.00000      0.00000
+DYNA EXTERN>       22.12688      0.00000    -19.64899      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3400      6.80000    612.45755    240.79757    371.65997    230.15166
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       97.90300    177.28165      0.00000     45.24353     63.13715
+DYNA CROSS>        -8.45342      0.00000      0.00000      0.00000
+DYNA EXTERN>       17.44518      0.00000    -20.89712      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3450      6.90000    607.95497    249.56071    358.39427    238.52737
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       87.33268    160.72898      0.00000     41.58379     68.84718
+DYNA CROSS>        -7.24677      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.12341      0.00000    -22.97500      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3500      7.00000    614.15704    253.87839    360.27865    242.65416
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       94.37160    168.41282      0.00000     38.88870     67.07904
+DYNA CROSS>        -6.40661      0.00000      0.00000      0.00000
+DYNA EXTERN>       19.02658      0.00000    -21.09348      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3550      7.10000    618.45853    246.10865    372.34987    235.22794
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      101.67343    170.35081      0.00000     41.71200     70.47927
+DYNA CROSS>        -7.21429      0.00000      0.00000      0.00000
+DYNA EXTERN>       21.77489      0.00000    -26.42625      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3600      7.20000    617.55703    237.67566    379.88136    227.16778
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       88.84715    173.07817      0.00000     43.96940     74.93929
+DYNA CROSS>        -5.81672      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.96657      0.00000    -20.10249      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3650      7.30000    618.78222    248.91316    369.86906    237.90845
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      101.22589    165.90617      0.00000     46.84897     59.14493
+DYNA CROSS>        -5.04923      0.00000      0.00000      0.00000
+DYNA EXTERN>       21.96515      0.00000    -20.17283      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3700      7.40000    616.88620    254.72681    362.15939    243.46508
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       94.36570    155.06589      0.00000     45.35595     63.51379
+DYNA CROSS>        -3.97368      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.27581      0.00000    -20.44407      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3750      7.50000    617.94791    241.99030    375.95760    231.29166
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      101.04364    160.92893      0.00000     43.60992     71.60887
+DYNA CROSS>        -6.21489      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.45133      0.00000    -19.47019      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3800      7.60000    618.42330    237.50166    380.92164    227.00147
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       86.94809    168.36624      0.00000     42.82411     69.59202
+DYNA CROSS>        -6.31159      0.00000      0.00000      0.00000
+DYNA EXTERN>       38.57511      0.00000    -19.07234      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3850      7.70000    622.28840    242.61508    379.67332    231.88882
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       96.01371    164.44228      0.00000     42.51465     74.86019
+DYNA CROSS>        -6.10207      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.44191      0.00000    -16.49735      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3900      7.80000    624.30388    251.32507    372.97881    240.21373
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       92.64025    172.62846      0.00000     46.17256     71.72552
+DYNA CROSS>        -9.14034      0.00000      0.00000      0.00000
+DYNA EXTERN>       16.61031      0.00000    -17.65797      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     3950      7.90000    624.43984    239.53318    384.90666    228.94317
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      101.51960    165.14650      0.00000     43.01273     68.73152
+DYNA CROSS>        -7.88894      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.56018      0.00000    -18.17492      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4000      8.00000    629.40388    254.96616    374.43772    243.69384
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       91.84173    166.04734      0.00000     45.09037     70.87515
+DYNA CROSS>       -10.78617      0.00000      0.00000      0.00000
+DYNA EXTERN>       33.33957      0.00000    -21.97027      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4050      8.10000    626.06847    242.82236    383.24611    232.08693
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      105.25513    170.10303      0.00000     42.70407     66.12870
+DYNA CROSS>       -10.67827      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.15763      0.00000    -19.42418      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4100      8.20000    628.73827    258.98052    369.75776    247.53072
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       92.75690    166.87953      0.00000     37.01256     63.48080
+DYNA CROSS>        -6.33822      0.00000      0.00000      0.00000
+DYNA EXTERN>       33.50896      0.00000    -17.54278      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4150      8.30000    634.93116    254.56401    380.36715    243.30947
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      100.70414    163.02769      0.00000     38.48172     71.23466
+DYNA CROSS>        -1.66017      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.57165      0.00000    -22.99254      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4200      8.40000    633.46135    283.57505    349.88630    271.03790
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       89.76635    161.62181      0.00000     41.03683     58.89721
+DYNA CROSS>        -2.83215      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.35040      0.00000    -21.95415      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4250      8.50000    633.78186    259.16525    374.61661    247.70729
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       91.26438    159.15457      0.00000     42.20110     71.76001
+DYNA CROSS>        -4.15312      0.00000      0.00000      0.00000
+DYNA EXTERN>       35.50358      0.00000    -21.11391      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4300      8.60000    632.10295    253.45810    378.64485    242.25245
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       99.82986    161.59564      0.00000     41.41055     65.79235
+DYNA CROSS>        -4.59676      0.00000      0.00000      0.00000
+DYNA EXTERN>       35.40784      0.00000    -20.79462      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4350      8.70000    635.63562    260.30233    375.33329    248.79409
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       96.12362    169.00331      0.00000     41.01702     73.44732
+DYNA CROSS>        -3.34729      0.00000      0.00000      0.00000
+DYNA EXTERN>       18.48946      0.00000    -19.40016      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4400      8.80000    639.31447    265.86889    373.44558    254.11455
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      104.30581    156.73369      0.00000     41.42560     66.73474
+DYNA CROSS>        -3.52483      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.44266      0.00000    -22.67209      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4450      8.90000    636.86586    245.59686    391.26900    234.73877
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      105.61017    168.18316      0.00000     41.94850     72.90659
+DYNA CROSS>        -4.84819      0.00000      0.00000      0.00000
+DYNA EXTERN>       35.00022      0.00000    -27.53145      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4500      9.00000    636.11681    267.15450    368.96231    255.34332
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      100.60403    151.42741      0.00000     44.25416     66.31936
+DYNA CROSS>        -5.72926      0.00000      0.00000      0.00000
+DYNA EXTERN>       37.78402      0.00000    -25.69741      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4550      9.10000    640.58709    261.76185    378.82524    250.18909
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       96.28553    175.78027      0.00000     40.51327     70.07604
+DYNA CROSS>        -5.24420      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.94037      0.00000    -22.52604      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4600      9.20000    639.12581    263.48223    375.64358    251.83340
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       93.64341    161.03656      0.00000     43.48033     67.03736
+DYNA CROSS>        -5.33574      0.00000      0.00000      0.00000
+DYNA EXTERN>       36.61024      0.00000    -20.82858      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4650      9.30000    639.52386    270.56231    368.96154    258.60047
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       81.55608    180.87178      0.00000     37.82213     62.30599
+DYNA CROSS>        -5.18041      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.46889      0.00000    -20.88292      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4700      9.40000    638.79355    260.29094    378.50261    248.78321
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      108.19468    149.25507      0.00000     45.05665     76.06534
+DYNA CROSS>        -4.79593      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.04224      0.00000    -20.31543      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4750      9.50000    640.82936    254.97168    385.85768    243.69912
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      100.38479    172.24396      0.00000     45.89936     68.62545
+DYNA CROSS>        -6.28912      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.23826      0.00000    -23.24502      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4800      9.60000    635.35908    272.68735    362.67173    260.63156
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       92.60506    163.15403      0.00000     40.93724     67.92746
+DYNA CROSS>        -3.64404      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.66317      0.00000    -21.97119      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4850      9.70000    636.38991    259.98246    376.40745    248.48836
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       93.24399    170.90215      0.00000     41.18033     67.12681
+DYNA CROSS>        -6.28494      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.81769      0.00000    -22.57858      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4900      9.80000    639.63725    250.82943    388.80782    239.74000
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      105.80505    167.40415      0.00000     41.16249     65.04523
+DYNA CROSS>        -8.31280      0.00000      0.00000      0.00000
+DYNA EXTERN>       39.45821      0.00000    -21.75451      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     4950      9.90000    647.13636    248.54633    398.59004    237.55784
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       97.33530    180.02340      0.00000     46.19310     77.48715
+DYNA CROSS>        -4.31706      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.68242      0.00000    -26.81428      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5000     10.00000    644.42394    252.12741    392.29653    240.98060
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      107.28267    179.38573      0.00000     42.31476     58.76209
+DYNA CROSS>        -7.70313      0.00000      0.00000      0.00000
+DYNA EXTERN>       38.88432      0.00000    -26.62992      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5050     10.10000    646.14389    256.84528    389.29861    245.48988
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       96.27274    176.94299      0.00000     36.86417     73.93344
+DYNA CROSS>        -4.04440      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.67585      0.00000    -22.34618      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5100     10.20000    655.08801    258.75776    396.33025    247.31781
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      106.42311    160.89450      0.00000     41.64371     72.08311
+DYNA CROSS>        -4.21011      0.00000      0.00000      0.00000
+DYNA EXTERN>       37.74118      0.00000    -18.24524      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5150     10.30000    658.56318    286.13293    372.43025    273.48270
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      106.08664    152.58320      0.00000     39.41602     81.63140
+DYNA CROSS>        -5.94079      0.00000      0.00000      0.00000
+DYNA EXTERN>       16.13307      0.00000    -17.47928      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5200     10.40000    661.71972    285.12495    376.59477    272.51928
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      120.42171    156.91136      0.00000     42.69908     63.81058
+DYNA CROSS>        -8.31252      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.02301      0.00000    -23.95846      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5250     10.50000    665.06283    268.04558    397.01725    256.19501
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      104.77784    176.70563      0.00000     40.00459     73.47233
+DYNA CROSS>        -6.28600      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.61288      0.00000    -24.27004      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5300     10.60000    667.97888    280.88064    387.09824    268.46262
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      104.23197    157.03340      0.00000     49.61609     62.48018
+DYNA CROSS>        -2.80556      0.00000      0.00000      0.00000
+DYNA EXTERN>       39.50145      0.00000    -22.95929      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5350     10.70000    664.71060    284.61424    380.09635    272.03115
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       98.80883    165.75442      0.00000     44.59716     75.04032
+DYNA CROSS>        -4.75765      0.00000      0.00000      0.00000
+DYNA EXTERN>       21.91391      0.00000    -21.26063      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5400     10.80000    670.02349    285.00684    385.01665    272.40639
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      109.50375    167.64212      0.00000     43.11613     74.93206
+DYNA CROSS>        -3.93697      0.00000      0.00000      0.00000
+DYNA EXTERN>       12.73188      0.00000    -18.97232      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5450     10.90000    669.22446    270.02237    399.20210    258.08440
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      110.43881    171.24739      0.00000     45.92664     70.98136
+DYNA CROSS>        -4.15013      0.00000      0.00000      0.00000
+DYNA EXTERN>       22.96838      0.00000    -18.21035      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5500     11.00000    665.50894    263.49878    402.01016    251.84922
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      106.94150    164.58973      0.00000     41.53420     78.22980
+DYNA CROSS>        -3.65175      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.20513      0.00000    -16.83845      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5550     11.10000    668.84403    259.52307    409.32096    248.04929
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      116.36141    165.98794      0.00000     41.79351     78.23969
+DYNA CROSS>        -1.20201      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.94722      0.00000    -15.80680      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5600     11.20000    671.64397    280.04201    391.60197    267.66106
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      112.72295    163.14388      0.00000     47.53616     72.31224
+DYNA CROSS>         0.53774      0.00000      0.00000      0.00000
+DYNA EXTERN>       11.37723      0.00000    -16.02824      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5650     11.30000    660.14795    281.94443    378.20352    269.47938
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       99.89366    165.81269      0.00000     43.79028     55.87840
+DYNA CROSS>        -2.06534      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.14187      0.00000    -17.24804      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5700     11.40000    668.05540    287.24745    380.80796    274.54794
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      103.12662    167.00412      0.00000     39.89709     73.60120
+DYNA CROSS>        -9.22313      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.99836      0.00000    -18.59630      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5750     11.50000    670.55264    293.39575    377.15689    280.42442
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      103.21779    151.96881      0.00000     42.20415     71.47832
+DYNA CROSS>       -10.24921      0.00000      0.00000      0.00000
+DYNA EXTERN>       36.50922      0.00000    -17.97220      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5800     11.60000    671.84431    288.73561    383.10870    275.97031
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      104.20417    168.06828      0.00000     44.20721     65.21581
+DYNA CROSS>       -10.43903      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.33427      0.00000    -16.48202      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5850     11.70000    670.81070    285.40269    385.40801    272.78474
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       91.68797    165.52959      0.00000     47.27201     77.70446
+DYNA CROSS>        -4.68743      0.00000      0.00000      0.00000
+DYNA EXTERN>       22.36512      0.00000    -14.46371      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5900     11.80000    668.67688    287.41241    381.26448    274.70561
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       96.92730    151.35266      0.00000     46.97303     84.63761
+DYNA CROSS>        -6.66037      0.00000      0.00000      0.00000
+DYNA EXTERN>       27.91790      0.00000    -19.88366      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     5950     11.90000    671.48700    284.46704    387.01995    271.89046
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      108.33833    163.58308      0.00000     34.19350     68.41057
+DYNA CROSS>        -8.91766      0.00000      0.00000      0.00000
+DYNA EXTERN>       36.58197      0.00000    -15.16983      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6000     12.00000    666.73374    277.79936    388.93439    265.51756
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       96.95550    176.43031      0.00000     41.04358     74.61461
+DYNA CROSS>       -10.72935      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.58189      0.00000    -13.96215      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6050     12.10000    671.22699    284.96659    386.26039    272.36793
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       98.21109    159.69140      0.00000     42.43988     81.61896
+DYNA CROSS>       -10.80106      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.40868      0.00000    -16.30857      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6100     12.20000    673.39428    285.56018    387.83410    272.93527
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      106.07210    152.59842      0.00000     45.80190     76.11336
+DYNA CROSS>        -8.78387      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.71420      0.00000    -14.68201      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6150     12.30000    675.12439    261.56718    413.55722    250.00302
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      116.13298    163.20079      0.00000     49.04971     74.36608
+DYNA CROSS>        -0.69449      0.00000      0.00000      0.00000
+DYNA EXTERN>       26.56915      0.00000    -15.06701      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6200     12.40000    682.33043    283.37282    398.95761    270.84462
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      121.48247    162.78666      0.00000     47.12847     65.12755
+DYNA CROSS>        -5.72311      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.02271      0.00000    -14.86715      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6250     12.50000    683.15144    286.29287    396.85857    273.63557
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      113.92347    160.01058      0.00000     51.98383     71.60070
+DYNA CROSS>        -7.42317      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.02153      0.00000    -18.25837      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6300     12.60000    691.88429    286.92241    404.96188    274.23727
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      114.89652    145.53966      0.00000     49.68879     69.45691
+DYNA CROSS>        -5.29775      0.00000      0.00000      0.00000
+DYNA EXTERN>       46.72271      0.00000    -16.04496      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6350     12.70000    693.23206    288.94241    404.28965    276.16797
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       95.95478    177.86984      0.00000     48.47613     72.24738
+DYNA CROSS>        -9.28270      0.00000      0.00000      0.00000
+DYNA EXTERN>       37.24319      0.00000    -18.21898      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6400     12.80000    699.42108    293.73937    405.68171    280.75285
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      118.50254    174.06127      0.00000     37.78755     72.56098
+DYNA CROSS>        -5.38341      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.98231      0.00000    -16.82952      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6450     12.90000    700.29397    282.72606    417.56791    270.22645
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      119.09236    165.10798      0.00000     38.06679     81.02786
+DYNA CROSS>        -0.84036      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.34256      0.00000    -16.22928      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6500     13.00000    704.71816    287.81320    416.90496    275.08868
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      110.57569    179.23413      0.00000     44.05615     72.89521
+DYNA CROSS>        -2.99701      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.50637      0.00000    -16.36558      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6550     13.10000    706.99990    299.08894    407.91096    285.86590
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      110.34092    162.42118      0.00000     43.50710     68.40124
+DYNA CROSS>        -3.28461      0.00000      0.00000      0.00000
+DYNA EXTERN>       40.87780      0.00000    -14.35267      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6600     13.20000    705.74787    307.96038    397.78749    294.34513
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      107.30365    175.49981      0.00000     35.74211     73.91395
+DYNA CROSS>         0.86564      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.90555      0.00000    -19.44322      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6650     13.30000    712.59569    273.17840    439.41729    261.10091
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      123.92471    173.72652      0.00000     41.49868     77.20527
+DYNA CROSS>        -3.46546      0.00000      0.00000      0.00000
+DYNA EXTERN>       43.30729      0.00000    -16.77972      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6700     13.40000    707.19936    293.47767    413.72170    280.50271
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      100.40528    172.61433      0.00000     37.95990     85.60041
+DYNA CROSS>        -5.67621      0.00000      0.00000      0.00000
+DYNA EXTERN>       37.27914      0.00000    -14.46116      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6750     13.50000    713.02905    290.55440    422.47465    277.70869
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      121.16785    179.56697      0.00000     39.66790     74.60973
+DYNA CROSS>        -7.36660      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.33262      0.00000    -15.50382      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6800     13.60000    712.17690    307.16835    405.00855    293.58812
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      110.13196    167.13031      0.00000     39.68305     77.14272
+DYNA CROSS>        -3.93459      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.25598      0.00000    -14.40088      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6850     13.70000    714.87518    284.65487    430.22031    272.06999
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      116.44553    170.57798      0.00000     46.41523     70.74935
+DYNA CROSS>        -0.90947      0.00000      0.00000      0.00000
+DYNA EXTERN>       42.96314      0.00000    -16.02145      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6900     13.80000    717.46250    298.08466    419.37783    284.90603
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       98.75136    169.16485      0.00000     53.94192     77.18399
+DYNA CROSS>        -4.01187      0.00000      0.00000      0.00000
+DYNA EXTERN>       41.15610      0.00000    -16.80852      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     6950     13.90000    723.17061    303.74203    419.42858    290.31328
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      109.35719    187.77617      0.00000     38.09592     68.87716
+DYNA CROSS>        -8.63850      0.00000      0.00000      0.00000
+DYNA EXTERN>       39.12309      0.00000    -15.16246      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7000     14.00000    728.66588    308.32389    420.34199    294.69257
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      126.87665    159.69763      0.00000     41.13347     75.26080
+DYNA CROSS>        -3.38428      0.00000      0.00000      0.00000
+DYNA EXTERN>       34.99857      0.00000    -14.24084      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7050     14.10000    725.69544    293.59530    432.10014    280.61515
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      125.66793    171.95721      0.00000     45.61024     78.17656
+DYNA CROSS>        -2.85748      0.00000      0.00000      0.00000
+DYNA EXTERN>       26.50778      0.00000    -12.96210      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7100     14.20000    722.40718    314.52564    407.88153    300.62014
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      113.70280    170.59870      0.00000     49.34967     70.15504
+DYNA CROSS>        -5.43347      0.00000      0.00000      0.00000
+DYNA EXTERN>       23.12078      0.00000    -13.61198      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7150     14.30000    721.41653    292.98756    428.42896    280.03428
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      125.24781    172.44824      0.00000     48.90184     59.71065
+DYNA CROSS>        -0.09764      0.00000      0.00000      0.00000
+DYNA EXTERN>       34.22937      0.00000    -12.01129      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7200     14.40000    715.34077    294.95211    420.38866    281.91197
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      122.65511    165.12582      0.00000     44.09967     67.89145
+DYNA CROSS>        -0.89547      0.00000      0.00000      0.00000
+DYNA EXTERN>       35.56181      0.00000    -14.04974      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7250     14.50000    716.34771    295.16814    421.17957    282.11845
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      113.23984    168.13530      0.00000     39.61047     77.84072
+DYNA CROSS>        -3.41013      0.00000      0.00000      0.00000
+DYNA EXTERN>       39.89488      0.00000    -14.13151      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7300     14.60000    714.03876    298.93353    415.10523    285.71737
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      109.03465    168.54093      0.00000     47.69626     72.61703
+DYNA CROSS>        -4.36797      0.00000      0.00000      0.00000
+DYNA EXTERN>       35.15867      0.00000    -13.57434      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7350     14.70000    717.19355    285.50449    431.68905    272.88204
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      124.15049    183.13787      0.00000     45.51336     64.75981
+DYNA CROSS>        -3.81309      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.86697      0.00000    -13.92636      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7400     14.80000    716.09638    294.10532    421.99106    281.10262
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      105.16855    166.84387      0.00000     45.88030     74.20692
+DYNA CROSS>        -0.30844      0.00000      0.00000      0.00000
+DYNA EXTERN>       43.51420      0.00000    -13.31433      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7450     14.90000    718.02071    302.16375    415.85696    288.80478
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      108.45851    168.68909      0.00000     39.37764     74.17296
+DYNA CROSS>         0.29241      0.00000      0.00000      0.00000
+DYNA EXTERN>       37.74844      0.00000    -12.88211      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7500     15.00000    720.41775    306.98499    413.43276    293.41287
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      115.08211    175.80323      0.00000     40.58022     66.20707
+DYNA CROSS>        -4.70566      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.00697      0.00000    -11.54119      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7550     15.10000    716.97506    309.30143    407.67363    295.62690
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       98.56538    183.06523      0.00000     42.96130     68.36393
+DYNA CROSS>        -3.68787      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.76131      0.00000    -14.35566      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7600     15.20000    713.97102    296.99575    416.97527    283.86527
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      120.98916    160.55052      0.00000     37.41378     85.78095
+DYNA CROSS>        -4.11692      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.67806      0.00000    -15.32028      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7650     15.30000    713.71582    299.10593    414.60989    285.88215
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      108.00017    171.12611      0.00000     44.54107     74.47872
+DYNA CROSS>        -6.34351      0.00000      0.00000      0.00000
+DYNA EXTERN>       38.68759      0.00000    -15.88027      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7700     15.40000    710.33455    310.84941    399.48513    297.10644
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      120.00592    153.61138      0.00000     45.13101     64.09343
+DYNA CROSS>        -3.15565      0.00000      0.00000      0.00000
+DYNA EXTERN>       34.79569      0.00000    -14.99664      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7750     15.50000    705.63284    304.00332    401.62951    290.56302
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      107.40762    177.88726      0.00000     37.24386     69.07073
+DYNA CROSS>        -3.43895      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.44383      0.00000    -15.98484      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7800     15.60000    700.83927    293.25926    407.58001    280.29396
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      103.70058    168.61713      0.00000     38.59449     69.13602
+DYNA CROSS>         0.07054      0.00000      0.00000      0.00000
+DYNA EXTERN>       44.07010      0.00000    -16.60886      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7850     15.70000    700.79285    294.13183    406.66102    281.12796
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      104.70284    168.36516      0.00000     43.53294     70.06631
+DYNA CROSS>        -2.38880      0.00000      0.00000      0.00000
+DYNA EXTERN>       39.99514      0.00000    -17.61257      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7900     15.80000    701.54182    301.78030    399.76152    288.43828
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      117.42541    178.47781      0.00000     42.17101     59.45918
+DYNA CROSS>        -7.57091      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.53656      0.00000    -20.73754      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     7950     15.90000    699.46783    294.88189    404.58595    281.84485
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      125.29664    158.84313      0.00000     47.32886     53.95391
+DYNA CROSS>        -5.69699      0.00000      0.00000      0.00000
+DYNA EXTERN>       43.90631      0.00000    -19.04591      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8000     16.00000    691.37402    296.05315    395.32087    282.96433
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      112.49458    156.12097      0.00000     42.70097     67.65926
+DYNA CROSS>        -6.73992      0.00000      0.00000      0.00000
+DYNA EXTERN>       41.79820      0.00000    -18.71320      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8050     16.10000    688.93218    286.26040    402.67178    273.60453
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      117.33700    166.44418      0.00000     45.79220     69.35783
+DYNA CROSS>        -7.02080      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.93002      0.00000    -20.16865      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8100     16.20000    698.02777    283.05479    414.97298    270.54064
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      112.33698    175.12272      0.00000     48.71145     65.84658
+DYNA CROSS>        -8.35740      0.00000      0.00000      0.00000
+DYNA EXTERN>       39.31436      0.00000    -18.00170      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8150     16.30000    698.38867    293.55479    404.83388    280.57643
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      118.24273    161.39116      0.00000     41.12162     73.52170
+DYNA CROSS>        -8.69472      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.96687      0.00000    -12.71549      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8200     16.40000    701.15497    301.48222    399.67275    288.15338
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      114.55549    178.12013      0.00000     46.35189     54.73399
+DYNA CROSS>        -5.30564      0.00000      0.00000      0.00000
+DYNA EXTERN>       30.29064      0.00000    -19.07375      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8250     16.50000    694.78191    291.49571    403.28620    278.60838
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      120.36657    175.27130      0.00000     42.96492     65.31572
+DYNA CROSS>        -5.22261      0.00000      0.00000      0.00000
+DYNA EXTERN>       26.73114      0.00000    -22.14084      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8300     16.60000    695.34470    291.49117    403.85353    278.60404
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      106.63235    183.62177      0.00000     43.76775     67.86156
+DYNA CROSS>        -7.73813      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.82345      0.00000    -15.11522      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8350     16.70000    694.73110    291.84131    402.88978    278.93871
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      112.90711    173.22421      0.00000     35.51839     71.77651
+DYNA CROSS>        -6.70156      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.89579      0.00000    -16.73068      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8400     16.80000    686.42624    280.91651    405.50973    268.49690
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      121.04353    168.94293      0.00000     43.04268     69.09755
+DYNA CROSS>        -8.26877      0.00000      0.00000      0.00000
+DYNA EXTERN>       27.90027      0.00000    -16.24846      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8450     16.90000    683.53595    287.82266    395.71329    275.09772
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      113.40450    168.91842      0.00000     45.25467     63.36255
+DYNA CROSS>        -6.02350      0.00000      0.00000      0.00000
+DYNA EXTERN>       26.27274      0.00000    -15.47608      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8500     17.00000    683.98084    301.45883    382.52202    288.13102
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       99.87620    172.25748      0.00000     40.00540     81.43955
+DYNA CROSS>        -9.64497      0.00000      0.00000      0.00000
+DYNA EXTERN>       18.56477      0.00000    -19.97643      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8550     17.10000    688.27012    277.90019    410.36994    265.61393
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      111.13626    183.90911      0.00000     41.91656     73.70049
+DYNA CROSS>        -6.55070      0.00000      0.00000      0.00000
+DYNA EXTERN>       21.58855      0.00000    -15.33034      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8600     17.20000    685.21619    278.41612    406.80007    266.10705
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      105.37174    177.66131      0.00000     40.31721     77.57259
+DYNA CROSS>        -3.07297      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.42805      0.00000    -16.47786      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8650     17.30000    681.30509    296.20626    385.09883    283.11068
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      109.51165    180.03986      0.00000     35.00014     61.35964
+DYNA CROSS>        -4.52652      0.00000      0.00000      0.00000
+DYNA EXTERN>       18.62180      0.00000    -14.90773      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8700     17.40000    681.48553    277.77221    403.71333    265.49161
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      104.72311    166.87956      0.00000     47.35844     76.14676
+DYNA CROSS>        -4.76909      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.99302      0.00000    -15.61847      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8750     17.50000    681.02370    278.87334    402.15036    266.54406
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      107.60271    180.42453      0.00000     39.74051     68.97966
+DYNA CROSS>        -6.92754      0.00000      0.00000      0.00000
+DYNA EXTERN>       27.28804      0.00000    -14.95754      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8800     17.60000    687.71747    298.88367    388.83380    285.66971
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      100.60043    171.45995      0.00000     35.43993     68.29610
+DYNA CROSS>        -4.15064      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.75174      0.00000    -15.56370      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8850     17.70000    696.32280    286.14526    410.17754    273.49448
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      114.13460    170.35200      0.00000     39.69987     69.82100
+DYNA CROSS>        -2.40922      0.00000      0.00000      0.00000
+DYNA EXTERN>       34.15360      0.00000    -15.57431      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8900     17.80000    699.99808    299.57003    400.42805    286.32573
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      121.05835    167.57166      0.00000     43.32117     69.95450
+DYNA CROSS>        -7.67405      0.00000      0.00000      0.00000
+DYNA EXTERN>       18.97560      0.00000    -12.77918      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     8950     17.90000    700.23737    309.55061    390.68676    295.86506
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      110.97187    167.73534      0.00000     35.82095     70.56402
+DYNA CROSS>        -7.46834      0.00000      0.00000      0.00000
+DYNA EXTERN>       26.69756      0.00000    -13.63465      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9000     18.00000    701.82080    296.82231    404.99849    283.69949
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      102.16772    162.43595      0.00000     37.17599     79.04577
+DYNA CROSS>        -6.24088      0.00000      0.00000      0.00000
+DYNA EXTERN>       46.46892      0.00000    -16.05497      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9050     18.10000    703.92320    295.11744    408.80576    282.06999
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      103.39057    172.88273      0.00000     41.53706     83.14049
+DYNA CROSS>        -5.91389      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.69393      0.00000    -15.92513      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9100     18.20000    705.12251    303.75231    401.37020    290.32310
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      123.28644    182.06153      0.00000     34.24467     65.98608
+DYNA CROSS>        -4.77553      0.00000      0.00000      0.00000
+DYNA EXTERN>       18.40610      0.00000    -17.83910      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9150     18.30000    700.94965    303.10578    397.84386    289.70516
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       98.12407    187.38553      0.00000     38.40980     71.63926
+DYNA CROSS>        -7.53115      0.00000      0.00000      0.00000
+DYNA EXTERN>       29.00959      0.00000    -19.19325      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9200     18.40000    699.69936    293.01617    406.68319    280.06162
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      111.51213    160.05253      0.00000     49.71088     85.11507
+DYNA CROSS>        -9.22001      0.00000      0.00000      0.00000
+DYNA EXTERN>       24.20606      0.00000    -14.69347      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9250     18.50000    691.70036    291.42291    400.27745    278.53880
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      101.61491    177.16918      0.00000     47.18832     69.17183
+DYNA CROSS>        -8.72327      0.00000      0.00000      0.00000
+DYNA EXTERN>       28.41381      0.00000    -14.55733      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9300     18.60000    691.76251    308.18799    383.57452    294.56268
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      116.51877    142.26991      0.00000     39.75154     65.19775
+DYNA CROSS>        -6.37972      0.00000      0.00000      0.00000
+DYNA EXTERN>       42.05826      0.00000    -15.84199      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9350     18.70000    690.21033    295.76379    394.44654    282.68777
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      101.10025    168.70479      0.00000     42.23104     68.42543
+DYNA CROSS>        -6.79558      0.00000      0.00000      0.00000
+DYNA EXTERN>       35.43118      0.00000    -14.65056      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9400     18.80000    697.60887    288.97757    408.63131    276.20157
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      118.72222    172.20969      0.00000     38.81247     73.77626
+DYNA CROSS>       -10.01281      0.00000      0.00000      0.00000
+DYNA EXTERN>       27.62879      0.00000    -12.50530      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9450     18.90000    700.82580    287.05068    413.77513    274.35987
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      123.61651    170.24002      0.00000     37.48473     65.17872
+DYNA CROSS>        -8.18872      0.00000      0.00000      0.00000
+DYNA EXTERN>       41.62861      0.00000    -16.18474      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9500     19.00000    700.74003    297.15773    403.58230    284.02008
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      109.28074    155.00276      0.00000     37.98561     71.58210
+DYNA CROSS>        -3.74571      0.00000      0.00000      0.00000
+DYNA EXTERN>       46.34592      0.00000    -12.86911      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9550     19.10000    701.94512    297.86455    404.08056    284.69565
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      105.79052    164.41279      0.00000     37.26009     79.67571
+DYNA CROSS>        -4.38246      0.00000      0.00000      0.00000
+DYNA EXTERN>       33.69381      0.00000    -12.36988      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9600     19.20000    709.72824    309.13258    400.59566    295.46551
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      116.47809    165.93331      0.00000     42.47262     61.93644
+DYNA CROSS>         1.25105      0.00000      0.00000      0.00000
+DYNA EXTERN>       25.44259      0.00000    -12.91844      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9650     19.30000    708.34879    295.74859    412.60020    282.67324
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      114.86909    166.44475      0.00000     43.07806     62.64019
+DYNA CROSS>         0.85941      0.00000      0.00000      0.00000
+DYNA EXTERN>       34.44435      0.00000     -9.73565      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9700     19.40000    705.04013    304.54907    400.49106    291.08464
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      113.75007    164.10603      0.00000     42.25299     66.30561
+DYNA CROSS>        -3.64021      0.00000      0.00000      0.00000
+DYNA EXTERN>       31.92315      0.00000    -14.20657      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9750     19.50000    710.45751    303.89530    406.56221    290.45977
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      114.09267    165.40516      0.00000     43.09650     66.97375
+DYNA CROSS>        -1.40360      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.31612      0.00000    -13.91839      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9800     19.60000    712.83946    308.06420    404.77526    294.44437
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      125.53363    157.25145      0.00000     40.71270     64.76996
+DYNA CROSS>        -2.68509      0.00000      0.00000      0.00000
+DYNA EXTERN>       32.66721      0.00000    -13.47461      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9850     19.70000    716.18854    313.06029    403.12825    299.21957
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      128.51912    153.14129      0.00000     40.52198     64.02791
+DYNA CROSS>        -4.43489      0.00000      0.00000      0.00000
+DYNA EXTERN>       34.41863      0.00000    -13.06579      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9900     19.80000    713.56559    326.67213    386.89346    312.22962
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      108.67321    154.56057      0.00000     38.29048     70.85186
+DYNA CROSS>        -4.39808      0.00000      0.00000      0.00000
+DYNA EXTERN>       33.50582      0.00000    -14.59040      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>     9950     19.90000    714.08391    324.19078    389.89313    309.85797
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      104.22985    158.16419      0.00000     39.68162     66.18321
+DYNA CROSS>        -7.40791      0.00000      0.00000      0.00000
+DYNA EXTERN>       43.69611      0.00000    -14.65394      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>    10000     20.00000    719.24015    326.10390    393.13625    311.68651
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>      122.72735    154.95934      0.00000     42.36514     65.51473
+DYNA CROSS>        -4.34304      0.00000      0.00000      0.00000
+DYNA EXTERN>       27.19480      0.00000    -15.28207      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+   1000   COORDINATE SETS STARTING FROM
+     STEP NO       10   FOR EVERY    10  STEPS
+     WRITTEN ON UNIT   10
+
+ VCLOSE: Closing unit   10 with status "KEEP"
+ DYNAMC> Averages for the last 10000 steps:
+AVER DYN: Step         Time      TOTEner        TOTKe       ENERgy  TEMPerature
+AVER PROP:             GRMS      HFCTote        HFCKe       EHFCor        VIRKe
+AVER INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+AVER CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+AVER EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+AVER PRESS:            VIRE         VIRI       PRESSE       PRESSI       VOLUme
+ ----------       ---------    ---------    ---------    ---------    ---------
+AVER>    10000     20.00000    608.65359    246.38857    362.26502    235.49548
+AVER PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+AVER INTERN>       95.18575    158.97037      0.00000     41.24225     66.51615
+AVER CROSS>        -6.84653      0.00000      0.00000      0.00000
+AVER EXTERN>       27.70110      0.00000    -20.50407      0.00000      0.00000
+AVER PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ DYNAMC> RMS fluctuations for the last 10000 steps:
+FLUC>    10000     20.00000    118.49523     61.73964     58.16798     59.01007
+FLUC PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+FLUC INTERN>       21.87179     15.56967      0.00000      4.62138      8.54578
+FLUC CROSS>         3.48951      0.00000      0.00000      0.00000
+FLUC EXTERN>        9.29648      0.00000      6.14900      0.00000      0.00000
+FLUC PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ OpenMM was used to perform energy and force evaluation.
+
+ WRIDYN: RESTart file was written at step   10000
+ VCLOSE: Closing unit    9 with status "KEEP"
+
+     DETAILS ABOUT CENTRE OF MASS
+     POSITION          :    51.019699        66.227440        41.356113    
+     VELOCITY          :   2.75625237E-03   7.52462816E-03   2.48584833E-02
+     ANGULAR MOMENTUM  :    265.23908        1052.5589       -1177.8593    
+     KINETIC ENERGY    :    2.3423463    
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 11 name @newdir/@pdbid.@run.pdb
+ Parameter: NEWDIR -> "../S6-CGEQ"
+ Parameter: PDBID -> "P53"
+ Parameter: RUN -> "1"
+ VOPEN> Attempting to open::../s6-cgeq/p53.1.pdb::
+ OPNLGU> Unit 11 opened for WRITE access to ../s6-cgeq/p53.1.pdb
+  
+ CHARMM>    coor writ pdb  unit 11
+ RDTITL> CLOS UNIT 11
+ RDTITL> No title read.
+  Write CHARMM-pdb format
+  
+ CHARMM>    clos unit 11
+ VCLOSE: Closing unit   11 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 10 name @newdir/@pdbid.@run.psf
+ Parameter: NEWDIR -> "../S6-CGEQ"
+ Parameter: PDBID -> "P53"
+ Parameter: RUN -> "1"
+ VOPEN> Attempting to open::../s6-cgeq/p53.1.psf::
+ OPNLGU> Unit 10 opened for WRITE access to ../s6-cgeq/p53.1.psf
+  
+ CHARMM>    writ psf  card unit 10
+ RDTITL> * PSF OF PROT FOR CG SYSTEM
+ RDTITL> *
+  
+ CHARMM>     
+  
+ CHARMM>    stop
+ VCLOSE: Closing unit   10 with status "KEEP"
+      $$$$$$  New timer profile Local node$$$$$
+   Shake Setup                     0.00 Other:            0.00
+   First List                      0.00 Other:            0.00
+   Shake time                      0.00 Other:            0.00
+      dynamc                          1.06 Other:            0.00
+   Dynamics total                  1.06 Other:            0.00
+      Heuristic check                 0.00 Other:            0.00
+      NBONDS                          0.00 Other:            0.00
+   List time                       0.00 Other:            0.00
+         Electrostatic & VDW             1.34 Other:            0.00
+      Nonbond force                   1.36 Other:            0.02
+         Bond energy                     0.01 Other:            0.00
+         Angle energy                    0.09 Other:            0.00
+         Dihedral energy                 0.19 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.30 Other:            0.01
+      Comm energy                     0.00 Other:            0.00
+      Comm force                      0.00 Other:            0.00
+   Energy time                     5.24 Other:            3.59
+      load plugins                    0.18 Other:            0.00
+      build system                    0.00 Other:            0.00
+      init context                    0.85 Other:            0.00
+   OpenMM overhead                 1.03 Other:            0.00
+ Total time                     10.04 Other:            2.69
+         $$$$$$  Average   profile $$$$$
+   Shake Setup                     0.00 Other:            0.00
+   First List                      0.00 Other:            0.00
+   Shake time                      0.00 Other:            0.00
+      dynamc                          1.06 Other:            0.00
+   Dynamics total                  1.06 Other:            0.00
+      Heuristic check                 0.00 Other:            0.00
+      NBONDS                          0.00 Other:            0.00
+   List time                       0.00 Other:            0.00
+         Electrostatic & VDW             1.34 Other:            0.00
+      Nonbond force                   1.36 Other:            0.02
+         Bond energy                     0.01 Other:            0.00
+         Angle energy                    0.09 Other:            0.00
+         Dihedral energy                 0.19 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.30 Other:            0.01
+      Comm energy                     0.00 Other:            0.00
+      Comm force                      0.00 Other:            0.00
+   Energy time                     5.24 Other:            3.59
+      load plugins                    0.18 Other:            0.00
+      build system                    0.00 Other:            0.00
+      init context                    0.85 Other:            0.00
+   OpenMM overhead                 1.03 Other:            0.00
+ Total time                     10.04 Other:            2.69
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MOST SEVERE WARNING WAS AT LEVEL  2
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:    10.08  SECONDS 
+                         CPU TIME:    10.91  SECONDS 

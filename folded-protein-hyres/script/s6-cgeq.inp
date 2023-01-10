@@ -1,0 +1,83 @@
+* short equilibrium simulation of the cg structure 
+*
+
+if @?openmm eq 0    set openmm = 1
+if @?deviceid eq 0  set deviceid = 1
+if @?precision eq 0 set precision = mixed
+if @?pdbid eq 0  stop
+if @?run eq 0    stop
+if nstep eq 0    stop
+if firstt eq 0   stop
+if finalt eq 0   stop
+
+
+set toppar = required
+
+! HyRes2 ff
+read  rtf card name @toppar/top-idpcg-sasa.inp
+read para card name @toppar/param-idpcg-sasa.inp
+
+open read card unit 10 name ../s5-cgem/@pdbid.psf
+read psf  card unit 10
+clos unit 10
+
+open read card unit 15 name ../s5-cgem/@pdbid.mini2.pdb
+read coor pdb  unit 15 resi
+clos unit 15
+
+coor copy comp
+
+
+faster on
+cons harm 1 sele all end
+
+
+! ionc 0.15: for DH screening
+NBOND atom switch cdie vdw vswitch -
+      cutnb 20.0 ctofnb 18.0 ctonnb 16.0 -
+      eps 20 ionc 0.15
+
+nbond inbfrq -1
+hbond ihbfrq -1
+energy
+
+shake tolerance 1.0e-06 bonh param
+
+!HB
+HBOND NOACCEPTORS  HBNOEXCLUSIONS  ALL  -
+   CUTHB 6.0 CTOFHB 5.0 CTONHB 4.0  CUTHA 100.0  CTOFHA 90.1  CTONHA 90.05
+
+
+mini   sd  nstep 1000 nprint 20 step 0.005
+mini abnr  nstep 1000 nprint 20 step 0.005
+
+! OpenMM set up
+!--------------
+omm platform CUDA precision @precision deviceid @deviceid
+omm on
+
+
+! dynamics
+scalar FBETA set 0.2 select .not. hydrogen end
+
+open writ card unit 9  name @newdir/@pdbid.@run.rest
+open writ file unit 10 name @newdir/@pdbid.@run.dcd
+
+!100 ps eq 
+!set nstep @nstep
+
+DYNAMICS LEAP LANGEVIN start timestep 0.002 nstep @nstep -
+     iunread -11 iunwri 9 iuncrd 10 kunit -1 iunvel -1 -
+     nprint @nstep iprfrq @nstep nsavc 10 nsavv 0 isvfrq @nstep -
+     firstt @firstt finalt @finalt tbath 300.0 rbuf 0.0
+
+open writ card unit 11 name @newdir/@pdbid.@run.pdb
+coor writ pdb  unit 11
+clos unit 11
+
+open writ card unit 10 name @newdir/@pdbid.@run.psf
+writ psf  card unit 10
+* psf of prot for cg system
+*
+ 
+stop

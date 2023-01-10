@@ -1,0 +1,5 @@
+Build from the sequence is much easier :)
+1. read in the sequence card.
+2. run the mini/prod.
+
+Attention: all GPU accelerated simulations should run on faster nodes!

@@ -1,0 +1,1224 @@
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+           (CHARMM) - Developmental Version 47a1     August 15, 2021            
+                             Git commit ID 7bdc827                              
+       Copyright(c) 1984-2020  President and Fellows of Harvard College
+                              All Rights Reserved
+  Current operating system: Linux-3.10.0-327.3.1.el7.x86_64(x86_64)@node045.c   
+                 Created on  1/10/23 at 13:26:55 by user: yumzhang    
+
+            Maximum number of ATOMS:    360720, and RESidues:      120240
+ RDTITL> * SHORT EQUILIBRIUM SIMULATION OF THE CG STRUCTURE ON GPU
+ RDTITL> *
+  
+ CHARMM>     
+  
+ CHARMM>    if @?openmm eq 0    set openmm = 1
+ Comparing "0" and "0".
+ IF test evaluated as true.  Performing command
+ Parameter: OPENMM <- "1"
+  
+ CHARMM>    if @?precision eq 0 set precision = mixed
+ Comparing "0" and "0".
+ IF test evaluated as true.  Performing command
+ Parameter: PRECISION <- "MIXED"
+  
+ CHARMM>    if @?deviceid  eq 0 set deviceid = 1
+ Comparing "0" and "0".
+ IF test evaluated as true.  Performing command
+ Parameter: DEVICEID <- "1"
+  
+ CHARMM>    if @?pdbid eq 0     set pdbid = test
+ Comparing "0" and "0".
+ IF test evaluated as true.  Performing command
+ Parameter: PDBID <- "TEST"
+  
+ CHARMM>     
+  
+ CHARMM>    !!! for HyRes_GPU
+ CHARMM>    read  rtf card name required/top-idpcg-sasa.inp
+ VOPEN> Attempting to open::required/top-idpcg-sasa.inp::
+ MAINIO> Residue topology file being read from unit  90.
+ TITLE> * TOPOLOGY FILE FOR COARSE GRAINED PROTEINS
+ TITLE> * ARG, LYS, ASP, GLU ARE CHARGED
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read para card name required/param-idpcg-sasa.inp
+ VOPEN> Attempting to open::required/param-idpcg-sasa.inp::
+
+          PARAMETER FILE BEING READ FROM UNIT 90
+ TITLE> * PARAMETER FILE FOR COARSE GRAINED PROTEINS
+ TITLE> * ARG, LYS, ASP, GLU IS NEUTRAL
+ TITLE> *
+ PARRDR> ERROR: Repeated torsion periodicity: INDEX   50 CODE 763212371 PERIODICITY  1     NH1 -C1E -A1Y -A2Y 
+ PARRDR> ERROR: Repeated torsion periodicity: INDEX   42 CODE 743587394 PERIODICITY  1     NH1 -C1E -A1F -A2F 
+ PARRDR> ERROR: Repeated torsion periodicity: INDEX   34 CODE 724218395 PERIODICITY  1     NH1 -C1E -A4H -P1H 
+*****  WARNING  ***** PARRDR no nonbond parameters for atom type:  10  CT  
+ NO nonbond interactions will be computed for this atom type.
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    open read card unit 10 name ../s1-gen-ext-struct/@pdbid_ext.psf
+ Parameter: PDBID -> "TEST"
+ VOPEN> Attempting to open::../s1-gen-ext-struct/test_ext.psf::
+ OPNLGU> Unit 10 opened for READONLY access to ../s1-gen-ext-struct/test_ext.psf
+  
+ CHARMM>    read psf  card unit 10
+ MAINIO> Protein structure file being read from unit  10.
+ TITLE>  * PSF OF TEST CG SYSTEM
+ TITLE>  *  DATE:     1/10/23     12:16:35      CREATED BY USER: yumzhang
+ TITLE>  *
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =        8
+         Number of atoms         =       42   Number of groups     =       21
+         Number of bonds         =       41   Number of angles     =       60
+         Number of dihedrals     =       76   Number of impropers  =       20
+         Number of cross-terms   =        6
+         Number of HB acceptors  =        7   Number of HB donors  =        7
+         Number of NB exclusions =        0   Total charge =   -1.00000
+  
+ CHARMM>    clos unit 10
+ VCLOSE: Closing unit   10 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    open read card unit 15 name ../s1-gen-ext-struct/@pdbid_ext.pdb
+ Parameter: PDBID -> "TEST"
+ VOPEN> Attempting to open::../s1-gen-ext-struct/test_ext.pdb::
+ OPNLGU> Unit 15 opened for READONLY access to ../s1-gen-ext-struct/test_ext.pdb
+  
+ CHARMM>    read coor pdb  unit 15 resi
+  read CHARMM-pdb format
+          SPATIAL COORDINATES BEING READ FROM UNIT 15
+ TITLE>   AN EXTENDED STRUCTURE OF TEST
+ TITLE>    DATE:     1/10/23     12:16:35      CREATED BY USER: YUMZHANG
+ TITLE>  *
+  
+ CHARMM>    clos unit 15
+ VCLOSE: Closing unit   15 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    coor copy comp
+ SELECTED COORDINATES COPIED TO THE COMPARISON SET.
+
+  
+ CHARMM>     
+  
+ CHARMM>    ! ionc 0.15: for DH screening
+ CHARMM>    NBOND atom switch cdie vdw vswitch -
+ CHARMM>          cutnb 20.0 ctofnb 18.0 ctonnb 16.0 -
+ CHARMM>          eps 20 ionc 0.15
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found    101 exclusions and     76 interactions(1-4)
+ <MAKGRP> found     51 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      719 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        5 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+  
+ CHARMM>     
+  
+ CHARMM>    nbond inbfrq -1
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are      719 atom  pairs and      177 atom  exclusions.
+ There are        0 group pairs and       51 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      719 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        5 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+  
+ CHARMM>    hbond ihbfrq -1
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0000  OFf Hb Angle =   90.0000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:     30 due to distance cutoff,       7 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently    12 hydrogen bonds present
+  
+ CHARMM>    energy
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are      719 atom  pairs and      177 atom  exclusions.
+ There are        0 group pairs and       51 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      719 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        5 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0000  OFf Hb Angle =   90.0000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:     30 due to distance cutoff,       7 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently    12 hydrogen bonds present
+ENER ENR:  Eval#     ENERgy      Delta-E         GRMS
+ENER INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+ENER CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+ENER EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+ENER>        0     22.44240      0.00000      0.87040
+ENER INTERN>        1.76822      3.31889      0.00000      1.75782      0.45912
+ENER CROSS>        -0.00009      0.00000      0.00000      0.00000
+ENER EXTERN>       15.14725      0.00000     -0.00881      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>     
+  
+ CHARMM>    shake tolerance 1.0e-06 bonh param
+ SHKCOM> SHAKE parameters: TOL =   0.1000D-05 MXITer =    500
+
+               7 constraints will held by SHAKE.
+  
+ CHARMM>     
+  
+ CHARMM>    !HB
+ CHARMM>    HBOND NOACCEPTORS  HBNOEXCLUSIONS  ALL  -
+ CHARMM>       CUTHB 6.0 CTOFHB 5.0 CTONHB 4.0  CUTHA 100.0  CTOFHA 90.1  CTONHA 90.05
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0500  OFf Hb Angle =   90.1000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:     30 due to distance cutoff,       7 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently    12 hydrogen bonds present
+  
+ CHARMM>     
+  
+ CHARMM>    ! minimization
+ CHARMM>    mini   sd  nstep 1000 nprint 20 step 0.005
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are      719 atom  pairs and      177 atom  exclusions.
+ There are        0 group pairs and       51 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      719 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        5 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0500  OFf Hb Angle =   90.1000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:     30 due to distance cutoff,       7 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently    12 hydrogen bonds present
+
+
+ STEEPD> An energy minimization has been requested.
+
+ NSTEP  =         1000   NPRINT =           20
+ STEP   =    0.0050000   TOLFUN =    0.0000000
+ TOLGRD =    0.0000000   TOLSTP =    0.0000000
+
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0     22.44154      0.00086      0.84691      0.00500
+MINI INTERN>        1.75434      3.33431      0.00000      1.75795      0.45945
+MINI CROSS>        -0.00009      0.00000      0.00000      0.00000
+MINI EXTERN>       15.14439      0.00000     -0.00880      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       20     21.51882      0.92272      1.43046      0.00100
+MINI INTERN>        2.06215      3.75903      0.00000      1.83940      0.48513
+MINI CROSS>        -0.00002      0.00000      0.00000      0.00000
+MINI EXTERN>       13.38234      0.00000     -0.00922      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       40     20.94573      0.57309      1.53027      0.00116
+MINI INTERN>        2.09555      3.86463      0.00000      1.86604      0.45023
+MINI CROSS>         0.00003      0.00000      0.00000      0.00000
+MINI EXTERN>       12.67814      0.00000     -0.00888      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       60     20.42182      0.52391      0.59492      0.00056
+MINI INTERN>        2.06086      3.94266      0.00000      1.89801      0.41923
+MINI CROSS>         0.00006      0.00000      0.00000      0.00000
+MINI EXTERN>       12.10908      0.00000     -0.00807      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       80     20.01381      0.40801      0.59234      0.00064
+MINI INTERN>        2.05255      3.95507      0.00000      1.93557      0.39687
+MINI CROSS>         0.00008      0.00000      0.00000      0.00000
+MINI EXTERN>       11.68117      0.00000     -0.00749      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      100     19.68289      0.33092      1.06096      0.00075
+MINI INTERN>        2.05770      3.95566      0.00000      1.97437      0.38134
+MINI CROSS>         0.00009      0.00000      0.00000      0.00000
+MINI EXTERN>       11.32064      0.00000     -0.00690      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      120     19.37268      0.31022      1.11391      0.00086
+MINI INTERN>        2.05091      3.92049      0.00000      2.01139      0.36854
+MINI CROSS>         0.00009      0.00000      0.00000      0.00000
+MINI EXTERN>       11.02768      0.00000     -0.00641      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      140     19.10073      0.27195      1.47341      0.00099
+MINI INTERN>        2.04591      3.91582      0.00000      2.05103      0.35858
+MINI CROSS>         0.00009      0.00000      0.00000      0.00000
+MINI EXTERN>       10.73528      0.00000     -0.00598      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      160     18.79127      0.30947      0.36401      0.00048
+MINI INTERN>        1.98530      3.84376      0.00000      2.08437      0.34896
+MINI CROSS>         0.00008      0.00000      0.00000      0.00000
+MINI EXTERN>       10.53450      0.00000     -0.00571      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      180     18.53611      0.25516      0.57564      0.00055
+MINI INTERN>        1.96544      3.80628      0.00000      2.12149      0.34180
+MINI CROSS>         0.00007      0.00000      0.00000      0.00000
+MINI EXTERN>       10.30640      0.00000     -0.00537      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      200     18.30995      0.22616      0.94195      0.00064
+MINI INTERN>        1.94917      3.76718      0.00000      2.15646      0.33648
+MINI CROSS>         0.00005      0.00000      0.00000      0.00000
+MINI EXTERN>       10.10568      0.00000     -0.00508      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      220     18.09140      0.21855      1.01985      0.00074
+MINI INTERN>        1.93127      3.73634      0.00000      2.19070      0.33157
+MINI CROSS>         0.00003      0.00000      0.00000      0.00000
+MINI EXTERN>        9.90627      0.00000     -0.00478      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      240     17.89336      0.19804      1.23036      0.00085
+MINI INTERN>        1.91301      3.70146      0.00000      2.22332      0.32829
+MINI CROSS>         0.00002      0.00000      0.00000      0.00000
+MINI EXTERN>        9.73181      0.00000     -0.00454      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      260     17.66667      0.22669      0.32061      0.00041
+MINI INTERN>        1.86305      3.67874      0.00000      2.25382      0.32615
+MINI CROSS>        -0.00000      0.00000      0.00000      0.00000
+MINI EXTERN>        9.54913      0.00000     -0.00422      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      280     17.47425      0.19242      0.45087      0.00048
+MINI INTERN>        1.84102      3.64821      0.00000      2.28517      0.32384
+MINI CROSS>        -0.00002      0.00000      0.00000      0.00000
+MINI EXTERN>        9.38002      0.00000     -0.00398      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      300     17.29259      0.18166      0.60209      0.00055
+MINI INTERN>        1.81726      3.61855      0.00000      2.31537      0.32263
+MINI CROSS>        -0.00005      0.00000      0.00000      0.00000
+MINI EXTERN>        9.22259      0.00000     -0.00376      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      320     17.12742      0.16517      0.88220      0.00063
+MINI INTERN>        1.79664      3.59224      0.00000      2.34428      0.32220
+MINI CROSS>        -0.00007      0.00000      0.00000      0.00000
+MINI EXTERN>        9.07569      0.00000     -0.00357      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      340     16.97539      0.15203      1.15372      0.00073
+MINI INTERN>        1.79454      3.55722      0.00000      2.37159      0.31921
+MINI CROSS>        -0.00009      0.00000      0.00000      0.00000
+MINI EXTERN>        8.93629      0.00000     -0.00338      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      360     16.79706      0.17833      0.28164      0.00035
+MINI INTERN>        1.73465      3.52554      0.00000      2.39670      0.31893
+MINI CROSS>        -0.00011      0.00000      0.00000      0.00000
+MINI EXTERN>        8.82461      0.00000     -0.00328      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      380     16.64730      0.14975      0.40924      0.00041
+MINI INTERN>        1.71024      3.49737      0.00000      2.42277      0.31855
+MINI CROSS>        -0.00012      0.00000      0.00000      0.00000
+MINI EXTERN>        8.70163      0.00000     -0.00313      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      400     16.50953      0.13778      0.65385      0.00047
+MINI INTERN>        1.69139      3.46915      0.00000      2.44791      0.31817
+MINI CROSS>        -0.00014      0.00000      0.00000      0.00000
+MINI EXTERN>        8.58605      0.00000     -0.00300      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      420     16.37305      0.13648      0.72100      0.00054
+MINI INTERN>        1.66793      3.44565      0.00000      2.47240      0.31851
+MINI CROSS>        -0.00016      0.00000      0.00000      0.00000
+MINI EXTERN>        8.47159      0.00000     -0.00287      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      440     16.24751      0.12554      0.87827      0.00063
+MINI INTERN>        1.65494      3.41925      0.00000      2.49600      0.31825
+MINI CROSS>        -0.00017      0.00000      0.00000      0.00000
+MINI EXTERN>        8.36198      0.00000     -0.00274      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      460     16.10613      0.14138      0.31210      0.00030
+MINI INTERN>        1.62280      3.40431      0.00000      2.51880      0.32017
+MINI CROSS>        -0.00018      0.00000      0.00000      0.00000
+MINI EXTERN>        8.24279      0.00000     -0.00257      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      480     15.98915      0.11698      0.24748      0.00035
+MINI INTERN>        1.60090      3.38281      0.00000      2.54007      0.32072
+MINI CROSS>        -0.00019      0.00000      0.00000      0.00000
+MINI EXTERN>        8.14730      0.00000     -0.00247      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      500     15.87063      0.11852      0.32293      0.00040
+MINI INTERN>        1.58180      3.36177      0.00000      2.56234      0.32180
+MINI CROSS>        -0.00020      0.00000      0.00000      0.00000
+MINI EXTERN>        8.04547      0.00000     -0.00235      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      520     15.76510      0.10553      0.63465      0.00047
+MINI INTERN>        1.56850      3.34570      0.00000      2.58371      0.32359
+MINI CROSS>        -0.00020      0.00000      0.00000      0.00000
+MINI EXTERN>        7.94603      0.00000     -0.00224      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      540     15.65612      0.10898      0.69603      0.00054
+MINI INTERN>        1.54998      3.33144      0.00000      2.60567      0.32529
+MINI CROSS>        -0.00021      0.00000      0.00000      0.00000
+MINI EXTERN>        7.84608      0.00000     -0.00214      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      560     15.55767      0.09845      0.85362      0.00062
+MINI INTERN>        1.54771      3.29008      0.00000      2.62403      0.32465
+MINI CROSS>        -0.00021      0.00000      0.00000      0.00000
+MINI EXTERN>        7.77344      0.00000     -0.00202      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      580     15.44504      0.11263      0.21572      0.00030
+MINI INTERN>        1.50461      3.28371      0.00000      2.64379      0.32546
+MINI CROSS>        -0.00021      0.00000      0.00000      0.00000
+MINI EXTERN>        7.68967      0.00000     -0.00199      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      600     15.34585      0.09919      0.37235      0.00035
+MINI INTERN>        1.49095      3.25869      0.00000      2.66325      0.32547
+MINI CROSS>        -0.00021      0.00000      0.00000      0.00000
+MINI EXTERN>        7.60959      0.00000     -0.00190      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      620     15.25510      0.09075      0.57817      0.00040
+MINI INTERN>        1.47627      3.24305      0.00000      2.68251      0.32675
+MINI CROSS>        -0.00021      0.00000      0.00000      0.00000
+MINI EXTERN>        7.52856      0.00000     -0.00183      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      640     15.16094      0.09416      0.20783      0.00019
+MINI INTERN>        1.45436      3.23290      0.00000      2.70087      0.32991
+MINI CROSS>        -0.00020      0.00000      0.00000      0.00000
+MINI EXTERN>        7.44484      0.00000     -0.00174      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      660     15.08413      0.07681      0.71768      0.00054
+MINI INTERN>        1.44865      3.21564      0.00000      2.71883      0.32932
+MINI CROSS>        -0.00020      0.00000      0.00000      0.00000
+MINI EXTERN>        7.37359      0.00000     -0.00169      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      680     14.98618      0.09795      0.25903      0.00026
+MINI INTERN>        1.42284      3.20268      0.00000      2.73729      0.33340
+MINI CROSS>        -0.00020      0.00000      0.00000      0.00000
+MINI EXTERN>        7.29175      0.00000     -0.00159      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      700     14.90650      0.07968      0.38020      0.00030
+MINI INTERN>        1.41032      3.18775      0.00000      2.75450      0.33534
+MINI CROSS>        -0.00019      0.00000      0.00000      0.00000
+MINI EXTERN>        7.22030      0.00000     -0.00152      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      720     14.82861      0.07789      0.34546      0.00034
+MINI INTERN>        1.39834      3.17072      0.00000      2.77072      0.33615
+MINI CROSS>        -0.00018      0.00000      0.00000      0.00000
+MINI EXTERN>        7.15433      0.00000     -0.00146      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      740     14.75838      0.07022      0.53406      0.00040
+MINI INTERN>        1.38959      3.15702      0.00000      2.78677      0.33829
+MINI CROSS>        -0.00018      0.00000      0.00000      0.00000
+MINI EXTERN>        7.08828      0.00000     -0.00140      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      760     14.68165      0.07673      0.18915      0.00019
+MINI INTERN>        1.36762      3.14742      0.00000      2.80205      0.33878
+MINI CROSS>        -0.00017      0.00000      0.00000      0.00000
+MINI EXTERN>        7.02731      0.00000     -0.00136      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      780     14.61121      0.07044      0.23406      0.00022
+MINI INTERN>        1.35540      3.13458      0.00000      2.81758      0.34016
+MINI CROSS>        -0.00016      0.00000      0.00000      0.00000
+MINI EXTERN>        6.96496      0.00000     -0.00131      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      800     14.54614      0.06507      0.18088      0.00026
+MINI INTERN>        1.34361      3.12287      0.00000      2.83190      0.34198
+MINI CROSS>        -0.00016      0.00000      0.00000      0.00000
+MINI EXTERN>        6.90720      0.00000     -0.00126      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      820     14.48170      0.06444      0.39352      0.00030
+MINI INTERN>        1.33188      3.11341      0.00000      2.84704      0.34324
+MINI CROSS>        -0.00015      0.00000      0.00000      0.00000
+MINI EXTERN>        6.84750      0.00000     -0.00122      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      840     14.42098      0.06072      0.50839      0.00034
+MINI INTERN>        1.32035      3.10499      0.00000      2.86140      0.34513
+MINI CROSS>        -0.00014      0.00000      0.00000      0.00000
+MINI EXTERN>        6.79043      0.00000     -0.00118      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      860     14.35704      0.06394      0.17475      0.00016
+MINI INTERN>        1.30932      3.09006      0.00000      2.87462      0.34750
+MINI CROSS>        -0.00013      0.00000      0.00000      0.00000
+MINI EXTERN>        6.73681      0.00000     -0.00113      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      880     14.30373      0.05331      0.61541      0.00046
+MINI INTERN>        1.30286      3.08249      0.00000      2.88891      0.34776
+MINI CROSS>        -0.00013      0.00000      0.00000      0.00000
+MINI EXTERN>        6.68294      0.00000     -0.00110      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      900     14.23836      0.06537      0.17528      0.00022
+MINI INTERN>        1.28802      3.06918      0.00000      2.90199      0.35100
+MINI CROSS>        -0.00012      0.00000      0.00000      0.00000
+MINI EXTERN>        6.62934      0.00000     -0.00105      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      920     14.18273      0.05563      0.33475      0.00025
+MINI INTERN>        1.27847      3.06088      0.00000      2.91562      0.35371
+MINI CROSS>        -0.00011      0.00000      0.00000      0.00000
+MINI EXTERN>        6.57517      0.00000     -0.00101      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      940     14.13016      0.05257      0.41255      0.00029
+MINI INTERN>        1.26937      3.05255      0.00000      2.92841      0.35586
+MINI CROSS>        -0.00011      0.00000      0.00000      0.00000
+MINI EXTERN>        6.52506      0.00000     -0.00098      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      960     14.07927      0.05089      0.49440      0.00034
+MINI INTERN>        1.25797      3.04736      0.00000      2.94098      0.35802
+MINI CROSS>        -0.00010      0.00000      0.00000      0.00000
+MINI EXTERN>        6.47598      0.00000     -0.00095      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      980     14.02419      0.05508      0.15861      0.00016
+MINI INTERN>        1.24868      3.03245      0.00000      2.95250      0.35757
+MINI CROSS>        -0.00010      0.00000      0.00000      0.00000
+MINI EXTERN>        6.43400      0.00000     -0.00092      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>     1000     13.98200      0.04219      0.59497      0.00045
+MINI INTERN>        1.25019      3.02193      0.00000      2.96476      0.36119
+MINI CROSS>        -0.00009      0.00000      0.00000      0.00000
+MINI EXTERN>        6.38489      0.00000     -0.00088      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ STEEPD> Minimization exiting with number of steps limit (      1000) exceeded.
+
+STPD MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+STPD INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+STPD CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+STPD EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+STPD>     1000     13.98200      0.04219      0.59497      0.00023
+STPD INTERN>        1.25019      3.02193      0.00000      2.96476      0.36119
+STPD CROSS>        -0.00009      0.00000      0.00000      0.00000
+STPD EXTERN>        6.38489      0.00000     -0.00088      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>    mini abnr  nstep 1000 nprint 20 step 0.005
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are      719 atom  pairs and      177 atom  exclusions.
+ There are        0 group pairs and       51 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      731 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        8 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0500  OFf Hb Angle =   90.1000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ HBFIND-exclusions:     30 due to distance cutoff,       7 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently    12 hydrogen bonds present
+
+
+ ABNER> An energy minimization has been requested.
+
+ EIGRNG =    0.0005000   MINDIM =            5
+ NPRINT =           20   NSTEP  =         1000
+ PSTRCT =    0.0000000   SDSTP  =    0.0050000
+ STPLIM =    1.0000000   STRICT =    0.1000000
+ TOLFUN =    0.0000000   TOLGRD =    0.0000000
+ TOLITR =          100   TOLSTP =    0.0000000
+ FMEM   =    0.0000000
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0     13.98157      0.00043      0.49659      0.00000
+MINI INTERN>        1.24302      3.02627      0.00000      2.96414      0.35827
+MINI CROSS>        -0.00009      0.00000      0.00000      0.00000
+MINI EXTERN>        6.39087      0.00000     -0.00091      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ HBFIND-exclusions:     30 due to distance cutoff,       7 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently    12 hydrogen bonds present
+ UPDECI: Nonbond update at step        16
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      744 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        5 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>       20     11.66541      2.31616      0.89429      0.00618
+MINI INTERN>        0.94437      2.64908      0.00000      3.46231      0.61258
+MINI CROSS>         0.00020      0.00000      0.00000      0.00000
+MINI EXTERN>        4.01030      0.00000     -0.01343      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       40     11.48064      0.18477      0.27784      0.00209
+MINI INTERN>        0.74892      2.75071      0.00000      3.41411      0.80047
+MINI CROSS>         0.00022      0.00000      0.00000      0.00000
+MINI EXTERN>        3.78405      0.00000     -0.01785      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       60     11.40444      0.07620      0.13069      0.00117
+MINI INTERN>        0.71255      2.77365      0.00000      3.37400      0.83985
+MINI CROSS>         0.00013      0.00000      0.00000      0.00000
+MINI EXTERN>        3.72184      0.00000     -0.01757      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>       80     11.23195      0.17249      0.47840      0.00306
+MINI INTERN>        0.79048      2.67077      0.00000      3.28172      0.75121
+MINI CROSS>        -0.00035      0.00000      0.00000      0.00000
+MINI EXTERN>        3.75223      0.00000     -0.01410      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      100     11.17327      0.05868      0.25106      0.00172
+MINI INTERN>        0.76202      2.68350      0.00000      3.25607      0.78580
+MINI CROSS>        -0.00046      0.00000      0.00000      0.00000
+MINI EXTERN>        3.70029      0.00000     -0.01395      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      120     11.14124      0.03203      0.12059      0.00097
+MINI INTERN>        0.73380      2.74184      0.00000      3.23572      0.82040
+MINI CROSS>        -0.00048      0.00000      0.00000      0.00000
+MINI EXTERN>        3.62358      0.00000     -0.01361      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      140     11.06557      0.07567      0.57736      0.00421
+MINI INTERN>        0.78851      2.66993      0.00000      3.16103      0.77492
+MINI CROSS>        -0.00055      0.00000      0.00000      0.00000
+MINI EXTERN>        3.68305      0.00000     -0.01132      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ HBFIND-exclusions:     30 due to distance cutoff,      10 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently     9 hydrogen bonds present
+ UPDECI: Nonbond update at step       145
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      747 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        5 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      160     10.83555      0.23001      0.27509      0.00234
+MINI INTERN>        0.78692      2.70601      0.00000      2.93919      0.77152
+MINI CROSS>        -0.00061      0.00000      0.00000      0.00000
+MINI EXTERN>        3.64205      0.00000     -0.00951      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      180     10.77266      0.06290      0.16711      0.00132
+MINI INTERN>        0.77801      2.71219      0.00000      2.82916      0.77879
+MINI CROSS>        -0.00058      0.00000      0.00000      0.00000
+MINI EXTERN>        3.68191      0.00000     -0.00682      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      200     10.68327      0.08939      0.44017      0.00343
+MINI INTERN>        0.77612      2.84244      0.00000      2.84063      0.76358
+MINI CROSS>        -0.00062      0.00000      0.00000      0.00000
+MINI EXTERN>        3.46687      0.00000     -0.00573      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ HBFIND-exclusions:     30 due to distance cutoff,      10 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently     9 hydrogen bonds present
+ UPDECI: Nonbond update at step       212
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      746 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        5 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      220     10.52494      0.15833      0.29119      0.00286
+MINI INTERN>        0.80954      2.68077      0.00000      2.88475      0.78048
+MINI CROSS>        -0.00093      0.00000      0.00000      0.00000
+MINI EXTERN>        3.37504      0.00000     -0.00471      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      240     10.66918     -0.14424      1.67481      0.00746
+MINI INTERN>        0.47338      2.83613      0.00000      2.85342      0.79887
+MINI CROSS>        -0.00114      0.00000      0.00000      0.00000
+MINI EXTERN>        3.71343      0.00000     -0.00490      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      260     10.26649      0.40269      0.23551      0.00224
+MINI INTERN>        0.77474      2.72170      0.00000      2.72159      0.70125
+MINI CROSS>        -0.00167      0.00000      0.00000      0.00000
+MINI EXTERN>        3.35289      0.00000     -0.00401      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ HBFIND-exclusions:     30 due to distance cutoff,      11 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently     8 hydrogen bonds present
+ UPDECI: Nonbond update at step       272
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      748 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        4 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      280     10.16501      0.10147      0.43587      0.00350
+MINI INTERN>        0.80294      2.84792      0.00000      2.62859      0.75663
+MINI CROSS>        -0.00183      0.00000      0.00000      0.00000
+MINI EXTERN>        3.13438      0.00000     -0.00361      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      300     10.09104      0.07397      0.12750      0.00118
+MINI INTERN>        0.77454      2.71718      0.00000      2.62537      0.74045
+MINI CROSS>        -0.00195      0.00000      0.00000      0.00000
+MINI EXTERN>        3.23843      0.00000     -0.00298      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      320     10.06581      0.02523      0.15620      0.00111
+MINI INTERN>        0.75096      2.79775      0.00000      2.65208      0.72485
+MINI CROSS>        -0.00198      0.00000      0.00000      0.00000
+MINI EXTERN>        3.14529      0.00000     -0.00314      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      340     10.02305      0.04276      0.24457      0.00173
+MINI INTERN>        0.77489      2.67728      0.00000      2.65280      0.71399
+MINI CROSS>        -0.00195      0.00000      0.00000      0.00000
+MINI EXTERN>        3.20911      0.00000     -0.00307      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      360      9.98722      0.03583      0.20354      0.00163
+MINI INTERN>        0.72485      2.78948      0.00000      2.65067      0.72776
+MINI CROSS>        -0.00191      0.00000      0.00000      0.00000
+MINI EXTERN>        3.09973      0.00000     -0.00336      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      380      9.92638      0.06084      0.09229      0.00092
+MINI INTERN>        0.73322      2.60965      0.00000      2.63394      0.75592
+MINI CROSS>        -0.00173      0.00000      0.00000      0.00000
+MINI EXTERN>        3.19891      0.00000     -0.00352      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      400      9.90781      0.01857      0.20579      0.00143
+MINI INTERN>        0.75322      2.66716      0.00000      2.62253      0.74750
+MINI CROSS>        -0.00161      0.00000      0.00000      0.00000
+MINI EXTERN>        3.12303      0.00000     -0.00402      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      420      9.89634      0.01147      0.05271      0.00048
+MINI INTERN>        0.74020      2.67676      0.00000      2.62267      0.75450
+MINI CROSS>        -0.00161      0.00000      0.00000      0.00000
+MINI EXTERN>        3.10785      0.00000     -0.00402      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      440      9.88394      0.01241      0.15442      0.00126
+MINI INTERN>        0.71970      2.66050      0.00000      2.62306      0.77874
+MINI CROSS>        -0.00165      0.00000      0.00000      0.00000
+MINI EXTERN>        3.10751      0.00000     -0.00393      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      460      9.86326      0.02068      0.08908      0.00118
+MINI INTERN>        0.71829      2.64702      0.00000      2.62133      0.75792
+MINI CROSS>        -0.00163      0.00000      0.00000      0.00000
+MINI EXTERN>        3.12444      0.00000     -0.00412      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      480      9.81150      0.05176      0.12397      0.00111
+MINI INTERN>        0.75038      2.63805      0.00000      2.59880      0.75948
+MINI CROSS>        -0.00156      0.00000      0.00000      0.00000
+MINI EXTERN>        3.07079      0.00000     -0.00445      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      500      9.72461      0.08689      0.25288      0.00289
+MINI INTERN>        0.68472      2.69763      0.00000      2.56685      0.83694
+MINI CROSS>        -0.00171      0.00000      0.00000      0.00000
+MINI EXTERN>        2.94397      0.00000     -0.00378      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ HBFIND-exclusions:     30 due to distance cutoff,      11 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently     8 hydrogen bonds present
+ UPDECI: Nonbond update at step       507
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      750 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        3 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      520      9.60172      0.12289      0.41205      0.00271
+MINI INTERN>        0.71801      2.63165      0.00000      2.43180      0.76853
+MINI CROSS>        -0.00169      0.00000      0.00000      0.00000
+MINI EXTERN>        3.05690      0.00000     -0.00348      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      540      9.54269      0.05903      0.20395      0.00153
+MINI INTERN>        0.73006      2.69795      0.00000      2.37606      0.76074
+MINI CROSS>        -0.00159      0.00000      0.00000      0.00000
+MINI EXTERN>        2.98306      0.00000     -0.00359      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      560      9.52611      0.01658      0.10390      0.00086
+MINI INTERN>        0.72832      2.67663      0.00000      2.37466      0.77547
+MINI CROSS>        -0.00168      0.00000      0.00000      0.00000
+MINI EXTERN>        2.97593      0.00000     -0.00322      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      580      9.50702      0.01909      0.04529      0.00048
+MINI INTERN>        0.71981      2.68142      0.00000      2.36069      0.77149
+MINI CROSS>        -0.00177      0.00000      0.00000      0.00000
+MINI EXTERN>        2.97839      0.00000     -0.00302      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      600      9.49029      0.01673      0.08177      0.00076
+MINI INTERN>        0.75141      2.63324      0.00000      2.32214      0.74537
+MINI CROSS>        -0.00184      0.00000      0.00000      0.00000
+MINI EXTERN>        3.04293      0.00000     -0.00296      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      620      9.46495      0.02534      0.07320      0.00071
+MINI INTERN>        0.75175      2.61638      0.00000      2.29182      0.74508
+MINI CROSS>        -0.00199      0.00000      0.00000      0.00000
+MINI EXTERN>        3.06447      0.00000     -0.00256      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      640      9.45460      0.01036      0.05322      0.00040
+MINI INTERN>        0.72534      2.66812      0.00000      2.29813      0.75951
+MINI CROSS>        -0.00205      0.00000      0.00000      0.00000
+MINI EXTERN>        3.00802      0.00000     -0.00246      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      660      9.43898      0.01562      0.12115      0.00104
+MINI INTERN>        0.75783      2.65832      0.00000      2.25160      0.73636
+MINI CROSS>        -0.00205      0.00000      0.00000      0.00000
+MINI EXTERN>        3.03953      0.00000     -0.00262      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      680      9.41728      0.02169      0.13351      0.00097
+MINI INTERN>        0.73862      2.67993      0.00000      2.21984      0.78184
+MINI CROSS>        -0.00211      0.00000      0.00000      0.00000
+MINI EXTERN>        3.00190      0.00000     -0.00274      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      700      9.39366      0.02362      0.10616      0.00091
+MINI INTERN>        0.71275      2.63196      0.00000      2.14422      0.80859
+MINI CROSS>        -0.00208      0.00000      0.00000      0.00000
+MINI EXTERN>        3.10087      0.00000     -0.00266      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ HBFIND-exclusions:     30 due to distance cutoff,      13 due to angle cutoff
+ HBEDIT-deletions:       0 due to duplications,          0 due to best-option,
+                         0 due to fixed atoms,           0 due to exclusions
+ HBEDIT: currently     6 hydrogen bonds present
+ UPDECI: Nonbond update at step       712
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR      841 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+      751 ATOM PAIRS WERE FOUND FOR ATOM LIST
+        3 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      720      9.36532      0.02834      0.30018      0.00212
+MINI INTERN>        0.75387      2.70836      0.00000      1.99906      0.80539
+MINI CROSS>        -0.00178      0.00000      0.00000      0.00000
+MINI EXTERN>        3.10351      0.00000     -0.00309      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      740      9.33012      0.03520      0.08407      0.00072
+MINI INTERN>        0.75005      2.70316      0.00000      1.93115      0.78954
+MINI CROSS>        -0.00170      0.00000      0.00000      0.00000
+MINI EXTERN>        3.16082      0.00000     -0.00290      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      760      9.29788      0.03223      0.07335      0.00067
+MINI INTERN>        0.73672      2.65031      0.00000      1.90499      0.81023
+MINI CROSS>        -0.00175      0.00000      0.00000      0.00000
+MINI EXTERN>        3.19946      0.00000     -0.00206      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      780      9.28923      0.00866      0.07963      0.00063
+MINI INTERN>        0.73495      2.66858      0.00000      1.89871      0.78906
+MINI CROSS>        -0.00177      0.00000      0.00000      0.00000
+MINI EXTERN>        3.20178      0.00000     -0.00209      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      800      9.28016      0.00907      0.06305      0.00059
+MINI INTERN>        0.74196      2.66796      0.00000      1.89755      0.77928
+MINI CROSS>        -0.00183      0.00000      0.00000      0.00000
+MINI EXTERN>        3.19720      0.00000     -0.00195      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      820      9.25234      0.02781      0.14431      0.00092
+MINI INTERN>        0.75362      2.68125      0.00000      1.90448      0.76360
+MINI CROSS>        -0.00207      0.00000      0.00000      0.00000
+MINI EXTERN>        3.15293      0.00000     -0.00147      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      840      9.24885      0.00350      0.08405      0.00052
+MINI INTERN>        0.74463      2.67547      0.00000      1.90479      0.77363
+MINI CROSS>        -0.00206      0.00000      0.00000      0.00000
+MINI EXTERN>        3.15388      0.00000     -0.00149      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      860      9.24341      0.00543      0.06253      0.00049
+MINI INTERN>        0.74146      2.66871      0.00000      1.90376      0.76944
+MINI CROSS>        -0.00208      0.00000      0.00000      0.00000
+MINI EXTERN>        3.16356      0.00000     -0.00143      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      880      9.24068      0.00273      0.02292      0.00027
+MINI INTERN>        0.74315      2.67120      0.00000      1.90212      0.76644
+MINI CROSS>        -0.00209      0.00000      0.00000      0.00000
+MINI EXTERN>        3.16127      0.00000     -0.00141      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      900      9.23553      0.00515      0.08790      0.00072
+MINI INTERN>        0.75169      2.70494      0.00000      1.90425      0.76805
+MINI CROSS>        -0.00212      0.00000      0.00000      0.00000
+MINI EXTERN>        3.11001      0.00000     -0.00129      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      920      9.22830      0.00723      0.07728      0.00067
+MINI INTERN>        0.74172      2.68281      0.00000      1.90557      0.76044
+MINI CROSS>        -0.00214      0.00000      0.00000      0.00000
+MINI EXTERN>        3.14112      0.00000     -0.00122      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      940      9.22380      0.00450      0.02882      0.00023
+MINI INTERN>        0.74037      2.66961      0.00000      1.90519      0.76058
+MINI CROSS>        -0.00215      0.00000      0.00000      0.00000
+MINI EXTERN>        3.15138      0.00000     -0.00117      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      960      9.22233      0.00147      0.08856      0.00059
+MINI INTERN>        0.74437      2.67104      0.00000      1.90256      0.75979
+MINI CROSS>        -0.00215      0.00000      0.00000      0.00000
+MINI EXTERN>        3.14788      0.00000     -0.00116      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      980      9.21728      0.00504      0.07693      0.00055
+MINI INTERN>        0.74861      2.68932      0.00000      1.89572      0.75647
+MINI CROSS>        -0.00215      0.00000      0.00000      0.00000
+MINI EXTERN>        3.13039      0.00000     -0.00107      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>     1000      9.21347      0.00382      0.04134      0.00031
+MINI INTERN>        0.74468      2.69041      0.00000      1.89409      0.75462
+MINI CROSS>        -0.00217      0.00000      0.00000      0.00000
+MINI EXTERN>        3.13285      0.00000     -0.00101      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ ABNER> Minimization exiting with number of steps limit ( 1000) exceeded.
+
+ABNR MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+ABNR INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+ABNR CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+ABNR EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ ----------       ---------    ---------    ---------    ---------    ---------
+ABNR>     1000      9.21347      0.00382      0.04134      0.00028
+ABNR INTERN>        0.74468      2.69041      0.00000      1.89409      0.75462
+ABNR CROSS>        -0.00217      0.00000      0.00000      0.00000
+ABNR EXTERN>        3.13285      0.00000     -0.00101      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    ! OpenMM set up
+ CHARMM>    !--------------
+ CHARMM>    omm platform CUDA precision @precision deviceid @deviceid
+ Parameter: PRECISION -> "MIXED"
+ Parameter: DEVICEID -> "1"
+  
+ CHARMM>    omm on
+Energy and dynamics calculations will use OpenMM.
+  
+ CHARMM>     
+  
+ CHARMM>    ! dynamics
+ CHARMM>    scalar FBETA set 0.2 select .not. hydrogen end
+ SELRPN>     35 atoms have been selected out of     42
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 9  name ../s2-eq/@pdbid.rest
+ Parameter: PDBID -> "TEST"
+ VOPEN> Attempting to open::../s2-eq/test.rest::
+ OPNLGU> Unit  9 opened for WRITE access to ../s2-eq/test.rest
+  
+ CHARMM>    open writ file unit 10 name ../s2-eq/@pdbid.dcd
+ Parameter: PDBID -> "TEST"
+ VOPEN> Attempting to open::../s2-eq/test.dcd::
+ OPNLGU> Unit 10 opened for WRITE access to ../s2-eq/test.dcd
+  
+ CHARMM>     
+  
+ CHARMM>    set nstep = 10000 ! 20 ps
+ Parameter: NSTEP <- "10000"
+  
+ CHARMM>     
+  
+ CHARMM>    ! 400 ns sim
+ CHARMM>    DYNAMICS LEAP LANGEVIN start timestep 0.002 nstep @nstep -
+ CHARMM>         iunread -11 iunwri 9 iuncrd 10 kunit -1 iunvel -1 -
+ CHARMM>         nprint 5000 iprfrq 5000 nsavc 5000 nsavv 0 isvfrq @nstep -
+ CHARMM>         ILBFRQ 5000 -
+ CHARMM>         firstt 300.0 finalt 300.0 tbath 300.0 rbuf 0.0
+ Parameter: NSTEP -> "10000"
+ Parameter: NSTEP -> "10000"
+  IUNREA =-11         IUNWRI =  9          IUNOS = -1
+  IUNCRD = 10         IUNVEL = -1          KUNIT = -1
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ CGONNB =  0.000 CGOFNB = 10.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  0.400 EPS    = 20.000
+ NBXMOD =      5 IONC   = 0.1500
+ There are      751 atom  pairs and      177 atom  exclusions.
+ There are        0 group pairs and       51 group exclusions.
+ PRNHBD: CUToff Hydrogen Bond  distance =    6.0000   Angle =  100.0000
+         CuT switching ON HB dist. =     4.0000  OFf HB dist. =    5.0000
+         CuT switching ON Hb Angle =    90.0500  OFf Hb Angle =   90.1000
+         NO ACceptor antecedents included
+         All hydrogen bonds for each hydrogen will be found
+         Hydrogen bonds between excluded atoms will be kept
+
+ DCNTRL> Langevin integration requested.
+ DCNTRL>  OpenMM interface requested for energy and dynamics calculations.
+ DCNTRL>  Constant temperature w/ OpenMM using Langevin heatbath requested.
+ DCNTRL>  Reference heatbath temperature is   300.000K
+ DCNTRL>  Friction coefficient not specified, using max(FBETA) value     0.200  ps^-1
+   NSTEP =    10000    NSAVC =     5000    NSAVV =        0
+  ISCALE =        0   ISCVEL =        0   IASORS =        0
+  IASVEL =        1   ICHECW =        1   NTRFRQ =        0
+  IHTFRQ =        0   IEQFRQ =        0   NPRINT =     5000
+  INBFRQ =       -1   IHBFRQ =       -1   IPRFRQ =     5000
+  ILBFRQ =     5000   IMGFRQ =        0
+  ISVFRQ =    10000   NCYCLE =     5000    NSNOS =       10
+  FIRSTT =   300.000  TEMINC =     5.000  TSTRUC =  -999.000
+  FINALT =   300.000  TWINDH =    10.000  TWINDL =   -10.000
+
+  TIME STEP =  4.09097E-02 AKMA       2.00000E-03 PS
+
+  RANDOM NUM. GEN. SEED(S) = 2116580360 2116580360 2116580360 2116580360
+
+           SHAKE TOLERANCE =     0.10000E-05
+ NUMBER OF DEGREES OF FREEDOM =    119
+
+          GAUSSIAN OPTION                  IS            1
+          VELOCITIES ASSIGNED AT TEMPERATURE =    375.0000
+          SEED FOR RANDOM NUMBER GENERATOR IS:
+          SEEDS> 2116580360 2116580360 2116580360 2116580360
+
+     DETAILS ABOUT CENTRE OF MASS
+     POSITION          :   0.13079418      -0.16457907      -6.95105741E-02
+     VELOCITY          :   3.95802536E-02   1.14230714E-02  -4.44614975E-03
+     ANGULAR MOMENTUM  :    153.19990       -303.01209        207.38126    
+     KINETIC ENERGY    :   0.62904315    
+get_PlatformDefaults> Finding default platform values
+get_PlatformDefaults> Default values found: platform=CUDA precision=mixed deviceid=1
+Setup_OpenMM: Initializing OpenMM context
+CHARMM> Using switching functions for electrostatic and vdW interactions
+CHARMM> OpenMM switching function selection.
+CHARMM> Electrostatic options: switch=T fswitch=F fshift=F PME/Ewald=F RxnFld=F
+CHARMM> van der Waals options: vswitch=T vfswitch=F OpenMM vdW switch=F BLOCK vdW softcore:F
+CHARMM> OpenMM Reference, CPU and CUDA platform available for H-B interactions
+ Available OpenMM platform 0: Reference 
+ Available OpenMM platform 1: CPU       
+ Available OpenMM platform 2: CUDA      
+ Available OpenMM platform 3: OpenCL    
+Init_context: Using OpenMM platform CUDA      
+       CudaDeviceIndex = 1
+       CudaCompiler = /cm/shared/apps/cuda/10.1.243/bin/nvcc
+       CudaPrecision = mixed
+OpenMM: Velocities scaled or randomized
+DYNA DYN: Step         Time      TOTEner        TOTKe       ENERgy  TEMPerature
+DYNA PROP:             GRMS      HFCTote        HFCKe       EHFCor        VIRKe
+DYNA INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+DYNA CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+DYNA EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+DYNA PRESS:            VIRE         VIRI       PRESSE       PRESSI       VOLUme
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>        0      0.00000     60.73214     51.51867      9.21347    435.72056
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>        0.74468      2.69041      0.00000      1.89409      0.75462
+DYNA CROSS>        -0.00217      0.00000      0.00000      0.00000
+DYNA EXTERN>        3.13285      0.00000     -0.00101      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+DYNA>     5000     10.00000     76.67122     33.74760     42.92362    285.42122
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       11.22212     11.84889      0.00000      3.49868      6.44521
+DYNA CROSS>        -0.00408      0.00000      0.00000      0.00000
+DYNA EXTERN>        9.91694      0.00000     -0.00413      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ DYNAMC> Averages for the last 5000 steps:
+AVER DYN: Step         Time      TOTEner        TOTKe       ENERgy  TEMPerature
+AVER PROP:             GRMS      HFCTote        HFCKe       EHFCor        VIRKe
+AVER INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+AVER CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+AVER EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+AVER PRESS:            VIRE         VIRI       PRESSE       PRESSI       VOLUme
+ ----------       ---------    ---------    ---------    ---------    ---------
+AVER>     5000     10.00000     68.70168     42.63313     26.06855    360.57089
+AVER PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+AVER INTERN>        5.98340      7.26965      0.00000      2.69638      3.59992
+AVER CROSS>        -0.00313      0.00000      0.00000      0.00000
+AVER EXTERN>        6.52489      0.00000     -0.00257      0.00000      0.00000
+AVER PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ DYNAMC> RMS fluctuations for the last 5000 steps:
+FLUC>     5000     10.00000      7.96954      8.88554     16.85507     75.14967
+FLUC PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+FLUC INTERN>        5.23872      4.57924      0.00000      0.80230      2.84529
+FLUC CROSS>         0.00095      0.00000      0.00000      0.00000
+FLUC EXTERN>        3.39204      0.00000      0.00156      0.00000      0.00000
+FLUC PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+OpenMM: Velocities scaled or randomized
+DYNA>    10000     20.00000     84.05000     35.93055     48.11944    303.88365
+DYNA PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+DYNA INTERN>       13.62048     16.92848      0.00000      7.01859      4.83953
+DYNA CROSS>         0.00036      0.00000      0.00000      0.00000
+DYNA EXTERN>        5.72978      0.00000     -0.01778      0.00000      0.00000
+DYNA PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+      2   COORDINATE SETS STARTING FROM
+     STEP NO     5000   FOR EVERY  5000  STEPS
+     WRITTEN ON UNIT   10
+
+ VCLOSE: Closing unit   10 with status "KEEP"
+ DYNAMC> Averages for the last 5000 steps:
+AVER DYN: Step         Time      TOTEner        TOTKe       ENERgy  TEMPerature
+AVER PROP:             GRMS      HFCTote        HFCKe       EHFCor        VIRKe
+AVER INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+AVER CROSS:           CMAPs        PMF1D        PMF2D        PRIMO
+AVER EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+AVER PRESS:            VIRE         VIRI       PRESSE       PRESSI       VOLUme
+ ----------       ---------    ---------    ---------    ---------    ---------
+AVER>     5000     20.00000     84.05000     35.93055     48.11944    303.88365
+AVER PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+AVER INTERN>       13.62048     16.92848      0.00000      7.01859      4.83953
+AVER CROSS>         0.00036      0.00000      0.00000      0.00000
+AVER EXTERN>        5.72978      0.00000     -0.01778      0.00000      0.00000
+AVER PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ DYNAMC> RMS fluctuations for the last 5000 steps:
+FLUC>     5000     20.00000      0.00000      0.00000      0.00000      0.00000
+FLUC PROP>          0.00000      0.00000      0.00000      0.00000      0.00000
+FLUC PRESS>         0.00000      0.00000      0.00000      0.00000      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ OpenMM was used to perform energy and force evaluation.
+
+ WRIDYN: RESTart file was written at step   10000
+ VCLOSE: Closing unit    9 with status "KEEP"
+
+     DETAILS ABOUT CENTRE OF MASS
+     POSITION          :    5.9124349       -4.3333929       -4.7852489    
+     VELOCITY          :  -8.23689811E-03  -1.46259120E-02   2.32414931E-02
+     ANGULAR MOMENTUM  :   -11.996015       -26.661090       -44.440286    
+     KINETIC ENERGY    :   0.30115010    
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 11 name ../s2-eq/@pdbid.pdb
+ Parameter: PDBID -> "TEST"
+ VOPEN> Attempting to open::../s2-eq/test.pdb::
+ OPNLGU> Unit 11 opened for WRITE access to ../s2-eq/test.pdb
+  
+ CHARMM>    coor writ pdb  unit 11
+ RDTITL> CLOS UNIT 11
+ RDTITL> No title read.
+  Write CHARMM-pdb format
+  
+ CHARMM>    clos unit 11
+ VCLOSE: Closing unit   11 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 10 name ../s2-eq/@pdbid.psf
+ Parameter: PDBID -> "TEST"
+ VOPEN> Attempting to open::../s2-eq/test.psf::
+ OPNLGU> Unit 10 opened for WRITE access to ../s2-eq/test.psf
+  
+ CHARMM>    writ psf  card unit 10
+ RDTITL> CLOS UNIT 10
+ RDTITL> No title read.
+  
+ CHARMM>    clos unit 10
+ VCLOSE: Closing unit   10 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    stop
+      $$$$$$  New timer profile Local node$$$$$
+   Shake Setup                     0.00 Other:            0.00
+   First List                      0.00 Other:            0.00
+   Shake time                      0.00 Other:            0.00
+      dynamc                          0.67 Other:            0.00
+   Dynamics total                  0.67 Other:            0.00
+      Heuristic check                 0.00 Other:            0.00
+      NBONDS                          0.00 Other:            0.00
+   List time                       0.00 Other:            0.00
+         Electrostatic & VDW             0.05 Other:            0.00
+      Nonbond force                   0.06 Other:            0.01
+         Bond energy                     0.00 Other:            0.00
+         Angle energy                    0.01 Other:            0.00
+         Dihedral energy                 0.03 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.06 Other:            0.01
+      Comm energy                     0.00 Other:            0.00
+      Comm force                      0.00 Other:            0.00
+   Energy time                     0.70 Other:            0.57
+      load plugins                    0.41 Other:            0.00
+      build system                    0.00 Other:            0.00
+      init context                    0.85 Other:            0.00
+   OpenMM overhead                 1.27 Other:            0.00
+ Total time                      5.88 Other:            3.24
+         $$$$$$  Average   profile $$$$$
+   Shake Setup                     0.00 Other:            0.00
+   First List                      0.00 Other:            0.00
+   Shake time                      0.00 Other:            0.00
+      dynamc                          0.67 Other:            0.00
+   Dynamics total                  0.67 Other:            0.00
+      Heuristic check                 0.00 Other:            0.00
+      NBONDS                          0.00 Other:            0.00
+   List time                       0.00 Other:            0.00
+         Electrostatic & VDW             0.05 Other:            0.00
+      Nonbond force                   0.06 Other:            0.01
+         Bond energy                     0.00 Other:            0.00
+         Angle energy                    0.01 Other:            0.00
+         Dihedral energy                 0.03 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.06 Other:            0.01
+      Comm energy                     0.00 Other:            0.00
+      Comm force                      0.00 Other:            0.00
+   Energy time                     0.70 Other:            0.57
+      load plugins                    0.41 Other:            0.00
+      build system                    0.00 Other:            0.00
+      init context                    0.85 Other:            0.00
+   OpenMM overhead                 1.27 Other:            0.00
+ Total time                      5.88 Other:            3.24
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    NO WARNINGS WERE ISSUED
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:     5.93  SECONDS 
+                         CPU TIME:     5.26  SECONDS 

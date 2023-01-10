@@ -1,0 +1,2355 @@
+ Processing passed argument "pdbid=p53"
+ Parameter: pdbid <- "p53"
+ Processing passed argument "segid=p53"
+ Parameter: segid <- "p53"
+ Processing passed argument "inpdir=../s2-clean"
+ Parameter: inpdir <- "../s2-clean"
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                   (CHARMM) - Developmental Version 35b2   February 15, 2008   
+       Copyright(c) 1984-2001  President and Fellows of Harvard College
+                              All Rights Reserved
+      Current operating system: Linux-3.10.0-327.3.1.el7.x86_64(x86_64)@node[+  3]
+                 Created on  1/10/23 at 13:36:38 by user: yumzhang    
+
+            Maximum number of ATOMS:     60120, and RESidues:       20040
+            Current HEAP size:        10240000, and STACK size:  10000000
+
+ Processing passed argument "pdbid=p53"
+ Parameter: PDBID <- "P53"
+ Processing passed argument "segid=p53"
+ Parameter: SEGID <- "P53"
+ Processing passed argument "inpdir=../s2-clean"
+ Parameter: INPDIR <- "../S2-CLEAN"
+ RDTITL> * GENERATE A AT P53 USING GBSW MODEL
+ RDTITL> * AFTER ENERGY MINIMIZATION
+ RDTITL> *
+  
+ CHARMM>     
+  
+ CHARMM>    if @?pdbid eq 0 stop
+ Comparing "1" and "0".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    if @?inpdir eq 0 stop
+ Comparing "1" and "0".
+ IF test evaluated as false.  Skipping command
+  
+ CHARMM>    set toppar = required
+ Parameter: TOPPAR <- "REQUIRED"
+  
+ CHARMM>     
+  
+ CHARMM>    !READ in topology and parameter files
+ CHARMM>    read  rtf card name @toppar/top_all22_prot_cmap.inp  !for all-atom
+ Parameter: TOPPAR -> "REQUIRED"
+ VOPEN> Attempting to open::required/top_all22_prot_cmap.inp::
+ MAINIO> Residue topology file being read from unit  90.
+ TITLE> *>>>>>>>>CHARMM22 ALL-HYDROGEN TOPOLOGY FILE FOR PROTEINS <<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>    read para card name @toppar/par_all22_prot_gbsw.inp  !for all-atom
+ Parameter: TOPPAR -> "REQUIRED"
+ VOPEN> Attempting to open::required/par_all22_prot_gbsw.inp::
+
+          PARAMETER FILE BEING READ FROM UNIT 90
+ TITLE> *>>>>> CHARMM22 ALL-HYDROGEN PARAMETER FILE FOR PROTEINS <<<<<<<<
+ TITLE> *>>>>> INCLUDES PHI, PSI CROSS TERM MAP (CMAP) CORRECTION <<<<<<<
+ TITLE> *>>>>>>>>>>>>>>>>>>>>>> DECEMBER, 2003 <<<<<<<<<<<<<<<<<<<<<<<<<<
+ TITLE> * ALL COMMENTS TO ADM JR. VIA THE CHARMM WEB SITE: WWW.CHARMM.ORG
+ TITLE> *               PARAMETER SET DISCUSSION FORUM
+ TITLE> *
+ PARMIO> NONBOND, HBOND lists and IMAGE atoms cleared.
+ VCLOSE: Closing unit   90 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    open read card unit 15 name @inpdir/@pdbid-clean.pdb
+ Parameter: INPDIR -> "../S2-CLEAN"
+ Parameter: PDBID -> "P53"
+ VOPEN> Attempting to open::../s2-clean/p53-clean.pdb::
+ OPNLGU> Unit 15 opened for READONLY access to /home/yumzhang/hyres/folded-protein-hyres/script/../s2-clean/p53-clean.pdb
+  
+ CHARMM>    read sequ pdb  unit 15
+ MAINIO> Sequence information being read from unit  15.
+ TITLE>  *
+
+          RESIDUE SEQUENCE --    61 RESIDUES
+          MET GLU GLU PRO GLN SER ASP PRO SER VAL GLU PRO PRO LEU SER GLN GLU THR PHE SER 
+          ASP LEU TRP LYS LEU LEU PRO GLU ASN ASN VAL LEU SER PRO LEU PRO SER GLN ALA MET 
+          ASP ASP LEU MET LEU SER PRO ASP ASP ILE GLU GLN TRP PHE THR GLU ASP PRO GLY PRO 
+          ASP 
+ ***** Message from SEQRDR ***** THE SYSTEM CONTAINS 16 TITRATABLE GROUPS
+ THE USER MUST PREDETERMINE THE PROTONATION STATE THROUGH THE SEQUENCE AND RTF
+ HIS -  0  ASP -  8  GLU -  7  LYS -  1  TYR -  0
+  
+ CHARMM>     
+  
+ CHARMM>    gene @pdbid first none last none setup
+ Parameter: PDBID -> "P53"
+ NO PATCHING WILL BE DONE ON THE FIRST RESIDUE
+ NO PATCHING WILL BE DONE ON THE LAST  RESIDUE
+ GENPSF> Segment   1 has been generated. Its identifier is P53.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =       61
+         Number of atoms         =      923   Number of groups     =      276
+         Number of bonds         =      938   Number of angles     =     1715
+         Number of dihedrals     =     2552   Number of impropers  =      159
+         Number of cross-terms   =       59
+         Number of HB acceptors  =       61   Number of HB donors  =       51
+         Number of NB exclusions =        0   Total charge =  -14.00000
+  
+ CHARMM>     
+  
+ CHARMM>    open read card unit 15 name @inpdir/@pdbid-clean.pdb
+ Parameter: INPDIR -> "../S2-CLEAN"
+ Parameter: PDBID -> "P53"
+ OPNLGU> Unit already open. The old file will be closed first.
+ VCLOSE: Closing unit   15 with status "KEEP"
+ VOPEN> Attempting to open::../s2-clean/p53-clean.pdb::
+ OPNLGU> Unit 15 opened for READONLY access to /home/yumzhang/hyres/folded-protein-hyres/script/../s2-clean/p53-clean.pdb
+  
+ CHARMM>    read coor pdb  unit 15
+  read CHARMM-pdb format
+          SPATIAL COORDINATES BEING READ FROM UNIT 15
+ TITLE>  *
+  read CHARMM-pdb format
+  read CHARMM-pdb format
+  read CHARMM-pdb format
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=    2 IRES=    1 RESID=1    RES=MET  ATOM=H   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   19 IRES=    2 RESID=2    RES=GLU  ATOM=H   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   34 IRES=    3 RESID=3    RES=GLU  ATOM=H   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   63 IRES=    5 RESID=5    RES=GLN  ATOM=H   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   75 IRES=    5 RESID=5    RES=GLN  ATOM=1HE2
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   76 IRES=    5 RESID=5    RES=GLN  ATOM=2HE2
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   80 IRES=    6 RESID=6    RES=SER  ATOM=H   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   87 IRES=    6 RESID=6    RES=SER  ATOM=HG  
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=   91 IRES=    7 RESID=7    RES=ASP  ATOM=H   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  117 IRES=    9 RESID=9    RES=SER  ATOM=H   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  124 IRES=    9 RESID=9    RES=SER  ATOM=HG  
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  128 IRES=   10 RESID=10   RES=VAL  ATOM=H   
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  134 IRES=   10 RESID=10   RES=VAL  ATOM=1HG1
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  135 IRES=   10 RESID=10   RES=VAL  ATOM=2HG1
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  136 IRES=   10 RESID=10   RES=VAL  ATOM=3HG1
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  138 IRES=   10 RESID=10   RES=VAL  ATOM=1HG2
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  139 IRES=   10 RESID=10   RES=VAL  ATOM=2HG2
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  140 IRES=   10 RESID=10   RES=VAL  ATOM=3HG2
+
+ ** WARNING ** For atom in coordinate file, the corresponding residue in the PSF lacks that atom:
+ INDEX=  144 IRES=   11 RESID=11   RES=GLU  ATOM=H   
+ ** WARNING ** After reading, there are no coordinates for selected atom:     2     1 MET  HN  
+ ** WARNING ** After reading, there are no coordinates for selected atom:    19     2 GLU  HN  
+ ** WARNING ** After reading, there are no coordinates for selected atom:    34     3 GLU  HN  
+ ** WARNING ** After reading, there are no coordinates for selected atom:    63     5 GLN  HN  
+ ** WARNING ** After reading, there are no coordinates for selected atom:    75     5 GLN  HE21
+ ** WARNING ** After reading, there are no coordinates for selected atom:    76     5 GLN  HE22
+ ** WARNING ** After reading, there are no coordinates for selected atom:    80     6 SER  HN  
+ ** WARNING ** After reading, there are no coordinates for selected atom:    87     6 SER  HG1 
+ ** WARNING ** After reading, there are no coordinates for selected atom:    91     7 ASP  HN  
+ ** WARNING ** After reading, there are no coordinates for selected atom:   117     9 SER  HN  
+
+ ** A total of   141 selected atoms have no coordinates
+
+ ** A total of  141 warnings were encountered during coordinate reading **
+ *** LEVEL  2 WARNING *** BOMLEV IS    0
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    bomlev -1
+  
+ CHARMM>    dele atom sele hydrogen end
+ SELRPN>    440 atoms have been selected out of    923
+
+ Message from MAPIC: Atom numbers are changed.
+ DELTIC:       440 bonds deleted
+ DELTIC:      1030 angles deleted
+ DELTIC:      1721 dihedrals deleted
+ DELTIC:        62 improper dihedrals deleted
+ DELTIC:        51 donors deleted
+
+ Warning from PSFSUM: The sum of charges (  -72.240000) is not an integer
+
+
+      ***** LEVEL  0 WARNING FROM <PSFSUM> *****
+      ***** Total charge not an integer
+      ******************************************
+      BOMLEV ( -1) IS NOT REACHED. WRNLEV IS  5
+
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =       61
+         Number of atoms         =      483   Number of groups     =      276
+         Number of bonds         =      498   Number of angles     =      685
+         Number of dihedrals     =      831   Number of impropers  =       97
+         Number of cross-terms   =       59
+         Number of HB acceptors  =       61   Number of HB donors  =        0
+         Number of NB exclusions =        0   Total charge =  -72.24000
+  
+ CHARMM>    bomlev 0
+  
+ CHARMM>     
+  
+ CHARMM>    rename resn HIS sele resn HSD .or. resn HSE .or. resn HSP end
+ SELRPN>      0 atoms have been selected out of    483
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 15 name tmp.pdb
+ OPNLGU> Unit already open. The old file will be closed first.
+ VCLOSE: Closing unit   15 with status "KEEP"
+ VOPEN> Attempting to open::tmp.pdb::
+ OPNLGU> Unit 15 opened for WRITE access to /home/yumzhang/hyres/folded-protein-hyres/script/tmp.pdb
+  
+ CHARMM>    writ coor pdb  unit 15
+ RDTITL> CLOS UNIT 15
+ RDTITL> No title read.
+  Write CHARMM-pdb format
+  
+ CHARMM>    clos unit 15
+ VCLOSE: Closing unit   15 with status "KEEP"
+  
+ CHARMM>     
+  
+ CHARMM>    dele atom sele all end
+ SELRPN>    483 atoms have been selected out of    483
+
+ Message from MAPIC: Atom numbers are changed.
+
+ Message from MAPIC:         61 residues deleted.
+
+ Message from MAPIC:          1 segments deleted.
+ DELTIC:       498 bonds deleted
+ DELTIC:       685 angles deleted
+ DELTIC:       831 dihedrals deleted
+ DELTIC:        97 improper dihedrals deleted
+ DELTIC:        59 crossterm maps deleted
+ DELTIC:        61 acceptors deleted
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        0   Number of residues   =        0
+         Number of atoms         =        0   Number of groups     =        0
+         Number of bonds         =        0   Number of angles     =        0
+         Number of dihedrals     =        0   Number of impropers  =        0
+         Number of cross-terms   =        0
+         Number of HB acceptors  =        0   Number of HB donors  =        0
+         Number of NB exclusions =        0   Total charge =    0.00000
+  
+ CHARMM>     
+  
+ CHARMM>    open read card unit 15 name tmp.pdb
+ VOPEN> Attempting to open::tmp.pdb::
+ OPNLGU> Unit 15 opened for READONLY access to /home/yumzhang/hyres/folded-protein-hyres/script/tmp.pdb
+  
+ CHARMM>    read sequ pdb  unit 15
+ MAINIO> Sequence information being read from unit  15.
+ TITLE>   GENERATE A AT P53 USING GBSW MODEL
+ TITLE>   AFTER ENERGY MINIMIZATION
+ TITLE>    DATE:     1/10/23     13:36:38      CREATED BY USER: YUMZHANG
+ TITLE>  *
+
+          RESIDUE SEQUENCE --    61 RESIDUES
+          MET GLU GLU PRO GLN SER ASP PRO SER VAL GLU PRO PRO LEU SER GLN GLU THR PHE SER 
+          ASP LEU TRP LYS LEU LEU PRO GLU ASN ASN VAL LEU SER PRO LEU PRO SER GLN ALA MET 
+          ASP ASP LEU MET LEU SER PRO ASP ASP ILE GLU GLN TRP PHE THR GLU ASP PRO GLY PRO 
+          ASP 
+ ***** Message from SEQRDR ***** THE SYSTEM CONTAINS 16 TITRATABLE GROUPS
+ THE USER MUST PREDETERMINE THE PROTONATION STATE THROUGH THE SEQUENCE AND RTF
+ HIS -  0  ASP -  8  GLU -  7  LYS -  1  TYR -  0
+  
+ CHARMM>     
+  
+ CHARMM>    !cap with Ace and CT3
+ CHARMM>    gene @pdbid first ACE last CT3 setup
+ Parameter: PDBID -> "P53"
+ THE PATCH 'ACE' WILL BE USED FOR THE FIRST RESIDUE
+ THE PATCH 'CT3' WILL BE USED FOR THE LAST  RESIDUE
+ GENPSF> Segment   1 has been generated. Its identifier is P53.
+ PSFSUM> PSF modified: NONBOND lists and IMAGE atoms cleared.
+ PSFSUM> Summary of the structure file counters :
+         Number of segments      =        1   Number of residues   =       61
+         Number of atoms         =      935   Number of groups     =      279
+         Number of bonds         =      950   Number of angles     =     1737
+         Number of dihedrals     =     2578   Number of impropers  =      163
+         Number of cross-terms   =       61
+         Number of HB acceptors  =       61   Number of HB donors  =       51
+         Number of NB exclusions =        0   Total charge =  -14.00000
+  
+ CHARMM>     
+  
+ CHARMM>    open read card unit 15 name tmp.pdb
+ OPNLGU> Unit already open. The old file will be closed first.
+ VCLOSE: Closing unit   15 with status "KEEP"
+ VOPEN> Attempting to open::tmp.pdb::
+ OPNLGU> Unit 15 opened for READONLY access to /home/yumzhang/hyres/folded-protein-hyres/script/tmp.pdb
+  
+ CHARMM>    read coor pdb  unit 15
+  read CHARMM-pdb format
+  read CHARMM-pdb format
+  read CHARMM-pdb format
+  read CHARMM-pdb format
+          SPATIAL COORDINATES BEING READ FROM UNIT 15
+ TITLE>   GENERATE A AT P53 USING GBSW MODEL
+ TITLE>   AFTER ENERGY MINIMIZATION
+ TITLE>    DATE:     1/10/23     13:36:38      CREATED BY USER: YUMZHANG
+ TITLE>  *
+ ** WARNING ** After reading, there are no coordinates for selected atom:     1     1 MET  CAY 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     2     1 MET  HY1 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     3     1 MET  HY2 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     4     1 MET  HY3 
+ ** WARNING ** After reading, there are no coordinates for selected atom:     5     1 MET  CY  
+ ** WARNING ** After reading, there are no coordinates for selected atom:     6     1 MET  OY  
+ ** WARNING ** After reading, there are no coordinates for selected atom:     8     1 MET  HN  
+ ** WARNING ** After reading, there are no coordinates for selected atom:    10     1 MET  HA  
+ ** WARNING ** After reading, there are no coordinates for selected atom:    12     1 MET  HB1 
+ ** WARNING ** After reading, there are no coordinates for selected atom:    13     1 MET  HB2 
+
+ ** A total of   452 selected atoms have no coordinates
+ *** LEVEL  2 WARNING *** BOMLEV IS    0
+  
+ CHARMM>     
+  
+ CHARMM>    ic fill
+  
+ CHARMM>    ic param
+  
+ CHARMM>    ic build
+  
+ CHARMM>    hbuild
+
+      ***** LEVEL  4 WARNING FROM <GTHBUI> *****
+      ***** Zero selection specified
+      ******************************************
+      BOMLEV (  0) IS NOT REACHED. WRNLEV IS  5
+
+  
+ CHARMM>     
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 10 name ../s3-mkat/@pdbid.0.pdb
+ Parameter: PDBID -> "P53"
+ VOPEN> Attempting to open::../s3-mkat/p53.0.pdb::
+  Write CHARMM-pdb format
+  Write CHARMM-pdb format
+  Write CHARMM-pdb format
+ OPNLGU> Unit 10 opened for WRITE access to /home/yumzhang/hyres/folded-protein-hyres/script/../s3-mkat/p53.0.pdb
+  
+ CHARMM>    coor writ pdb  unit 10
+ RDTITL> * A FOLDED STRUCTURE FOR ALL-ATOM SYSTEM
+ RDTITL> *
+  Write CHARMM-pdb format
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 10 name ../s3-mkat/@pdbid.psf
+ Parameter: PDBID -> "P53"
+ OPNLGU> Unit already open. The old file will be closed first.
+ VCLOSE: Closing unit   10 with status "KEEP"
+ VOPEN> Attempting to open::../s3-mkat/p53.psf::
+ OPNLGU> Unit 10 opened for WRITE access to /home/yumzhang/hyres/folded-protein-hyres/script/../s3-mkat/p53.psf
+  
+ CHARMM>    writ psf  card unit 10
+ RDTITL> * PSF OF P53 FOR ALL-ATOM SYSTEM
+ RDTITL> *
+  
+ CHARMM>     
+  
+ CHARMM>    system "rm -f tmp.pdb"
+Invoking: rm -f tmp.pdb
+  
+ CHARMM>     
+  
+ CHARMM>    ! energy minimization
+ CHARMM>    NBOND atom switch cdie vdw vswitch -
+ CHARMM>          cutnb 20.0 ctofnb 18.0 ctonnb 16.0
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5 IONC   = 0.0000
+ There are        0 atom  pairs and        0 atom  exclusions.
+ There are        0 group pairs and        0 group exclusions.
+ <MAKINB> with mode   5 found   2687 exclusions and   2506 interactions(1-4)
+ <MAKGRP> found    801 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40955 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      480 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+  
+ CHARMM>    nbond inbfrq -1
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5 IONC   = 0.0000
+ There are    40955 atom  pairs and     5193 atom  exclusions.
+ There are        0 group pairs and      801 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40955 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      480 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+  
+ CHARMM>     
+  
+ CHARMM>    stream @toppar/radius_gbsw.str
+ Parameter: TOPPAR -> "REQUIRED"
+ VOPEN> Attempting to open::required/radius_gbsw.str::
+ OPNLGU> Unit 99 opened for READONLY access to /home/yumzhang/hyres/folded-protein-hyres/script/required/radius_gbsw.str
+
+                    INPUT STREAM SWITCHING TO UNIT    99
+ RDTITL> * ATOMIC RADIUS DERIVED FROM SOLVENT ELECTROSTATIC CHARGE DISTRIBUTION
+ RDTITL> * TESTED WITH FREE ENERGY PERTURBATION WITH EXPLICIT SOLVENT
+ RDTITL> * AUTHORS:  MAFALDA NINA, DMITRII BELOGV, AND BENOIT ROUX
+ RDTITL> * UNIVERSITY OF MONTREAL, JUNE 1996.
+ RDTITL> * M. NINA AND B. ROUX. ATOMIC RADII FOR CONTINUUM ELECTROSTATICS CALCULATIONS BASED ON
+ RDTITL> * MOLECULAR DYNAMICS FREE ENERGY SIMULATIONS. J. PHYS. CHEM. B 101: 5239-5248 (1997).
+ RDTITL> *
+ Parameter: IN1 <- "" <empty>
+  
+ CHARMM>     
+  
+ CHARMM>    ! UPDATES:
+ CHARMM>    ! --------
+ CHARMM>    ! 1. PMF guided optimization of input radii for charged residues (2005)
+ CHARMM>    !    ref: J. Chen, W. Im and C. L. Brooks III, JACS (submitted).
+ CHARMM>    !
+ CHARMM>    !
+ CHARMM>    ! GLU and ASP modified December 1st, 1998 by Mafalda Nina
+ CHARMM>    !
+ CHARMM>    ! Protonated histidine HSP has been included, January 1999 by Mafalda Nina
+ CHARMM>    ! dG_elec = -68.15 kcal/mol (MD/FES) or -68.10 kcal/mol (PBEQ)
+ CHARMM>    !
+ CHARMM>    ! TEA and ions added by Benoit Roux, January 1999.
+ CHARMM>    !
+ CHARMM>    ! sodium added by Benoit Roux, November 2000
+ CHARMM>     
+  
+ CHARMM>    scalar wmain set 1.3 select type ZN end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    ! Set to zero all H radii
+ CHARMM>    scalar wmain set 0.0 sele chem H* end
+ SELRPN>    447 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    ! Set heavy atoms to average default values
+ CHARMM>    scalar wmain set 2.3 sele chem C* end
+ SELRPN>    307 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.8 sele chem O* end
+ SELRPN>    107 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.3 sele chem N* end
+ SELRPN>     71 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.3 sele chem S* end
+ SELRPN>      3 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    !Patches CT3 N-Methylamide C-terminus
+ CHARMM>    !        ACE acetylated N-terminus (ACP for PRO)
+ CHARMM>    scalar wmain set 2.06 sele (type CAY .or. type CAT) end
+ SELRPN>      2 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.04 sele type CY end
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.52 sele type OY end
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.23 sele type NT end
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.40 sele type OT* end ! for COO- terminus
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    !Backbone
+ CHARMM>    scalar wmain set 2.04 sele type C  end
+ SELRPN>     61 atoms have been selected out of    935
+  
+ CHARMM>           ! for peptide bond
+  
+ CHARMM>    scalar wmain set 1.52 sele type O  end
+ SELRPN>     61 atoms have been selected out of    935
+  
+ CHARMM>           ! for peptide bond
+  
+ CHARMM>    scalar wmain set 2.23 sele type N  end
+ SELRPN>     61 atoms have been selected out of    935
+  
+ CHARMM>           ! for peptide bond
+  
+ CHARMM>    scalar wmain set 2.86 sele type CA  end
+ SELRPN>     61 atoms have been selected out of    935
+  
+ CHARMM>           ! for all CA except GLY
+  
+ CHARMM>    scalar wmain set 2.38 sele (resnam GLY .and. type CA) end
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>           ! for GLY only
+  
+ CHARMM>     
+  
+ CHARMM>    !Hydrogens
+ CHARMM>    scalar wmain set 0.00 sele type H* end
+ SELRPN>    447 atoms have been selected out of    935
+  
+ CHARMM>           ! for all hydrogens
+  
+ CHARMM>     
+  
+ CHARMM>    !Carbons
+ CHARMM>    scalar wmain set 2.67 sele type CB end
+ SELRPN>     60 atoms have been selected out of    935
+  
+ CHARMM>           ! for all residues
+  
+ CHARMM>    scalar wmain set 2.46 sele type CG* end
+ SELRPN>     55 atoms have been selected out of    935
+  
+ CHARMM>           ! for ARG, GLN, ILE, LYS, MET, PHE, THR, TRP, VAL, HSP, HSD
+  
+ CHARMM>    scalar wmain set 2.77 sele resnam GLU .and. type CG end
+ SELRPN>      7 atoms have been selected out of    935
+  
+ CHARMM>           ! for GLU only
+  
+ CHARMM>    scalar wmain set 2.44 sele type CD* end
+ SELRPN>     47 atoms have been selected out of    935
+  
+ CHARMM>           ! for ARG, ILE, LEU, LYS
+  
+ CHARMM>    scalar wmain set 1.98 sele (resnam GLN .and. type CD) .or. (resnam ASN .and. type CG) .or. -
+ CHARMM>                               (resnam GLU .and. type CD) .or. (resnam ASP .and. type CG) end
+ SELRPN>     21 atoms have been selected out of    935
+  
+ CHARMM>           ! for ASP, GLU, ASN, GLN
+  
+ CHARMM>    scalar wmain set 1.98 sele (resnam PRO .and. (type CB .or. type CG .or. type CD)) end
+ SELRPN>     30 atoms have been selected out of    935
+  
+ CHARMM>           ! for PRO only
+  
+ CHARMM>    scalar wmain set 2.00 sele (resnam TYR .and. (type CE* .or. type CD* .or. -
+ CHARMM>                              type CZ)) .or. (resnam PHE .and. (type CE* .or. -
+ CHARMM>                              type CD* .or. type CZ))  end
+ SELRPN>     10 atoms have been selected out of    935
+  
+ CHARMM>           ! for TYR, PHE rings
+  
+ CHARMM>    scalar wmain set 1.78 sele (resnam TRP .and. (type CE* .or. type CD* .or. -
+ CHARMM>                              type CZ* .or. type CH2)) end
+ SELRPN>     14 atoms have been selected out of    935
+  
+ CHARMM>           ! for TRP ring only
+  
+ CHARMM>    scalar wmain set 2.10 sele type CE end
+ SELRPN>      4 atoms have been selected out of    935
+  
+ CHARMM>           ! for MET only
+  
+ CHARMM>    scalar wmain set 2.80 sele (resnam ARG .and. type CZ) .or. (resnam LYS .and. type CE) end
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>           ! for ARG, LYS
+  
+ CHARMM>    scalar wmain set 1.98 select (( resnam HSD  .or. resnam HSP .or. resn HIS ) .and. type CE1) -
+ CHARMM>           .or. (( resnam HSD .or. resnam HSP .or. resn HIS )  .and. type CD2) end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           ! for neutral HSD and protonated HSP
+  
+ CHARMM>     
+  
+ CHARMM>    !Oxygens
+ CHARMM>    scalar wmain set 1.40 sele (resnam GLU .or. resnam ASP) .and. (type OE* .or. type OD*) end
+ SELRPN>     30 atoms have been selected out of    935
+  
+ CHARMM>           ! for GLU, ASP
+  
+ CHARMM>    scalar wmain set 1.42 sele (resnam ASN .or. resnam GLN) .and. (type OE* .or. type OD*) end
+ SELRPN>      6 atoms have been selected out of    935
+  
+ CHARMM>           ! for ASN, GLN
+  
+ CHARMM>    scalar wmain set 1.64 sele type OG* end
+ SELRPN>      9 atoms have been selected out of    935
+  
+ CHARMM>           ! for SER, THR
+  
+ CHARMM>    scalar wmain set 1.85 sele (resnam TYR .and. type OH) end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           ! for TYR only
+  
+ CHARMM>    scalar wmain set 2.2 select resname TIP3 .and. type OH2 end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           ! for explicit water molecules
+  
+ CHARMM>     
+  
+ CHARMM>    !Nitrogens
+ CHARMM>    scalar wmain set 1.80 sele ( resn HSD .or. resn HIS ) .and. (type NE2 .or. type ND1) end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           ! for neutral HSD (HIS is HSD)
+  
+ CHARMM>    scalar wmain set 2.30 sele resnam HSP  .and. (type NE2 .or. type ND1) end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           ! for protonated HSP
+  
+ CHARMM>    scalar wmain set 2.13 sele resnam ARG .and. (type NH* .or. type NE) .or. -
+ CHARMM>                          (resnam LYS .and. type NZ) end
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>           ! for ARG, LYS
+  
+ CHARMM>    scalar wmain set 2.15 sele (resnam GLN .and. type NE2) .or. (resnam ASN .and. type ND2) end
+ SELRPN>      6 atoms have been selected out of    935
+  
+ CHARMM>           ! for GLN, ASN
+  
+ CHARMM>    scalar wmain set 2.40 sele resnam TRP .and. type NE1 end
+ SELRPN>      2 atoms have been selected out of    935
+  
+ CHARMM>           ! for TRP
+  
+ CHARMM>     
+  
+ CHARMM>    !Sulphur
+ CHARMM>    scalar wmain set 2.00 sele type S* end
+ SELRPN>      3 atoms have been selected out of    935
+  
+ CHARMM>           ! for MET, CYS
+  
+ CHARMM>     
+  
+ CHARMM>    !Ions
+ CHARMM>    scalar wmain set 2.035 select resname POT end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           !potassium ion K+
+  
+ CHARMM>     
+  
+ CHARMM>    scalar wmain set 2.035 select resname CLA end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           !chloride ion Cl-
+  
+ CHARMM>     
+  
+ CHARMM>    scalar wmain set 1.66 select resname SOD end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           !sodium ion Na+
+  
+ CHARMM>     
+  
+ CHARMM>    scalar wmain set 2.15 sele resnam TEA .and. type N end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.30 sele ( type C1 .or. type C2 .or. type C3 .or. type C4 ) .and. resnam TEA end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.30 sele ( type C5 .or. type C6 .or. type C7 .or. type C8 ) .and. resnam TEA end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>           ! Tetramethylamonium (TEA)
+  
+ CHARMM>     
+  
+ CHARMM>    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ CHARMM>    !! PMF guided optimization of input radii for charged residues  !!
+ CHARMM>    !!                                                              !!
+ CHARMM>    !!   J. Chen, W. Im and C. L. Brooks III, JACS (submitted)      !!
+ CHARMM>    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ CHARMM>    !! NOTE: should be used only with GBSW;
+ CHARMM>    !! NOTE: for optimal accuracy in peptide and protein conformational equilibrium,
+ CHARMM>    !!       the modified CMAP in "~toppar/gbsw/par_all22_prot_gbsw.inp" should be used.
+ CHARMM>    !!
+ CHARMM>     
+  
+ CHARMM>    ! ASP and GLU (no change)
+ CHARMM>     
+  
+ CHARMM>    ! LYS:
+ CHARMM>    scalar wmain set 1.8 select resn LYS .and. type NZ end
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    ! ARG:
+ CHARMM>    scalar wmain set 1.7 select resn ARG .and. ( type NH* .or. type NE ) end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.2 select resn ARG .and. type CZ end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    ! GLN and ASN
+ CHARMM>    scalar wmain set 1.6 select resn GLN .and. type OE1 end
+ SELRPN>      4 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.6 select resn ASN .and. type OD1 end
+ SELRPN>      2 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.0 select resn GLN .and. type NE2 end
+ SELRPN>      4 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.0 select resn ASN .and. type ND2 end
+ SELRPN>      2 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    ! HSD and HSP: hnd(1.8->1.9), hpnd/hpne(2.3->1.9)
+ CHARMM>    scalar wmain set 1.9 select resn HSD .and. type ND1 end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.9 select resn HSP .and. type ND1 end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.9 select resn HSP .and. type NE2 end
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    ! TRP: NE (2.4->1.8), C*(1.78->2.0)
+ CHARMM>    scalar wmain set 1.85 select resn TRP .and. type NE1 end
+ SELRPN>      2 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.0  select resn TRP -
+ CHARMM>           .and. (type CE* .or. type CD* .or. type CZ* .or. type CH2) end
+ SELRPN>     14 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    ! backbone (bb6)
+ CHARMM>    scalar wmain set 2.03  sele type N  end       !2.23
+ SELRPN>     61 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.03  sele type NL .or. type NR end  ! alad
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>     
+  
+ CHARMM>    ! terminus
+ CHARMM>    scalar wmain set 2.03 sele type NT  end    ! 2.23
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.77 sele type CGY  end   ! from GLU CG
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.67 sele type CAY  end   ! from CB
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.98 sele type CDY  end   ! from GLU CD
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.40 sele type OEY* end   ! from GLU OE*
+ SELRPN>      0 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 1.52 sele type OY   end   ! from backbone O
+ SELRPN>      1 atoms have been selected out of    935
+  
+ CHARMM>    scalar wmain set 2.04 sele type CY   end  ! from backbone C
+ SELRPN>      1 atoms have been selected out of    935
+  
+ VCLOSE: Closing unit   99 with status "KEEP"
+
+                    RETURNING TO INPUT STREAM     5
+  
+ CHARMM>    gbsw sgamma 0.005 nang 50
+
+
+      Generalized Born model with a simple switching function (GBSW)
+
+
+      Number of angular integration points (nang) =      50
+      Number of radial  integration points (nrad) =      24
+      Maximum in radial integration        (rmax) =  20.000 [Angs]
+
+      Solvent dielectric constant          (epsw) =  80.000
+      Protein dielectric constant          (epsp) =   1.000
+      Surface tension coefficient        (sgamma) =   0.005 [kcal/mol/Angs**2]
+
+
+      Switching length                     (sw*2) =   0.600 [Angs]
+
+      Coefficient for the CFA term          (aa0) =  -0.180
+      Coefficient for the correction term   (aa1) =   1.817
+
+      Grid spacing for lookup table         (dgp) =   1.500 [Angs]
+      Buffer size for lookup table      (rbuffer) =   0.000 [Angs]
+
+      NOTE : PB radii are scaled by (PB radii+sw)*factor
+             where sw =   0.300 and factor =  0.952
+
+      GB energy and forces will be updated every       1 step(s)
+
+      GBSW lookup table information:
+      Number of grid points for lookup table :  58 x 28 x 25 =      40600
+      Lookup table in x covers from    9.764 to   95.264
+      Lookup table in y covers from   44.090 to   84.590
+      Lookup table in z covers from   23.091 to   59.091
+      Number of atoms listed in lookup table   =      38260
+      Percentage of occupied grid points       =     13.929
+
+  
+ CHARMM>     
+  
+ CHARMM>    shake tolerance 1.0e-06 bonh param
+ SHKCOM> SHAKE parameters: TOL =   0.1000D-05 MXITer =    500
+
+             447 constraints will held by SHAKE.
+  
+ CHARMM>     
+  
+ CHARMM>    ! energy minimization
+ CHARMM>    cons harm force 1 select .not. hydrogen end
+ SELRPN>    488 atoms have been selected out of    935
+ CSTRAN: Harmonic Restraints
+          ABSOlute type as set number  1.  Number of selected atoms:    488
+          Reference coordinates set to main coordinates.
+          Mass weighting will NOT be used for new restraints.
+          The force constant of       1.00000 will be used.
+          An exponent of  2 will be used.
+          The XYZ scale factors are:       1.00000       1.00000       1.00000
+          A total of    488 atoms are restrained.
+  
+ CHARMM>    mini   sd nstep  1000 nprint 100 step 0.005
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5 IONC   = 0.0000
+ There are    40955 atom  pairs and     5193 atom  exclusions.
+ There are        0 group pairs and      801 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40955 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      480 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+
+
+ STEEPD> An energy minimization has been requested.
+
+ NSTEP  =         1000   NPRINT =          100
+ STEP   =    0.0050000   TOLFUN =    0.0000000
+ TOLGRD =    0.0000000   TOLSTP =    0.0000000
+
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.10924       52.47789       33.66000
+     J ATOM:       23.82059       51.63838       33.81335
+     K ATOM:       23.10924       52.47789       33.66000
+     DXIR  :       -0.64028        0.75564       -0.13803
+     DXJR  :       -0.64028        0.75564       -0.13803
+     CST   :        1.00000        0.00000     -108.40000
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88630       57.55797       37.14334
+     J ATOM:       26.72000       58.41000       36.45000
+     K ATOM:       26.88630       57.55797       37.14334
+     DXIR  :        0.14968       -0.76690        0.62407
+     DXJR  :        0.14968       -0.76690        0.62407
+     CST   :        1.00000        0.00000     -108.40000
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56983       49.81359       33.65176
+     J ATOM:       21.70000       50.42000       32.73000
+     K ATOM:       21.56983       49.81359       33.65176
+     DXIR  :       -0.11717       -0.54583        0.82967
+     DXJR  :       -0.11717       -0.54583        0.82967
+     CST   :        1.00000        0.00000     -109.00000
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33218       52.37674       35.79335
+     J ATOM:       15.91000       51.78000       36.63000
+     K ATOM:       16.33218       52.37674       35.79335
+     DXIR  :        0.38000        0.53712       -0.75306
+     DXJR  :        0.38000        0.53712       -0.75306
+     CST   :        1.00000        0.00000     -109.00000
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32456       52.34234       36.20907
+     J ATOM:       14.22000       53.42000       35.96000
+     K ATOM:       14.32456       52.34234       36.20907
+     DXIR  :        0.09411       -0.96999        0.22418
+     DXJR  :        0.09411       -0.96999        0.22418
+     CST   :        1.00000        0.00000     -109.00000
+ EANGLFS> Total of    54 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral  789 is almost linear.
+ derivatives may be affected for atoms:  279  278  280  281
+ EPHIFS: WARNING.  dihedral 1513 is almost linear.
+ derivatives may be affected for atoms:  539  538  540  541
+ EPHIFS: WARNING.  dihedral 2273 is almost linear.
+ derivatives may be affected for atoms:  823  822  824  825
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  117  with deltaPHI=-180.0000 MIN=   0.0000 ATOMS:  662  660  664  663
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-180.0000 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS> Total of     6 WARNINGs issued.
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI CROSS:           CMAPs     
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+MINI PBEQ:             PBnp       PBelec        GBEnr         GSBP
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0 126930025.07         0.00  32886488.75         0.01
+MINI INTERN>      209.25296  65214.69050  11639.29637    494.76764   1608.72802
+MINI CROSS>       -53.02927
+MINI EXTERN>   126853238.43      -202.49         0.00        27.24         0.00
+MINI PBEQ>          0.00000      0.00000  -2151.81200      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.11385       52.47866       33.65946
+     J ATOM:       23.82206       51.63665       33.81367
+     K ATOM:       23.11385       52.47867       33.65946
+     DXIR  :       -0.63745        0.75789       -0.13880
+     DXJR  :       -0.63745        0.75789       -0.13880
+     CST   :        1.00000        0.00000     -108.40000
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88630       57.55797       37.14334
+     J ATOM:       26.72000       58.41000       36.45000
+     K ATOM:       26.88630       57.55797       37.14334
+     DXIR  :        0.14968       -0.76690        0.62407
+     DXJR  :        0.14968       -0.76690        0.62407
+     CST   :        1.00000        0.00000     -108.40000
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56983       49.81359       33.65176
+     J ATOM:       21.70000       50.42000       32.73000
+     K ATOM:       21.56983       49.81359       33.65176
+     DXIR  :       -0.11717       -0.54583        0.82967
+     DXJR  :       -0.11717       -0.54583        0.82967
+     CST   :        1.00000        0.00000     -109.00000
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33218       52.37674       35.79334
+     J ATOM:       15.91000       51.78000       36.63000
+     K ATOM:       16.33218       52.37674       35.79334
+     DXIR  :        0.38000        0.53712       -0.75307
+     DXJR  :        0.38000        0.53712       -0.75307
+     CST   :        1.00000        0.00000     -109.00000
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32456       52.34234       36.20907
+     J ATOM:       14.22000       53.42000       35.96000
+     K ATOM:       14.32456       52.34234       36.20907
+     DXIR  :        0.09411       -0.96999        0.22418
+     DXJR  :        0.09411       -0.96999        0.22418
+     CST   :        1.00000        0.00000     -109.00000
+ EANGLFS> Total of    53 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral  781 is almost linear.
+ derivatives may be affected for atoms:  276  278  280  281
+ EPHIFS: WARNING.  dihedral  789 is almost linear.
+ derivatives may be affected for atoms:  279  278  280  281
+ EPHIFS: WARNING.  dihedral 1513 is almost linear.
+ derivatives may be affected for atoms:  539  538  540  541
+ EPHIFS: WARNING.  dihedral 2273 is almost linear.
+ derivatives may be affected for atoms:  823  822  824  825
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  117  with deltaPHI=-179.9831 MIN=   0.0000 ATOMS:  662  660  664  663
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-179.9995 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS> Total of     6 WARNINGs issued.
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.13234       52.48174       33.65732
+     J ATOM:       23.82782       51.62980       33.81492
+     K ATOM:       23.13234       52.48174       33.65732
+     DXIR  :       -0.62600        0.76681       -0.14186
+     DXJR  :       -0.62600        0.76681       -0.14186
+     CST   :        1.00000        0.00000     -108.40000
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88630       57.55797       37.14334
+     J ATOM:       26.72000       58.41000       36.45000
+     K ATOM:       26.88630       57.55797       37.14334
+     DXIR  :        0.14968       -0.76690        0.62407
+     DXJR  :        0.14968       -0.76690        0.62407
+     CST   :        1.00000        0.00000     -108.40000
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56983       49.81359       33.65176
+     J ATOM:       21.70000       50.42000       32.73000
+     K ATOM:       21.56983       49.81359       33.65176
+     DXIR  :       -0.11717       -0.54583        0.82967
+     DXJR  :       -0.11717       -0.54583        0.82967
+     CST   :        1.00000        0.00000     -109.00000
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33217       52.37673       35.79334
+     J ATOM:       15.91000       51.78000       36.63000
+     K ATOM:       16.33217       52.37673       35.79334
+     DXIR  :        0.38000        0.53711       -0.75307
+     DXJR  :        0.38000        0.53711       -0.75307
+     CST   :        1.00000        0.00000     -109.00000
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32456       52.34234       36.20907
+     J ATOM:       14.22000       53.42000       35.96000
+     K ATOM:       14.32456       52.34234       36.20907
+     DXIR  :        0.09411       -0.96999        0.22418
+     DXJR  :        0.09411       -0.96999        0.22418
+     CST   :        1.00000        0.00000     -109.00000
+ EANGLFS> Total of    53 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral 1513 is almost linear.
+ derivatives may be affected for atoms:  539  538  540  541
+ EPHIFS: WARNING.  dihedral 2273 is almost linear.
+ derivatives may be affected for atoms:  823  822  824  825
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  117  with deltaPHI=-179.8861 MIN=   0.0000 ATOMS:  662  660  664  663
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-179.9969 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS> Total of     6 WARNINGs issued.
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.15597       52.48554       33.65457
+     J ATOM:       23.83490       51.62116       33.81652
+     K ATOM:       23.15597       52.48554       33.65457
+     DXIR  :       -0.61110        0.77802       -0.14577
+     DXJR  :       -0.61110        0.77802       -0.14577
+     CST   :        1.00000        0.00003     -108.39997
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88630       57.55797       37.14334
+     J ATOM:       26.72000       58.41000       36.45000
+     K ATOM:       26.88630       57.55797       37.14334
+     DXIR  :        0.14968       -0.76690        0.62407
+     DXJR  :        0.14968       -0.76690        0.62407
+     CST   :        1.00000        0.00002     -108.39998
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56983       49.81359       33.65176
+     J ATOM:       21.70000       50.42000       32.73000
+     K ATOM:       21.56983       49.81359       33.65176
+     DXIR  :       -0.11717       -0.54582        0.82967
+     DXJR  :       -0.11717       -0.54582        0.82967
+     CST   :        1.00000        0.00000     -109.00000
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33217       52.37669       35.79333
+     J ATOM:       15.91000       51.77999       36.63001
+     K ATOM:       16.33217       52.37669       35.79333
+     DXIR  :        0.38000        0.53708       -0.75309
+     DXJR  :        0.38000        0.53708       -0.75309
+     CST   :        1.00000        0.00000     -109.00000
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32456       52.34234       36.20907
+     J ATOM:       14.22000       53.42000       35.96000
+     K ATOM:       14.32456       52.34234       36.20907
+     DXIR  :        0.09411       -0.96999        0.22418
+     DXJR  :        0.09411       -0.96999        0.22418
+     CST   :        1.00000        0.00000     -109.00000
+ EANGLFS> Total of    53 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral 1513 is almost linear.
+ derivatives may be affected for atoms:  539  538  540  541
+ EPHIFS: WARNING.  dihedral 2273 is almost linear.
+ derivatives may be affected for atoms:  823  822  824  825
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  117  with deltaPHI=-179.4143 MIN=   0.0000 ATOMS:  662  660  664  663
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-179.9841 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS> Total of     6 WARNINGs issued.
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.18088       52.48927       33.65166
+     J ATOM:       23.84207       51.61211       33.81821
+     K ATOM:       23.18088       52.48927       33.65166
+     DXIR  :       -0.59513        0.78952       -0.14992
+     DXJR  :       -0.59513        0.78952       -0.14992
+     CST   :        1.00000        0.00016     -108.39984
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88629       57.55797       37.14334
+     J ATOM:       26.72000       58.41000       36.45000
+     K ATOM:       26.88630       57.55797       37.14334
+     DXIR  :        0.14968       -0.76690        0.62407
+     DXJR  :        0.14968       -0.76690        0.62407
+     CST   :        1.00000        0.00018     -108.39982
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56983       49.81360       33.65176
+     J ATOM:       21.70000       50.42000       32.73000
+     K ATOM:       21.56982       49.81360       33.65176
+     DXIR  :       -0.11717       -0.54582        0.82967
+     DXJR  :       -0.11717       -0.54582        0.82967
+     CST   :        1.00000        0.00015     -108.99985
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33217       52.37652       35.79325
+     J ATOM:       15.90999       51.77997       36.63004
+     K ATOM:       16.33217       52.37652       35.79325
+     DXIR  :        0.38000        0.53695       -0.75318
+     DXJR  :        0.38000        0.53695       -0.75318
+     CST   :        1.00000        0.00004     -108.99996
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32456       52.34234       36.20906
+     J ATOM:       14.22000       53.42000       35.96000
+     K ATOM:       14.32456       52.34234       36.20906
+     DXIR  :        0.09411       -0.96999        0.22418
+     DXJR  :        0.09411       -0.96999        0.22418
+     CST   :        1.00000        0.00015     -108.99985
+ EANGLFS> Total of    53 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral 1513 is almost linear.
+ derivatives may be affected for atoms:  539  538  540  541
+ EPHIFS: WARNING.  dihedral 2273 is almost linear.
+ derivatives may be affected for atoms:  823  822  824  825
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  117  with deltaPHI=-177.1711 MIN=   0.0000 ATOMS:  662  660  664  663
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-179.9232 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS> Total of     6 WARNINGs issued.
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.20215       52.49202       33.64916
+     J ATOM:       23.84806       51.60430       33.81969
+     K ATOM:       23.20216       52.49203       33.64916
+     DXIR  :       -0.58138        0.79903       -0.15349
+     DXJR  :       -0.58137        0.79903       -0.15349
+     CST   :        1.00000        0.00061     -108.39939
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88629       57.55798       37.14334
+     J ATOM:       26.72000       58.41000       36.45000
+     K ATOM:       26.88630       57.55797       37.14334
+     DXIR  :        0.14968       -0.76690        0.62407
+     DXJR  :        0.14969       -0.76690        0.62407
+     CST   :        1.00000        0.00082     -108.39918
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56982       49.81363       33.65176
+     J ATOM:       21.70000       50.42000       32.72998
+     K ATOM:       21.56981       49.81363       33.65176
+     DXIR  :       -0.11718       -0.54579        0.82969
+     DXJR  :       -0.11719       -0.54579        0.82968
+     CST   :        1.00000        0.00065     -108.99935
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33214       52.37593       35.79298
+     J ATOM:       15.90995       51.77989       36.63013
+     K ATOM:       16.33215       52.37593       35.79299
+     DXIR  :        0.38001        0.53649       -0.75351
+     DXJR  :        0.38002        0.53649       -0.75350
+     CST   :        1.00000        0.00054     -108.99946
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32454       52.34234       36.20906
+     J ATOM:       14.22000       53.42000       35.96000
+     K ATOM:       14.32456       52.34234       36.20906
+     DXIR  :        0.09410       -0.97000        0.22417
+     DXJR  :        0.09411       -0.96999        0.22417
+     CST   :        1.00000        0.00065     -108.99935
+ EANGLFS> Total of    53 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral 1513 is almost linear.
+ derivatives may be affected for atoms:  539  538  540  541
+ EPHIFS: WARNING.  dihedral 2249 is almost linear.
+ derivatives may be affected for atoms:  810  816  818  819
+ EPHIFS: WARNING.  dihedral 2273 is almost linear.
+ derivatives may be affected for atoms:  823  822  824  825
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  117  with deltaPHI=-169.6456 MIN=   0.0000 ATOMS:  662  660  664  663
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-179.7148 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS> Total of     6 WARNINGs issued.
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.22907       52.49461       33.64597
+     J ATOM:       23.85570       51.59416       33.82162
+     K ATOM:       23.22911       52.49463       33.64597
+     DXIR  :       -0.56402        0.81049       -0.15810
+     DXJR  :       -0.56399        0.81051       -0.15810
+     CST   :        1.00000        0.00225     -108.39775
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88627       57.55799       37.14337
+     J ATOM:       26.72000       58.41000       36.45000
+     K ATOM:       26.88633       57.55798       37.14334
+     DXIR  :        0.14966       -0.76688        0.62409
+     DXJR  :        0.14971       -0.76689        0.62407
+     CST   :        1.00000        0.00322     -108.39678
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56979       49.81373       33.65178
+     J ATOM:       21.70000       50.42002       32.72994
+     K ATOM:       21.56974       49.81373       33.65177
+     DXIR  :       -0.11720       -0.54571        0.82974
+     DXJR  :       -0.11724       -0.54571        0.82973
+     CST   :        1.00000        0.00244     -108.99756
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33204       52.37387       35.79206
+     J ATOM:       15.90982       51.77962       36.63046
+     K ATOM:       16.33208       52.37388       35.79209
+     DXIR  :        0.38003        0.53488       -0.75464
+     DXJR  :        0.38006        0.53489       -0.75461
+     CST   :        1.00000        0.00233     -108.99767
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32450       52.34233       36.20902
+     J ATOM:       14.22001       53.42001       35.96001
+     K ATOM:       14.32454       52.34234       36.20904
+     DXIR  :        0.09405       -0.97001        0.22414
+     DXJR  :        0.09409       -0.97000        0.22415
+     CST   :        1.00000        0.00244     -108.99756
+ EANGLFS> Total of    53 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral 1513 is almost linear.
+ derivatives may be affected for atoms:  539  538  540  541
+ EPHIFS: WARNING.  dihedral 2249 is almost linear.
+ derivatives may be affected for atoms:  810  816  818  819
+ EPHIFS: WARNING.  dihedral 2273 is almost linear.
+ derivatives may be affected for atoms:  823  822  824  825
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  117  with deltaPHI=-145.9657 MIN=   0.0000 ATOMS:  662  660  664  663
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-178.9723 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS> Total of     6 WARNINGs issued.
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.26040       52.49527       33.64215
+     J ATOM:       23.86525       51.58128       33.82410
+     K ATOM:       23.26053       52.49535       33.64212
+     DXIR  :       -0.54442        0.82267       -0.16377
+     DXJR  :       -0.54430        0.82275       -0.16380
+     CST   :        1.00000        0.00807     -108.39193
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88620       57.55803       37.14344
+     J ATOM:       26.72000       58.41000       36.45000
+     K ATOM:       26.88642       57.55801       37.14336
+     DXIR  :        0.14959       -0.76684        0.62416
+     DXJR  :        0.14979       -0.76686        0.62409
+     CST   :        1.00000        0.01215     -108.38785
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56969       49.81410       33.65183
+     J ATOM:       21.70000       50.42006       32.72979
+     K ATOM:       21.56952       49.81411       33.65181
+     DXIR  :       -0.11729       -0.54542        0.82992
+     DXJR  :       -0.11745       -0.54541        0.82990
+     CST   :        1.00000        0.00884     -108.99116
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33170       52.36704       35.78900
+     J ATOM:       15.90943       51.77871       36.63154
+     K ATOM:       16.33182       52.36709       35.78909
+     DXIR  :        0.38008        0.52955       -0.75837
+     DXJR  :        0.38019        0.52959       -0.75828
+     CST   :        1.00000        0.00867     -108.99133
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32433       52.34232       36.20891
+     J ATOM:       14.22002       53.42005       35.96003
+     K ATOM:       14.32448       52.34235       36.20897
+     DXIR  :        0.09389       -0.97005        0.22401
+     DXJR  :        0.09403       -0.97003        0.22407
+     CST   :        1.00000        0.00883     -108.99117
+ EANGLFS> Total of    53 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral 2249 is almost linear.
+ derivatives may be affected for atoms:  810  816  818  819
+ EPHIFS: WARNING.  dihedral 2273 is almost linear.
+ derivatives may be affected for atoms:  823  822  824  825
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  117  with deltaPHI= -99.8833 MIN=   0.0000 ATOMS:  662  660  664  663
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-176.3187 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS> Total of     6 WARNINGs issued.
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.28732       52.49228       33.63861
+     J ATOM:       23.87477       51.56824       33.82667
+     K ATOM:       23.28768       52.49249       33.63854
+     DXIR  :       -0.52876        0.83172       -0.16927
+     DXJR  :       -0.52843        0.83191       -0.16934
+     CST   :        1.00000        0.02223     -108.37777
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88601       57.55813       37.14361
+     J ATOM:       26.72001       58.40999       36.44999
+     K ATOM:       26.88665       57.55808       37.14339
+     DXIR  :        0.14942       -0.76675        0.62432
+     DXJR  :        0.14999       -0.76679        0.62412
+     CST   :        1.00000        0.03456     -108.36544
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56945       49.81501       33.65196
+     J ATOM:       21.70002       50.42017       32.72944
+     K ATOM:       21.56898       49.81504       33.65191
+     DXIR  :       -0.11752       -0.54470        0.83035
+     DXJR  :       -0.11795       -0.54468        0.83031
+     CST   :        1.00000        0.02449     -108.97551
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.33088       52.35393       35.78309
+     J ATOM:       15.90879       51.77698       36.63355
+     K ATOM:       16.33124       52.35407       35.78336
+     DXIR  :        0.37993        0.51931       -0.76549
+     DXJR  :        0.38025        0.51943       -0.76525
+     CST   :        1.00000        0.02401     -108.97599
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32391       52.34229       36.20863
+     J ATOM:       14.22005       53.42014       35.96008
+     K ATOM:       14.32435       52.34237       36.20879
+     DXIR  :        0.09348       -0.97016        0.22372
+     DXJR  :        0.09388       -0.97009        0.22386
+     CST   :        1.00000        0.02447     -108.97553
+ EANGLFS> Total of    53 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EPHIFS: WARNING.  dihedral 2249 is almost linear.
+ derivatives may be affected for atoms:  810  816  818  819
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-169.8527 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ WARNING FROM EANGLFS. Angle    1  is almost linear.
+ Derivatives may be affected for atoms:    2    1    3
+     I ATOM:       23.30683       52.48818       33.63591
+     J ATOM:       23.88243       51.55770       33.82881
+     K ATOM:       23.30754       52.48859       33.63576
+     DXIR  :       -0.51809        0.83751       -0.17363
+     DXJR  :       -0.51746        0.83788       -0.17376
+     CST   :        1.00000        0.04283     -108.35717
+ WARNING FROM EANGLFS. Angle   37  is almost linear.
+ Derivatives may be affected for atoms:   20   18   21
+     I ATOM:       26.88574       57.55828       37.14385
+     J ATOM:       26.72001       58.40998       36.44998
+     K ATOM:       26.88700       57.55819       37.14345
+     DXIR  :        0.14917       -0.76661        0.62454
+     DXJR  :        0.15030       -0.76669        0.62418
+     CST   :        1.00000        0.06832     -108.33168
+ WARNING FROM EANGLFS. Angle   53  is almost linear.
+ Derivatives may be affected for atoms:   29   28   30
+     I ATOM:       21.56909       49.81635       33.65215
+     J ATOM:       21.70004       50.42034       32.72891
+     K ATOM:       21.56817       49.81641       33.65206
+     DXIR  :       -0.11787       -0.54364        0.83100
+     DXJR  :       -0.11869       -0.54359        0.83092
+     CST   :        1.00000        0.04775     -108.95225
+ WARNING FROM EANGLFS. Angle  101  is almost linear.
+ Derivatives may be affected for atoms:   56   55   57
+     I ATOM:       16.32980       52.34156       35.77741
+     J ATOM:       15.90843       51.77528       36.63536
+     K ATOM:       16.33051       52.34180       35.77791
+     DXIR  :        0.37927        0.50971       -0.77224
+     DXJR  :        0.37991        0.50992       -0.77178
+     CST   :        1.00000        0.04653     -108.95347
+ WARNING FROM EANGLFS. Angle  113  is almost linear.
+ Derivatives may be affected for atoms:   61   60   62
+     I ATOM:       14.32330       52.34225       36.20822
+     J ATOM:       14.22009       53.42028       35.96016
+     K ATOM:       14.32415       52.34241       36.20853
+     DXIR  :        0.09289       -0.97032        0.22328
+     DXJR  :        0.09366       -0.97018        0.22356
+     CST   :        1.00000        0.04768     -108.95232
+ EANGLFS> Total of    48 warnings.
+ EPHIFS: WARNING.  dihedral  437 is almost linear.
+ derivatives may be affected for atoms:  157  156  159  160
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-160.5146 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EIPHIFS: WARNING.  dihedral   17 is almost linear.
+ derivatives may be affected for atoms:   80   78   82   81
+ EIPHIFS: WARNING.  dihedral   45 is almost linear.
+ derivatives may be affected for atoms:  234  232  236  235
+ EIPHIFS: WARNING.  dihedral   77 is almost linear.
+ derivatives may be affected for atoms:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI=-130.3775 MIN=   0.0000 ATOMS:  723  721  725  724
+ EIPHIFS: WARNING.  dihedral  141 is almost linear.
+ derivatives may be affected for atoms:  793  791  795  794
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   17  with deltaPHI=  93.3338 MIN=   0.0000 ATOMS:   80   78   82   81
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   77  with deltaPHI= 100.0220 MIN=   0.0000 ATOMS:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  125  with deltaPHI= -87.6523 MIN=   0.0000 ATOMS:  723  721  725  724
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI= -87.2335 MIN=   0.0000 ATOMS:  793  791  795  794
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   45  with deltaPHI= 130.8402 MIN=   0.0000 ATOMS:  234  232  236  235
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI=-107.0341 MIN=   0.0000 ATOMS:  793  791  795  794
+ UPDECI: Nonbond update at step        13
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40955 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      493 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   17  with deltaPHI= 119.0425 MIN=   0.0000 ATOMS:   80   78   82   81
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   45  with deltaPHI= 101.6907 MIN=   0.0000 ATOMS:  234  232  236  235
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   77  with deltaPHI=  98.4552 MIN=   0.0000 ATOMS:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   17  with deltaPHI=  87.3725 MIN=   0.0000 ATOMS:   80   78   82   81
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   45  with deltaPHI=  92.1724 MIN=   0.0000 ATOMS:  234  232  236  235
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   77  with deltaPHI=  91.6342 MIN=   0.0000 ATOMS:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI= -95.0567 MIN=   0.0000 ATOMS:  793  791  795  794
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   17  with deltaPHI=  87.1721 MIN=   0.0000 ATOMS:   80   78   82   81
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   45  with deltaPHI=  88.4277 MIN=   0.0000 ATOMS:  234  232  236  235
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   77  with deltaPHI=  88.2279 MIN=   0.0000 ATOMS:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  105  with deltaPHI= 159.5452 MIN=   0.0000 ATOMS:  592  590  594  593
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI= -90.8488 MIN=   0.0000 ATOMS:  793  791  795  794
+ UPDECI: Nonbond update at step        16
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40952 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      503 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   17  with deltaPHI=  86.8506 MIN=   0.0000 ATOMS:   80   78   82   81
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   45  with deltaPHI=  87.8239 MIN=   0.0000 ATOMS:  234  232  236  235
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   53  with deltaPHI= 116.6867 MIN=   0.0000 ATOMS:  288  286  290  289
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   77  with deltaPHI=  87.6503 MIN=   0.0000 ATOMS:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI= -90.3470 MIN=   0.0000 ATOMS:  793  791  795  794
+ UPDECI: Nonbond update at step        17
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40946 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      505 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   17  with deltaPHI=  86.3775 MIN=   0.0000 ATOMS:   80   78   82   81
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   45  with deltaPHI=  87.0380 MIN=   0.0000 ATOMS:  234  232  236  235
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   77  with deltaPHI=  86.8922 MIN=   0.0000 ATOMS:  452  450  453  454
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI= -89.7617 MIN=   0.0000 ATOMS:  793  791  795  794
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   29  with deltaPHI=-112.4433 MIN=   0.0000 ATOMS:  149  147  151  150
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   89  with deltaPHI= 171.1471 MIN=   0.0000 ATOMS:  506  504  508  507
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   97  with deltaPHI=-100.6099 MIN=   0.0000 ATOMS:  564  562  566  565
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI= -88.0174 MIN=   0.0000 ATOMS:  793  791  795  794
+ UPDECI: Nonbond update at step        19
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40940 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      521 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI= -87.6888 MIN=   0.0000 ATOMS:  793  791  795  794
+ UPDECI: Nonbond update at step        20
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40930 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      549 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  141  with deltaPHI= -85.2688 MIN=   0.0000 ATOMS:  793  791  795  794
+ UPDECI: Nonbond update at step        21
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40969 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      558 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   29  with deltaPHI= 173.6221 MIN=   0.0000 ATOMS:  149  147  151  150
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   85  with deltaPHI= 152.5370 MIN=   0.0000 ATOMS:  471  469  473  472
+ UPDECI: Nonbond update at step        22
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40988 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      590 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   25  with deltaPHI=  97.4236 MIN=   0.0000 ATOMS:  122  120  124  123
+ UPDECI: Nonbond update at step        23
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40994 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      595 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   25  with deltaPHI=  96.8665 MIN=   0.0000 ATOMS:  122  120  124  123
+ UPDECI: Nonbond update at step        24
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40988 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      583 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step        25
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40974 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      589 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   29  with deltaPHI=  84.8206 MIN=   0.0000 ATOMS:  149  147  151  150
+ UPDECI: Nonbond update at step        26
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40957 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      617 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   13  with deltaPHI=-175.8818 MIN=   0.0000 ATOMS:   83   70   85   84
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   25  with deltaPHI=-124.5372 MIN=   0.0000 ATOMS:  122  120  124  123
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=  109  with deltaPHI= 145.8857 MIN=   0.0000 ATOMS:  619  617  621  620
+ UPDECI: Nonbond update at step        27
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40947 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      616 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step        28
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40947 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      614 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step        29
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40934 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      639 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   25  with deltaPHI= -96.9250 MIN=   0.0000 ATOMS:  122  120  124  123
+ UPDECI: Nonbond update at step        31
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40925 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      649 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step        32
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40914 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      650 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ EPHI: WARNING. bent improper torsion angle is 
+
+far from minimum for;
+    IPHI=   25  with deltaPHI= 133.0105 MIN=   0.0000 ATOMS:  122  120  124  123
+ UPDECI: Nonbond update at step        49
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40900 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      689 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step        79
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40844 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      704 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      100      3148.08 126926876.99         3.54         0.00
+MINI INTERN>      159.20086   3006.88657    351.86990   1092.99609     82.71160
+MINI CROSS>       -38.34652
+MINI EXTERN>      116.72104    375.59401      0.00000     28.22872      0.00000
+MINI CONSTR>      171.17091      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2198.95750      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       113
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40798 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      705 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step       153
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40760 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      707 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      200   1599.91509   1548.16059      5.60377      0.00368
+MINI INTERN>      114.49263   1898.91443    237.01746    932.08799     61.51710
+MINI CROSS>       -53.60347
+MINI EXTERN>        8.48155    379.10895      0.00000     28.62208      0.00000
+MINI CONSTR>      198.95503      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2205.67866      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       204
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40755 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      714 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step       252
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40749 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      711 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      300    752.55120    847.36389      1.43877      0.00132
+MINI INTERN>       79.69761   1311.80401    135.58793    858.63782     51.99938
+MINI CROSS>       -63.10725
+MINI EXTERN>      -40.16086    381.37194      0.00000     28.61808      0.00000
+MINI CONSTR>      217.66939      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2209.56686      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       322
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40743 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      710 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      400    454.35373    298.19748      4.05225      0.00271
+MINI INTERN>       75.97180   1103.02460    105.29829    814.94350     47.60577
+MINI CROSS>       -65.65828
+MINI EXTERN>      -58.12123    386.52254      0.00000     28.61138      0.00000
+MINI CONSTR>      231.82674      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2215.67140      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       405
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40723 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      712 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      500    295.31395    159.03978      0.98625      0.00097
+MINI INTERN>       70.13407    997.45045     93.77435    781.92223     46.16985
+MINI CROSS>       -67.30591
+MINI EXTERN>      -69.33081    391.75555      0.00000     28.58598      0.00000
+MINI CONSTR>      244.02711      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2221.86893      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      600    218.58780     76.72615      0.81733      0.00083
+MINI INTERN>       68.88910    954.71830     93.15491    753.37200     43.50555
+MINI CROSS>       -67.43654
+MINI EXTERN>      -78.29819    390.84353      0.00000     28.56552      0.00000
+MINI CONSTR>      254.26421      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2222.99059      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       612
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40713 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      696 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      700    152.51160     66.07620      1.54969      0.00172
+MINI INTERN>       65.90286    915.69142     90.16497    733.51280     41.35215
+MINI CROSS>       -67.45689
+MINI EXTERN>      -85.60947    390.64481      0.00000     28.55260      0.00000
+MINI CONSTR>      263.35462      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2223.59825      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      800     58.49183     94.01977      0.52776      0.00061
+MINI INTERN>       65.14080    853.59150     78.75178    714.44960     38.82400
+MINI CROSS>       -67.96414
+MINI EXTERN>      -92.87323    395.73460      0.00000     28.53099      0.00000
+MINI CONSTR>      271.87336      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2227.56744      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       824
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40722 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      696 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      900     27.04903     31.44279      0.46189      0.00053
+MINI INTERN>       64.43051    835.51436     78.34172    700.38570     37.20502
+MINI CROSS>       -67.02683
+MINI EXTERN>      -96.85894    395.74492      0.00000     28.58535      0.00000
+MINI CONSTR>      279.28604      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2228.55881      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>     1000      3.55100     23.49803      0.40663      0.00045
+MINI INTERN>       64.00332    821.07224     78.07767    688.91963     36.02909
+MINI CROSS>       -65.99420
+MINI EXTERN>      -99.46243    394.02660      0.00000     28.60996      0.00000
+MINI CONSTR>      285.60020      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2227.33108      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ STEEPD> Minimization exiting with number of steps limit (      1000) exceeded.
+
+STPD MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+STPD INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+STPD CROSS:           CMAPs     
+STPD EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+STPD CONSTR:       HARMonic    CDIHedral          CIC     RESDistance       NOE
+STPD PBEQ:             PBnp       PBelec        GBEnr         GSBP
+ ----------       ---------    ---------    ---------    ---------    ---------
+STPD>     1000      3.55100     23.49803      0.40663      0.00054
+STPD INTERN>       64.00332    821.07224     78.07767    688.91963     36.02909
+STPD CROSS>       -65.99420
+STPD EXTERN>      -99.46243    394.02660      0.00000     28.60996      0.00000
+STPD CONSTR>      285.60020      0.00000      0.00000      0.00000      0.00000
+STPD PBEQ>          0.00000      0.00000  -2227.33108      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>    mini abnr nstep  1000 nprint 100 step 0.005
+
+ NONBOND OPTION FLAGS: 
+     ELEC     VDW      ATOMs    CDIElec  SWITch   VATOm    VSWItch 
+     BYGRoup  NOEXtnd  NOEWald 
+ CUTNB  = 20.000 CTEXNB =999.000 CTONNB = 16.000 CTOFNB = 18.000
+ WMIN   =  1.500 WRNMXD =  0.500 E14FAC =  1.000 EPS    =  1.000
+ NBXMOD =      5 IONC   = 0.0000
+ There are    40722 atom  pairs and     5193 atom  exclusions.
+ There are        0 group pairs and      801 group exclusions.
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40750 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      700 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+
+
+ ABNER> An energy minimization has been requested.
+
+ EIGRNG =    0.0005000   MINDIM =            5
+ NPRINT =          100   NSTEP  =         1000
+ PSTRCT =    0.0000000   SDSTP  =    0.0050000
+ STPLIM =    1.0000000   STRICT =    0.1000000
+ TOLFUN =    0.0000000   TOLGRD =    0.0000000
+ TOLITR =          100   TOLSTP =    0.0000000
+ FMEM   =    0.0000000
+MINI MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+MINI INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+MINI CROSS:           CMAPs     
+MINI EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+MINI CONSTR:       HARMonic    CDIHedral          CIC     RESDistance       NOE
+MINI PBEQ:             PBnp       PBelec        GBEnr         GSBP
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>        0      3.55100     23.49803      0.40663      0.00000
+MINI INTERN>       64.00332    821.07224     78.07767    688.91963     36.02909
+MINI CROSS>       -65.99420
+MINI EXTERN>      -99.46243    394.02660      0.00000     28.60996      0.00000
+MINI CONSTR>      285.60020      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2227.33108      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step        14
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40782 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      704 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step        43
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40814 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      705 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step        81
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40827 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      703 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step        97
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40813 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      704 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      100   -233.38916    236.94016      2.45780      0.10289
+MINI INTERN>       61.78233    641.59860     63.74438    643.54441     27.74548
+MINI CROSS>       -67.95274
+MINI EXTERN>     -111.59035    400.18839      0.00000     28.77555      0.00000
+MINI CONSTR>      330.14483      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2251.37004      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       132
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40804 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      697 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step       150
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40799 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      692 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step       186
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40809 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      684 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      200   -313.42908     80.03993      0.42862      0.01944
+MINI INTERN>       59.45340    616.95946     62.51233    613.21791     23.63119
+MINI CROSS>       -64.15016
+MINI EXTERN>     -120.13678    378.18588      0.00000     28.72179      0.00000
+MINI CONSTR>      328.53400      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2240.35810      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       229
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40850 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      685 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      300   -339.27788     25.84880      0.37921      0.01225
+MINI INTERN>       58.49616    607.98019     62.26169    611.84992     22.09400
+MINI CROSS>       -71.26611
+MINI EXTERN>     -124.79397    386.01264      0.00000     28.60929      0.00000
+MINI CONSTR>      326.17027      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2246.69198      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       327
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40846 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      682 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step       353
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40861 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      674 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      400   -354.52595     15.24807      0.24068      0.00784
+MINI INTERN>       57.35264    594.71502     61.84632    612.17980     22.54125
+MINI CROSS>       -73.76107
+MINI EXTERN>     -127.30178    388.68236      0.00000     28.63354      0.00000
+MINI CONSTR>      328.83629      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2248.25034      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      500   -358.12125      3.59530      0.08872      0.00342
+MINI INTERN>       57.19406    593.60736     61.69310    611.61432     22.29277
+MINI CROSS>       -73.63207
+MINI EXTERN>     -127.95658    384.49209      0.00000     28.64018      0.00000
+MINI CONSTR>      327.89425      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2243.96074      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       509
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40861 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      683 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      600   -359.61659      1.49534      0.07115      0.00248
+MINI INTERN>       57.25481    592.38624     61.59631    612.20203     22.23198
+MINI CROSS>       -73.52665
+MINI EXTERN>     -127.89516    384.39773      0.00000     28.62888      0.00000
+MINI CONSTR>      327.54722      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2244.43998      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      700   -359.99574      0.37914      0.09981      0.00301
+MINI INTERN>       57.23635    592.11304     61.53712    611.82905     22.23660
+MINI CROSS>       -73.48692
+MINI EXTERN>     -128.15919    384.47076      0.00000     28.62315      0.00000
+MINI CONSTR>      327.76363      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2244.15932      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+ UPDECI: Nonbond update at step       755
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40851 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      678 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+ UPDECI: Nonbond update at step       784
+ Generating nonbond list with Exclusion mode = 5
+ == PRIMARY == SPACE FOR   218323 ATOM PAIRS AND        0 GROUP PAIRS
+
+ General atom nonbond list generation found:
+    40837 ATOM PAIRS WERE FOUND FOR ATOM LIST
+      676 GROUP PAIRS REQUIRED ATOM SEARCHES
+
+MINI>      800   -361.62087      1.62513      0.15497      0.00518
+MINI INTERN>       57.24063    590.38733     61.52576    610.10086     22.30994
+MINI CROSS>       -73.18616
+MINI EXTERN>     -129.57664    385.44260      0.00000     28.62732      0.00000
+MINI CONSTR>      329.09129      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2243.58380      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>      900   -362.20258      0.58171      0.04279      0.00135
+MINI INTERN>       57.24723    590.94271     61.54561    609.50001     22.25030
+MINI CROSS>       -73.34259
+MINI EXTERN>     -129.44070    385.22930      0.00000     28.64880      0.00000
+MINI CONSTR>      328.97616      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2243.75939      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+MINI>     1000   -362.24428      0.04170      0.01079      0.00035
+MINI INTERN>       57.25568    590.93993     61.55056    609.50227     22.25745
+MINI CROSS>       -73.35692
+MINI EXTERN>     -129.37113    385.36224      0.00000     28.65619      0.00000
+MINI CONSTR>      328.89660      0.00000      0.00000      0.00000      0.00000
+MINI PBEQ>          0.00000      0.00000  -2243.93715      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+
+ ABNER> Minimization exiting with number of steps limit ( 1000) exceeded.
+
+ABNR MIN: Cycle      ENERgy      Delta-E         GRMS    Step-size
+ABNR INTERN:          BONDs       ANGLes       UREY-b    DIHEdrals    IMPRopers
+ABNR CROSS:           CMAPs     
+ABNR EXTERN:        VDWaals         ELEC       HBONds          ASP         USER
+ABNR CONSTR:       HARMonic    CDIHedral          CIC     RESDistance       NOE
+ABNR PBEQ:             PBnp       PBelec        GBEnr         GSBP
+ ----------       ---------    ---------    ---------    ---------    ---------
+ABNR>     1000   -362.24428      0.04170      0.01079      0.00032
+ABNR INTERN>       57.25568    590.93993     61.55056    609.50227     22.25745
+ABNR CROSS>       -73.35692
+ABNR EXTERN>     -129.37113    385.36224      0.00000     28.65619      0.00000
+ABNR CONSTR>      328.89660      0.00000      0.00000      0.00000      0.00000
+ABNR PBEQ>          0.00000      0.00000  -2243.93715      0.00000
+ ----------       ---------    ---------    ---------    ---------    ---------
+  
+ CHARMM>    cons harm clear
+  
+ CHARMM>     
+  
+ CHARMM>    open writ card unit 10 name ../s3-mkat/@pdbid.pdb
+ Parameter: PDBID -> "P53"
+ OPNLGU> Unit already open. The old file will be closed first.
+ VCLOSE: Closing unit   10 with status "KEEP"
+ VOPEN> Attempting to open::../s3-mkat/p53.pdb::
+ OPNLGU> Unit 10 opened for WRITE access to /home/yumzhang/hyres/folded-protein-hyres/script/../s3-mkat/p53.pdb
+  
+ CHARMM>    coor writ pdb  unit 10
+  Write CHARMM-pdb format
+  Write CHARMM-pdb format
+  Write CHARMM-pdb format
+ RDTITL> * A FOLDED STRUCTURE FOR ALL-ATOM SYSTEM AFTER ENERGY MINIMIZATION
+ RDTITL> *
+  Write CHARMM-pdb format
+  
+ CHARMM>     
+  
+ CHARMM>    stop
+ Parallel load balance (sec.):
+ Node Eext      Eint   Wait    Comm    List   Integ   Total
+   0     2.1    26.6     0.2     0.1     0.0     0.0    29.1
+   1     2.3    26.6     0.1     0.1     0.0     0.0    29.1
+   2     2.2    26.6     0.2     0.1     0.0     0.0    29.1
+   3     2.3    26.6     0.0     0.1     0.0     0.0    29.1
+PARALLEL> Average timing for all nodes:
+   4     2.2    26.6     0.1     0.1     0.0     0.0    29.1
+ VCLOSE: Closing unit   10 with status "KEEP"
+ VCLOSE: Closing unit   15 with status "KEEP"
+
+      $$$$$$  New timer profile Local node$$$$$
+
+   Shake Setup                     0.00 Other:            0.00
+   Shake time                      0.04 Other:            0.00
+         Electrostatic & VDW             2.13 Other:            0.00
+            GB Radii                       13.41 Other:            0.00
+            GB Energy                       2.39 Other:            0.00
+            GB Force                        3.90 Other:            0.00
+         Gen Born time                  26.44 Other:            6.73
+      Nonbond force                  28.57 Other:            0.01
+         Bond energy                     0.01 Other:            0.00
+         Angle energy                    0.05 Other:            0.00
+         Dihedral energy                 0.11 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.19 Other:            0.02
+      Comm force                      0.27 Other:            0.00
+   Energy time                    29.07 Other:            0.04
+ Total time                     29.70 Other:            0.59
+
+         $$$$$$  Average   profile $$$$$
+
+   Shake Setup                     0.00 Other:            0.00
+   Shake time                      0.04 Other:            0.00
+         Electrostatic & VDW             2.22 Other:            0.00
+            GB Radii                       13.34 Other:            0.00
+            GB Energy                       2.48 Other:            0.00
+            GB Force                        3.79 Other:            0.00
+         Gen Born time                  26.42 Other:            6.71
+      Nonbond force                  28.64 Other:            0.07
+         Bond energy                     0.01 Other:            0.00
+         Angle energy                    0.05 Other:            0.00
+         Dihedral energy                 0.11 Other:            0.00
+         Restraints energy               0.00 Other:            0.00
+      INTRNL energy                   0.19 Other:            0.02
+      Comm force                      0.20 Other:            0.00
+   Energy time                    29.07 Other:            0.04
+ Total time                     29.70 Other:            0.59
+
+                    NORMAL TERMINATION BY NORMAL STOP
+                    MAXIMUM STACK SPACE USED IS   32026
+                    STACK CURRENTLY IN USE IS         0
+                    MOST SEVERE WARNING WAS AT LEVEL  0
+                    HEAP PRINTOUT-  HEAP SIZE         10240000
+                    SPACE CURRENTLY IN USE IS            13824
+                    MAXIMUM SPACE USED IS               395096
+                    FREE LIST
+  PRINHP> ADDRESS:               1 LENGTH:        10225676 NEXT:        10239501
+  PRINHP> ADDRESS:        10239501 LENGTH:             500 NEXT:               0
+
+                    $$$$$ JOB ACCOUNTING INFORMATION $$$$$
+                     ELAPSED TIME:    29.75  SECONDS 
+                         CPU TIME:    29.62  SECONDS 
